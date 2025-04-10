@@ -1,7 +1,32 @@
+import React, { useState, useRef } from "react";
 import { RevealOnScroll } from "../RevealOnScroll";
 import { FaLinkedin, FaGithub, FaFacebook, FaInstagram } from "react-icons/fa";
 
 export const Home = () => {
+  const [ageText, setAgeText] = useState("I am 20 years old");
+  const intervalRef = useRef(null);
+
+  const exact_years = () => {
+    const birthDate = new Date(2004, 4, 27);
+    const currentDate = new Date();
+    const diffInMilliseconds = currentDate - birthDate;
+    const years = diffInMilliseconds / (1000 * 60 * 60 * 24 * 365.25);
+    return years.toFixed(9);
+  };
+
+  const startUpdatingAge = () => {
+    setAgeText(`I am ${exact_years()} years old`);
+    intervalRef.current = setInterval(() => {
+      setAgeText(`I am ${exact_years()} years old`);
+    }, 1000);
+  };
+
+  const stopUpdatingAge = () => {
+    clearInterval(intervalRef.current);
+    intervalRef.current = null;
+    setAgeText("I am 20 years old");
+  };
+
   return (
     <section
       id="home"
@@ -15,6 +40,13 @@ export const Home = () => {
           <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-green-500 to-purple-600 bg-clip-text text-transparent leading-right animate-gradient">
             My name is Martin Janev
           </h1>
+          <h6
+            className="text-2xl md:text-l font-bold mb-6 bg-gradient-to-r from-green-500 to-purple-600 bg-clip-text text-transparent leading-right animate-gradient transition-all duration-300 ease-in-out"
+            onMouseEnter={startUpdatingAge}
+            onMouseLeave={stopUpdatingAge}
+          >
+            {ageText}
+          </h6>
           <p className="text-gray-400 text-lg mb-8 max-w-200 mx-auto">
             I am Computer Science student and an IT enthusiast and dedicated
             problem solver, driven by a passion for unraveling complex
