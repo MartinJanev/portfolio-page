@@ -15,9 +15,9 @@ export const Projects = () => {
             Featured Projects
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="p-6 rounded-xl border border-white/30 hover:-translate-y-1 hover:border-green-500/30 hover:shadow-[0_2px_8px_rgba(59,120,246,0.1)] transition-all flex flex-col justify-between min-h-[360px]">
+            <div className="p-6 rounded-xl border border-white/10 hover:-translate-y-1 hover:border-green-500/30 hover:shadow-[0_2px_8px_rgba(59,120,246,0.1)] transition-all flex flex-col justify-between min-h-[360px]">
               <div>
-                <h3 className="text-hl font-bold mb-2"> EvevntifyNow</h3>
+                <h3 className="text-hl font-bold mb-2"> EventifyNow</h3>
                 <p className="text-gray-400 mb-3">
                   EventifyNow is an event management system - project for the
                   subject Fundamentals of Web Design. This system allows
@@ -49,7 +49,7 @@ export const Projects = () => {
                 </a>
               </div>
             </div>
-            <div className="p-6 rounded-xl border border-white/30 hover:-translate-y-1 hover:border-green-500/30 hover:shadow-[0_2px_8px_rgba(59,120,246,0.1)] transition-all flex flex-col justify-between min-h-[360px]">
+            <div className="p-6 rounded-xl border border-white/10 hover:-translate-y-1 hover:border-green-500/30 hover:shadow-[0_2px_8px_rgba(59,120,246,0.1)] transition-all flex flex-col justify-between min-h-[360px]">
               <div>
                 <h3 className="text-hl font-bold mb-2"> Tetris</h3>
                 <p className="text-gray-400 mb-3">
@@ -82,7 +82,7 @@ export const Projects = () => {
               </div>
             </div>
 
-            <div className="p-6 rounded-xl border border-white/30 hover:-translate-y-1 hover:border-green-500/30 hover:shadow-[0_2px_8px_rgba(59,120,246,0.1)] transition-all flex flex-col justify-between min-h-[360px]">
+            <div className="p-6 rounded-xl border border-white/10 hover:-translate-y-1 hover:border-green-500/30 hover:shadow-[0_2px_8px_rgba(59,120,246,0.1)] transition-all flex flex-col justify-between min-h-[360px]">
               <div>
                 <h3 className="text-hl font-bold mb-2">
                   Riemann Hypothesis Project
@@ -117,7 +117,7 @@ export const Projects = () => {
               </div>
             </div>
 
-            <div className="p-6 rounded-xl border border-white/30 hover:-translate-y-1 hover:border-green-500/30 hover:shadow-[0_2px_8px_rgba(59,120,246,0.1)] transition-all flex flex-col justify-between min-h-[360px]">
+            <div className="p-6 rounded-xl border border-white/10 hover:-translate-y-1 hover:border-green-500/30 hover:shadow-[0_2px_8px_rgba(59,120,246,0.1)] transition-all flex flex-col justify-between min-h-[360px]">
               <div>
                 <h3 className="text-hl font-bold mb-2">
                   Upcoming Project in May

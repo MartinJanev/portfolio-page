@@ -46,7 +46,7 @@ export const About = () => {
 
           <div className="rounded-xl p-8 border-white/10 border hover:-translate-y-1 transition-all">
             <p className="text-gray-300 mb-6">
-              At 20 years old, I am currently in my undergraduate studies at the
+              I am currently in my second year of undergraduate studies at the
               Faculty of Computer Science and Engineering, with plans to
               specialize in the realms of AI, more specifically ML or Data
               Science in the future. My academic journey has given me invaluable
@@ -107,16 +107,13 @@ export const About = () => {
             <div className="p-7 rounded-xl border-white/10 border hover:-translate-y-1 transition-all flex flex-col justify-between min-h-[340px]">
               <div>
                 <h3 className="text-xl font-bold mb-4">🏫 Education</h3>
-                <ul className="list-disc list-inside text-gray-300 space-y-2">
-                  <li>
-                    <strong>B.Sc in Computer Science</strong> - FCSE Skopje
-                    (2023–present)
-                  </li>
-                  <li>
-                    <strong>High School</strong> - Slavco Stojmenski - Shtip
-                    (2019–2023)
-                  </li>
-                </ul>
+                <p className="text-xl text-gray-300 mt-6 rounded-lg">
+                  <span className="font-bold">
+                    Bachelor's Degree in Computer Science
+                  </span>{" "}
+                  at the Faculty of Computer Science and Engineering - Skopje
+                  (2023 - present)
+                </p>
               </div>
             </div>
             <div className="p-7 rounded-xl border-white/10 border hover:-translate-y-1 transition-all flex flex-col justify-between min-h-[340px]">
@@ -153,4 +150,3 @@ export const About = () => {
     </section>
   );
 };
-0;

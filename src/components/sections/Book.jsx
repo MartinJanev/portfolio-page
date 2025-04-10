@@ -15,7 +15,7 @@ export const Book = () => {
             Book I am reading right now
           </h2>
 
-          <div className="p-6 rounded-xl border border-white/30 hover:-translate-y-1 hover:border-green-500/30 hover:shadow-[0_2px_8px_rgba(59,120,246,0.1)] transition-all flex flex-col md:flex-row gap-6">
+          <div className="p-6 rounded-xl border border-white/10 hover:-translate-y-1 hover:border-green-500/30 hover:shadow-[0_2px_8px_rgba(59,120,246,0.1)] transition-all flex flex-col md:flex-row gap-6">
             <div className="flex-shrink-0">
               <img
                 src="https://jamesclear.com/wp-content/uploads/2024/06/atomic-habits-dots.png"
@@ -52,7 +52,7 @@ export const Book = () => {
               </blockquote>
 
               {/* Button */}
-              <div className="text-center md:text-left mt-6">
+              <div className="text-center md:text-left mt-6 flex align-center justify-center md:justify-center gap-4">
                 <button
                   className="px-4 py-2 bg-green-700 text-white rounded hover:bg-green-600 transition"
                   onClick={() =>
