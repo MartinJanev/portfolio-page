@@ -45,7 +45,7 @@ export const About = () => {
           </h2>
 
           <div className="rounded-xl p-8 border-white/10 border hover:-translate-y-1 transition-all">
-            <p className="text-gray-300 mb-6">
+            <p className="text-gray-300 mb-6 text-center md:text-left">
               I am currently in my second year of undergraduate studies at the
               Faculty of Computer Science and Engineering, with plans to
               specialize in the realms of AI, more specifically ML or Data
@@ -107,7 +107,7 @@ export const About = () => {
             <div className="p-7 rounded-xl border-white/10 border hover:-translate-y-1 transition-all flex flex-col justify-between min-h-[340px]">
               <div>
                 <h3 className="text-xl font-bold mb-4">🏫 Education</h3>
-                <p className="text-xl text-gray-300 mt-6 rounded-lg">
+                <p className="text-xl text-gray-300 mt-6 rounded-lg hover:-translate-y-1 transition-all">
                   <span className="font-bold">
                     Bachelor's Degree in Computer Science
                   </span>{" "}
@@ -118,10 +118,10 @@ export const About = () => {
             </div>
             <div className="p-7 rounded-xl border-white/10 border hover:-translate-y-1 transition-all flex flex-col justify-between min-h-[340px]">
               <div>
-                <h3 className="text-xl font-bold mb-4">🔝 Favorite Quote</h3>
+                <h3 className="text-xl font-bold mb-4">🔝 Favorite Quotes</h3>
                 <div className="space-y-6 text-gray-300">
-                  <div>
-                    <p className="italic">
+                  <div className="hover:-translate-y-1 transition-all">
+                    <p className="italic font-bold text-lg bg-gradient-to-r from-green-500 to-purple-600 bg-clip-text text-transparent">
                       "Stay hungry. Stay foolish." – Steve Jobs
                     </p>
                     <p className="mt-2">
@@ -129,8 +129,8 @@ export const About = () => {
                       pavement or in pursuing the next big thing.
                     </p>
                   </div>
-                  <div>
-                    <p className="italic">
+                  <div className="hover:-translate-y-1 transition-all">
+                    <p className="italic font-bold text-lg bg-gradient-to-r from-green-500 to-purple-600 bg-clip-text text-transparent">
                       "Try and leave this world a little better than you found
                       it" – Robert Baden Powell
                     </p>
