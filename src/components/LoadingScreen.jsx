@@ -1,11 +1,13 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const LoadingScreen = ({ onComplete }) => {
   const [text, setText] = useState("");
   const fullText = "<Hello World />";
 
   useEffect(() => {
+    const refreshRate = window.screen ? window.screen.refreshRate || 60 : 60; // Default to 60Hz if unavailable
+    const intervalTime = 1000 / refreshRate; // Calculate interval time based on refresh rate
+
     let index = 0;
     const interval = setInterval(() => {
       setText(fullText.substring(0, index));
@@ -18,7 +20,7 @@ export const LoadingScreen = ({ onComplete }) => {
           onComplete();
         }, 1000);
       }
-    }, 75);
+    }, intervalTime);
 
     return () => clearInterval(interval);
   }, [onComplete]);
