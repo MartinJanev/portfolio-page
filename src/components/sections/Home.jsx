@@ -48,14 +48,15 @@ export const Home = () => {
             {ageText}
           </h6>
           <p className="text-gray-400 text-lg mb-8 max-w-200 mx-auto">
-            I am Computer Science student and an IT enthusiast and dedicated
-            problem solver, driven by a passion for unraveling complex
-            challenges in the realms of artificial intelligence and data
-            science. I prioritize planning and flawless execution in all my
-            endeavors, ensuring that each project is approached with precision
-            and clarity. My method involves developing comprehensive, innovative
-            solutions—transforming complex ideas into efficient, robust code
-            that stands up to rigorous testing and real-world application.
+            I am a Computer Science student at Faculty of Computer Science and
+            Engineering in Skopje, an IT enthusiast and dedicated problem
+            solver, driven by a passion for unraveling complex challenges in the
+            realms of AI, ML and Data Science. I prioritize planning and
+            flawless execution in all my endeavors, ensuring that each project
+            is approached with precision and clarity. My method involves
+            developing comprehensive, innovative solutions—transforming complex
+            ideas into efficient, robust code that stands up to rigorous testing
+            and real-world application.
           </p>
           <div className="flex justify-center space-x-4">
             <a

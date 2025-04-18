@@ -8,9 +8,12 @@ export const About = () => {
     "Angular",
     "TypeScript",
     "C#",
+    "OpenCV",
+    "TensorFlow",
     "HTML",
     "CSS",
     "JavaScript",
+    "React",
     "Shell",
   ];
 
@@ -24,8 +27,9 @@ export const About = () => {
     "Running",
     "Reading",
     "Volunteering",
-    "Football",
     "Tennis",
+    "Basketball",
+    "Football",
     "Table Tennis",
     "Coding",
   ];
