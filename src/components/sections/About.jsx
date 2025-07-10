@@ -4,17 +4,20 @@ export const About = () => {
   const it_related = [
     "Python",
     "Java",
+    "OpenCV",
+    "TensorFlow",
+    "NumPy",
+    "Pandas",
+    "Scikit-learn",
+    "Matplotlib",
     "C++",
     "Angular",
     "TypeScript",
     "C#",
-    "OpenCV",
-    "TensorFlow",
     "HTML",
     "CSS",
     "JavaScript",
     "React",
-    "Shell",
   ];
 
   const volunteering = [
@@ -50,9 +53,9 @@ export const About = () => {
 
           <div className="rounded-xl p-8 border-white/10 border hover:-translate-y-1 transition-all">
             <p className="text-gray-300 mb-6 text-center md:text-left">
-              I am currently in my second year of undergraduate studies at the
+              I am currently going to enroll in my third year of undergraduate studies at the
               Faculty of Computer Science and Engineering, with plans to
-              specialize in the realms of AI, more specifically ML or Data
+              specialize in the realms of AI, more specifically ML or even in Data
               Science in the future. My academic journey has given me invaluable
               experiences that have refined my attention to detail and ignited a
               passion for exploring innovative ideas. I am committed to
@@ -115,7 +118,7 @@ export const About = () => {
                   <span className="font-bold">
                     Bachelor's Degree in Computer Science
                   </span>{" "}
-                  at the Faculty of Computer Science and Engineering - Skopje
+                  Faculty of Computer Science and Engineering - Skopje
                   (2023 - present)
                 </p>
               </div>

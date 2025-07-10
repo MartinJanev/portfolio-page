@@ -53,6 +53,43 @@ export const Projects = () => {
             <div className="p-6 rounded-xl border border-white/10 hover:-translate-y-1 hover:border-green-500/30 hover:shadow-[0_2px_8px_rgba(59,120,246,0.1)] transition-all flex flex-col justify-between min-h-[360px]">
               <div>
                 <h3 className="text-hl font-bold mb-2">
+                  Advesatial game - A Multiagent Reinforcement Learning Game
+                </h3>
+                <p className="text-gray-400 mb-3">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Exercitationem aperiam repudiandae sint libero doloribus
+                  consequuntur tempora minima vero, quisquam nam. Dolorum,
+                  veritatis illum maxime molestiae doloribus quisquam dolorem
+                  ipsam adipisci, autem quidem ad, tempore porro a consequatur
+                  expedita voluptates doloremque!
+                </p>
+              </div>
+              <div>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {["AI"].map((tech, key) => (
+                    <span
+                      key={key}
+                      className="bg-green-500/10 text-green-500 py-1 px-3 rounded-full text-sm hover:bg-green-500/20
+                    hover:shadow-[0_2px_8px_rgba(59,120,2246,0.2)] transition"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                <a
+                  target="_blank"
+                  href="#"
+                  className="text-green-400 hover:text-green-300 transition-colors my-4"
+                >
+                  View Project ➡️
+                </a>
+              </div>
+            </div>
+
+            <div className="p-6 rounded-xl border border-white/10 hover:-translate-y-1 hover:border-green-500/30 hover:shadow-[0_2px_8px_rgba(59,120,246,0.1)] transition-all flex flex-col justify-between min-h-[360px]">
+              <div>
+                <h3 className="text-hl font-bold mb-2">
                   Matura Project - Tetris
                 </h3>
                 <p className="text-gray-400 mb-3">
@@ -104,7 +141,7 @@ export const Projects = () => {
                     "TensorFlow",
                     "Pandas",
                     "FER2013",
-                    "MTCNN",
+                    "RAF-DB",
                   ].map((tech, key) => (
                     <span
                       key={key}
@@ -119,42 +156,6 @@ export const Projects = () => {
                 <a
                   target="_blank"
                   href="#"
-                  className="text-green-400 hover:text-green-300 transition-colors my-4"
-                >
-                  View Project ➡️
-                </a>
-              </div>
-            </div>
-
-            <div className="p-6 rounded-xl border border-white/10 hover:-translate-y-1 hover:border-green-500/30 hover:shadow-[0_2px_8px_rgba(59,120,246,0.1)] transition-all flex flex-col justify-between min-h-[360px]">
-              <div>
-                <h3 className="text-hl font-bold mb-2">
-                  Upcoming Project in May
-                </h3>
-                <p className="text-gray-400 mb-3">
-                  The 9th edition of the CASSINI Hackathon focuses on leveraging
-                  space technologies to tackle critical challenges related to
-                  Europe's healthcare. This event brings together coders,
-                  problem-solvers, and innovators from across Europe to develop
-                  cutting-edge solutions. Link to the website below
-                </p>
-              </div>
-              <div>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {["TBD"].map((tech, key) => (
-                    <span
-                      key={key}
-                      className="bg-green-500/10 text-green-500 py-1 px-3 rounded-full text-sm hover:bg-green-500/20
-                    hover:shadow-[0_2px_8px_rgba(59,120,2246,0.2)] transition"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                <a
-                  target="_blank"
-                  href="https://www.cassini.eu/hackathons/north-macedonia"
                   className="text-green-400 hover:text-green-300 transition-colors my-4"
                 >
                   View Project ➡️

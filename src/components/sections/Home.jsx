@@ -1,31 +1,33 @@
 import React, { useState, useRef } from "react";
 import { RevealOnScroll } from "../RevealOnScroll";
 import { FaLinkedin, FaGithub, FaFacebook, FaInstagram } from "react-icons/fa";
-
 export const Home = () => {
-  const [ageText, setAgeText] = useState("I am 20 years old");
-  const intervalRef = useRef(null);
-
-  const exact_years = () => {
-    const birthDate = new Date(2004, 4, 27);
-    const currentDate = new Date();
-    const diffInMilliseconds = currentDate - birthDate;
-    const years = diffInMilliseconds / (1000 * 60 * 60 * 24 * 365.25);
+  const birthDate = new Date("2004-04-27T00:00:00");
+  const getExactYears = () => {
+    const now = new Date();
+    const diffInMs = now - birthDate;
+    const years = diffInMs / (1000 * 60 * 60 * 24 * 365.2425);
     return years.toFixed(9);
   };
 
+  const [ageText, setAgeText] = useState(`I am ${Math.floor(getExactYears())} years old`);
+  const intervalRef = useRef(null);
+
   const startUpdatingAge = () => {
-    setAgeText(`I am ${exact_years()} years old`);
+    setAgeText(`I am ${getExactYears()} years old`);
     intervalRef.current = setInterval(() => {
-      setAgeText(`I am ${exact_years()} years old`);
+      setAgeText(`I am ${getExactYears()} years old`);
     }, 1000);
   };
 
   const stopUpdatingAge = () => {
-    clearInterval(intervalRef.current);
-    intervalRef.current = null;
-    setAgeText("I am 20 years old");
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+    setAgeText(`I am ${Math.floor(getExactYears())} years old`);
   };
+  
 
   return (
     <section
