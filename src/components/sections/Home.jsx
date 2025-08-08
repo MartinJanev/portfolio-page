@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { RevealOnScroll } from "../RevealOnScroll";
 import { FaLinkedin, FaGithub, FaFacebook, FaInstagram } from "react-icons/fa";
+import avatar from "../../assets/MartinJanev.jpg";
 
 export const Home = () => {
   const birthDate = new Date("2004-04-27T00:00:00");
@@ -11,114 +12,116 @@ export const Home = () => {
     return years.toFixed(9);
   };
 
-  const [ageText, setAgeText] = useState(
-    `I am ${Math.floor(getExactYears())} years old`
-  );
+  const [ageText, setAgeText] = useState(`I am ${Math.floor(getExactYears())} years old`);
   const intervalRef = useRef(null);
 
   const startUpdatingAge = () => {
     setAgeText(`I am ${getExactYears()} years old`);
-    intervalRef.current = setInterval(() => {
-      setAgeText(`I am ${getExactYears()} years old`);
-    }, 1000);
+    intervalRef.current = setInterval(() => setAgeText(`I am ${getExactYears()} years old`), 1000);
   };
-
   const stopUpdatingAge = () => {
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
-    }
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    intervalRef.current = null;
     setAgeText(`I am ${Math.floor(getExactYears())} years old`);
   };
 
   return (
-    <section
-      id="home"
-      className="min-h-screen flex items-center justify-center py-20 px-4"
-    >
+    <section id="home" className="min-h-screen flex items-center justify-center py-20 px-4">
       <RevealOnScroll>
-        <div
-          className="
-            px-12 py-8
-            rounded-2xl
-            bg-white/5 backdrop-blur-lg
-            border border-transparent
-            hover:border-green-500/40
-            hover:shadow-[0_4px_16px_rgba(128,0,128,0.2)]
-            transition-all
-            max-w-3xl
-            mx-auto
-            text-center
-            space-y-6
-          "
-        >
-          {/* Main Headline */}
-          <h1 className="text-xl md:text-2xl lg:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-green-400">
-            Computer Science Student and AI Enthusiast
-          </h1>
+        {/* Make image column bigger than copy: 5-col grid, image spans 3 */}
+        <div className="w-full max-w-5xl mx-auto grid md:grid-cols-5 gap-10 items-center">
+          {/* Copy: 2/5 width on md+ */}
+          <div className="md:col-span-3 flex justify-center md:justify-start order-2 md:order-none">
+            {/* Glow frame */}
+            <div className="relative w-full max-w-2xl group flex flex-col items-center justify-center">
+              <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-green-500/30 via-transparent to-purple-500/30 blur opacity-40 group-hover:opacity-70 transition" />
+              <div className="relative p-8 md:p-10 rounded-2xl bg-white/5 backdrop-blur-lg ring-1 ring-white/10 flex flex-col items-center justify-center">
+
+                {/* Meta/badge row */}
+                <div className="mb-3 flex flex-wrap items-center gap-3 text-xs text-gray-300">
+                  <span className="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">
+                    💻 FCSE Skopje • 🏠 Shtip
+                  </span>
+                  <span className="h-3 w-px bg-white/10" />
+                  <span className="text-green-300/90">Open to internships</span>
+                </div>
+
+                {/* Title */}
+                <h1 className="text-4xl md:text-5xl font-extrabold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-green-400 animate-gradient text-center">
+                  Computer Science Student
+                </h1>
+
+                {/* Dynamic age line */}
+                <h2
+                  className="mt-3 mb-3 text-xl md:text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-purple-600 animate-gradient cursor-default transition-transform duration-200 ease-in-out hover:scale-105"
+                  onMouseEnter={startUpdatingAge}
+                  onMouseLeave={stopUpdatingAge}
+                >
+                  {ageText}
+                </h2>
 
 
+                {/* Tech chips */}
+                <div className="mt-4 flex flex-wrap gap-2 justify-center md:justify-start">
+                  {["AI", "Machine Learning", "Game Development"].map((t) => (
+                    <span
+                      key={t}
+                      className="inline-flex items-center gap-1 rounded-full bg-green-500/10 text-green-300 text-xs font-medium px-3 py-1"
+                    >
+                      <span className="h-1.5 w-1.5 rounded-full bg-green-400" />
+                      {t}
+                    </span>
+                  ))}
+                </div>
 
-          {/* Dynamic Age */}
-          <h2
-            className="
-              text-2xl md:text-3xl font-semibold
-              bg-clip-text text-transparent
-              bg-gradient-to-r from-green-500 to-purple-600
-              cursor-default
-              transition-transform duration-200 ease-in-out
-              hover:scale-105
-            "
-            onMouseEnter={startUpdatingAge}
-            onMouseLeave={stopUpdatingAge}
-          >
-            {ageText}
-          </h2>
+                {/* CTAs */}
+                <div className="mt-6 flex flex-wrap gap-3 justify-center md:justify-start">
+                  <a
+                    href="#projects"
+                    className="inline-flex items-center justify-center bg-green-600 hover:bg-green-500 text-black font-medium py-3 px-6 rounded-lg shadow-sm transition"
+                  >
+                    View My Work →
+                  </a>
+                  <a
+                    href="/MartinJanev-CV.pdf"
+                    className="pointer-events-none cursor-default inline-flex items-center justify-center border border-white/20 hover:border-green-400/50 text-white py-3 px-6 rounded-lg transition"
+                  >
+                    Download CV
+                  </a>
+                </div>
+
+                {/* Divider + socials */}
+                <div className="mt-6 pt-6 border-t border-white/10">
+                  <div className="flex gap-5 text-gray-300 justify-center md:justify-start">
+                    {[
+                      { Icon: FaLinkedin, href: "https://www.linkedin.com/in/martin-janev1/" },
+                      { Icon: FaGithub, href: "https://github.com/MartinJanev" },
+                      { Icon: FaFacebook, href: "https://www.facebook.com/martin.furka04" },
+                      { Icon: FaInstagram, href: "https://www.instagram.com/mjanev1/" },
+                    ].map(({ Icon, href }) => (
+                      <a key={href} href={href} target="_blank" rel="noreferrer" className="hover:text-purple-400 transition">
+                        <Icon size={26} />
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
 
-          {/* Subheadline */}
-          <p className="text-lg text-gray-300">
-            Hi, I’m Martin Janev, a passionate Computer Science student at FCSE Skopje. I specialize in AI, Machine Learning, and Data Science, crafting innovative solutions that bridge the gap between data and impactful applications.
-          </p>
-
-          {/* Call to Action */}
-          <a
-            href="#projects"
-            className="
-              inline-block
-              bg-green-700 hover:bg-purple-600
-              text-white font-medium
-              py-3 px-8
-              rounded-lg
-              shadow-md
-              transform hover:-translate-y-1
-              transition-all duration-200
-            "
-          >
-            View My Work →
-          </a>
-
-          {/* Social Icons */}
-          <div className="flex justify-center space-x-6 mt-2">
-            {[
-              { icon: FaLinkedin, url: "https://www.linkedin.com/in/martin-janev1/" },
-              { icon: FaGithub, url: "https://github.com/MartinJanev" },
-              { icon: FaFacebook, url: "https://www.facebook.com/martin.furka04" },
-              { icon: FaInstagram, url: "https://www.instagram.com/mjanev1/" },
-            ].map(({ icon: Icon, url }, idx) => (
-              <a
-                key={idx}
-                href={url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="
-                  text-gray-300 hover:text-purple-400
-                  transition-colors duration-200
-                "
-              >
-                <Icon size={28} />
-              </a>
-            ))}
+          <div className="md:col-span-2 flex justify-center md:justify-end order-1 md:order-none">
+            <div className="relative mt-8">
+              <div className="absolute -inset-8 blur-2xl opacity-30 bg-gradient-to-tr from-green-800 to-purple-800 rounded-full" />
+              <div className="p-[3px] rounded-full bg-gradient-to-tr from-green-500 to-purple-500">
+                <img
+                  src={avatar}
+                  alt="Martin Janev"
+                  loading="lazy"
+                  className="w-56 h-56 md:w-72 md:h-72 lg:w-96 lg:h-96 rounded-full object-cover"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </RevealOnScroll>

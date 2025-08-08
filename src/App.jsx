@@ -1,14 +1,15 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import "./index.css";
 import "./App.css";
+
+import BackgroundDecor from "./components/BackgroundDecor";
 import { LoadingScreen } from "./components/LoadingScreen";
-import { NavBar } from "./components/NavBar";
-import { MobileMenu } from "./components/MobileMenu";
+import { NavBar } from "./components/NavBar"; // uses scroll‑spy + built-in mobile drawer
 import { Home } from "./components/sections/Home";
 import { About } from "./components/sections/About";
 import { Projects } from "./components/sections/Projects";
-import { Footer } from "./components/Footer";
 import { Book } from "./components/sections/Book";
-import "./index.css";
+import { Footer } from "./components/Footer";
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -16,14 +17,18 @@ function App() {
 
   return (
     <>
-      {!isLoaded && <LoadingScreen onComplete={() => setIsLoaded(true)} />}{" "}
+      {!isLoaded && <LoadingScreen onComplete={() => setIsLoaded(true)} />}
+
       <div
-        className={`min-h-screen transition-opacity duration-700 ${
-          isLoaded ? "opacity-100" : "opacity-0"
-        } bg-black text-gray-100`}
+        className={`relative min-h-screen bg-black text-gray-100 transition-opacity duration-700 ${isLoaded ? "opacity-100" : "opacity-0"
+          }`}
       >
+        <BackgroundDecor />
+
+        {/* Nav: pass menu state for mobile menu/drawer */}
         <NavBar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-        <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+
+        {/* Sections */}
         <Home />
         <About />
         <Projects />

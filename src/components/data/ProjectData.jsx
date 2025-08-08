@@ -54,5 +54,5 @@ export const projects = [
       "Placeholder project description—replace with your real project details when ready.",
     techs: ["TBD"],
     link: "#",
-  },
+  }
 ];
