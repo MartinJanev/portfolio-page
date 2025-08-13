@@ -21,7 +21,10 @@ export const NavBar = ({ menuOpen, setMenuOpen }) => {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
+    const html = document.documentElement;
+    if (menuOpen) html.style.overflow = "hidden";
+    else html.style.overflow = "";
+    return () => { html.style.overflow = ""; };
   }, [menuOpen]);
 
   const links = [
@@ -39,9 +42,10 @@ export const NavBar = ({ menuOpen, setMenuOpen }) => {
     >
       {/* Scroll progress bar */}
       <div
-        className="h-1 bg-gradient-to-r from-green-400 to-purple-500"
+        className={`h-1 bg-gradient-to-r from-green-400 to-purple-500 ${menuOpen ? "hidden" : ""}`}
         style={{ width: `${progress}%` }}
       />
+
 
       <div className="max-w-5xl mx-auto px-4">
         <div className="flex justify-between items-center h-16">
@@ -98,17 +102,15 @@ export const NavBar = ({ menuOpen, setMenuOpen }) => {
       <div
         role="dialog"
         aria-modal="true"
-        className={`fixed inset-0 z-[60] md:hidden
-              bg-[#0b1220]/95 backdrop-blur-md
-              transform transition-transform duration-300 ease-in-out
-              ${menuOpen ? "translate-x-0" : "-translate-x-full"}`}
-        onClick={() => setMenuOpen(false)}   // click outside links closes
+        className={`fixed inset-0 z-[70] md:hidden
+            bg-gray-900/80          /* more transparent gray */
+            backdrop-blur-0
+            transform transition-transform duration-300 ease-in-out
+            ${menuOpen ? "translate-x-0" : "-translate-x-full"}`}
+        onClick={() => setMenuOpen(false)}
       >
-        {/* inner container to stop click bubbling when tapping links */}
-        <div
-          className="relative h-full w-full flex flex-col items-center"
-          onClick={(e) => e.stopPropagation()}
-        >
+        <div className="relative h-svh w-full flex flex-col items-center bg-gray-600/80" onClick={(e) => e.stopPropagation()}>
+
           {/* Close (X) */}
           <button
             aria-label="Close menu"

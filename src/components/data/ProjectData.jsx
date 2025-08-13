@@ -1,18 +1,18 @@
 export const projects = [
   {
-    title: "Advesatial Game",
+    title: "PyCheckers",
     subtitle: "AI",
     description:
-      "A multi‑agent reinforcement‑learning setup: pit chess engines and checkers AIs against each other in evolving tournaments.",
-    techs: ["Python", "PyTorch", "Unity", "AI"],
-    link: "#",
+      "Python/PyGame English Checkers with AI (minimax and expectimax + alpha-beta pruning), opening book from PDN files, FEN support, and standard rules including forced captures and multi-jumps.",
+    techs: ["Python", "Pandas", "OCA", "PyGame", "AI"],
+    link: "https://github.com/MartinJanev/PyCheckers",
   },
   {
     title: "Emotion Recognition in Pictures & Video",
     subtitle: "Computer Vision",
     description:
       "Digital Image Processing project training a model to recognize happiness, sadness, anger, fear, or surprise in images and videos.",
-    techs: ["OpenCV", "Python", "TensorFlow", "Pandas", "FER2013", "RAF-DB"],
+    techs: ["OpenCV", "Python", "TensorFlow", "Pandas", "FER2013"],
     link: "#",
   },
   {

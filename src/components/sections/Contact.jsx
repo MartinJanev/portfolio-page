@@ -26,7 +26,7 @@ export const Contact = () => {
     }
 
     return (
-        <Section id="contact" title="Let's Work Together">
+        <Section id="contact" title="Contact Me" >
             <RevealOnScroll>
                 <div className="relative max-w-3xl mx-auto px-4"> {/* + px-4 for mobile gutter */}
                     <div className="group relative p-6 md:p-8 rounded-2xl bg-white/5 backdrop-blur-lg ring-1 ring-white/10 transition md:hover:-translate-y-1 md:hover:ring-green-400/40">
