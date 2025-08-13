@@ -17,7 +17,7 @@ export const About = () => (
         <div className="relative w-full group">
           <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-green-500/25 via-transparent to-purple-500/25 blur opacity-40 group-hover:opacity-70 transition" />
           <div className="relative p-6 md:p-10 rounded-2xl bg-white/5 backdrop-blur-lg ring-1 ring-white/10">
-            <p className="text-gray-200 text-lg leading-relaxed [text-wrap:balance]">
+            <p className="text-gray-200 text-base md:text-lg leading-relaxed [text-wrap:balance]">
               I’m enrolling as a third-year Computer Science student at FCSE Skopje, passionate about AI, Machine Learning and the realms of software development.
               Through academic projects and community involvement, I’ve sharpened my problem-solving skills and love crafting
               end-to-end solutions—from data preprocessing to production-ready code. Beyond tech, I’m dedicated to volunteering,

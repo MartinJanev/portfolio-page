@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import useScrollSpy from "../hooks/useScrollSpy";
 
 export const NavBar = ({ menuOpen, setMenuOpen }) => {
-  const ids = ["home", "about", "projects", "books"];
+  const ids = ["home", "about", "experience", "projects", "contact"];
   const active = useScrollSpy(ids, "0px 0px -55% 0px"); // midpoint scroll-spy
   const [scrolled, setScrolled] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -27,8 +27,9 @@ export const NavBar = ({ menuOpen, setMenuOpen }) => {
   const links = [
     { href: "#home", id: "home", label: "Home" },
     { href: "#about", id: "about", label: "About" },
+    { href: "#experience", id: "experience", label: "Experience" },
     { href: "#projects", id: "projects", label: "Projects" },
-    { href: "#books", id: "books", label: "Books" },
+    { href: "#contact", id: "contact", label: "Contact" },
   ];
 
   return (
@@ -93,25 +94,45 @@ export const NavBar = ({ menuOpen, setMenuOpen }) => {
         </div>
       </div>
 
-
-      {/* Mobile drawer (left slide-in) */}
+      {/* Mobile drawer – full screen, blocks background */}
       <div
-        className={`fixed top-0 left-0 h-full w-3/4 max-w-xs bg-gray-900/95 backdrop-blur-sm transform transition-transform duration-300 ease-in-out md:hidden ${menuOpen ? "translate-x-0" : "-translate-x-full"
-          }`}
+        role="dialog"
+        aria-modal="true"
+        className={`fixed inset-0 z-[60] md:hidden
+              bg-[#0b1220]/95 backdrop-blur-md
+              transform transition-transform duration-300 ease-in-out
+              ${menuOpen ? "translate-x-0" : "-translate-x-full"}`}
+        onClick={() => setMenuOpen(false)}   // click outside links closes
       >
-        <nav className="flex flex-col items-center mt-20 space-y-6">
-          {links.map(({ href, id, label }) => (
-            <a
-              key={href}
-              href={href}
-              onClick={() => setMenuOpen(false)}
-              className={`text-white text-2xl font-semibold hover:text-green-300 transition-colors ${active === id ? "text-green-400" : ""
-                }`}
-            >
-              {label}
-            </a>
-          ))}
-        </nav>
+        {/* inner container to stop click bubbling when tapping links */}
+        <div
+          className="relative h-full w-full flex flex-col items-center"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* Close (X) */}
+          <button
+            aria-label="Close menu"
+            onClick={() => setMenuOpen(false)}
+            className="absolute top-5 right-5 text-white/90 hover:text-white text-3xl"
+          >
+            ×
+          </button>
+
+          {/* Links */}
+          <nav className="mt-24 flex flex-col items-center space-y-8">
+            {links.map(({ href, id, label }) => (
+              <a
+                key={href}
+                href={href}
+                onClick={() => setMenuOpen(false)}
+                className={`text-white text-2xl font-semibold transition-colors
+                     ${active === id ? "text-green-400" : "hover:text-green-300"}`}
+              >
+                {label}
+              </a>
+            ))}
+          </nav>
+        </div>
       </div>
     </nav>
   );

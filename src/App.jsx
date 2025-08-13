@@ -8,8 +8,9 @@ import { NavBar } from "./components/NavBar"; // uses scroll‑spy + built-in mo
 import { Home } from "./components/sections/Home";
 import { About } from "./components/sections/About";
 import { Projects } from "./components/sections/Projects";
-import { Book } from "./components/sections/Book";
 import { Footer } from "./components/Footer";
+import { Experience } from "./components/sections/Experience";
+import { Contact } from "./components/sections/Contact";
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -31,8 +32,9 @@ function App() {
         {/* Sections */}
         <Home />
         <About />
+        <Experience />
         <Projects />
-        <Book />
+        <Contact />
         <Footer />
       </div>
     </>
