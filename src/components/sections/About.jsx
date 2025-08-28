@@ -10,7 +10,7 @@ const rawCategories = [
     icon: FaLaptopCode,
     columns: 2,            // two-column chip grid
     limit: 10,             // show first 10, then “Show more”
-    items: ["Python", "Java", "C++", "OpenCV", "TensorFlow", "NumPy", "Pandas", "Matplotlib", "Angular", "TypeScript", "Web Dev"],
+    items: ["Python", "Java", "C++", "OpenCV", "TensorFlow", "HTML", "CSS", "JavaScript", "Angular", "TypeScript"],
   },
   {
     title: "Volunteering",

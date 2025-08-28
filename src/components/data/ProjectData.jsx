@@ -3,7 +3,7 @@ export const projects = [
     title: "PyCheckers",
     subtitle: "AI",
     description:
-      "Python/PyGame English Checkers with AI (minimax and expectimax + alpha-beta pruning), opening book from PDN files, FEN support, and standard rules including forced captures and multi-jumps.",
+      "Python / PyGame English Checkers game, that uses AI (minimax and expectimax + alpha-beta pruning) for opponent modeling. It features an opening book from PDN files, FEN support, and standard rules including forced captures and multi-jumps.",
     techs: ["Python", "Pandas", "OCA", "PyGame", "AI"],
     link: "https://github.com/MartinJanev/PyCheckers",
   },
@@ -12,15 +12,22 @@ export const projects = [
     subtitle: "Computer Vision",
     description:
       "Digital Image Processing project training a model to recognize happiness, sadness, anger, fear, or surprise in images and videos.",
-    techs: ["OpenCV", "Python", "TensorFlow", "Pandas", "FER2013"],
-    link: "#",
+    techs: ["OpenCV", "Python", "PyTorch", "Pandas", "FER2013"],
+    link: "https://github.com/MartinJanev/MoodLens",
   },
   {
-    title: "Entropy & Mutual Information in EEG Signal Analysis",
-    subtitle: "Signal Processing",
+    title: "Mutual Information – Driven Feature Selection on CNN",
+    subtitle: "Information Theory with CNNs",
     description:
-      "Using information theory to mine nonlinear EEG signals: entropy for neural complexity and mutual information for cross‑region connectivity, powering tools for BCIs, sleep staging, seizure alarms, and consciousness monitoring.",
-    techs: ["ML", "EEG", "Signal Processing", "Information Theory"],
+      "Train a small Convolutional Neural Network (CNN), grab its last hidden-layer vectors (embeddings), score how informative each feature is about the label (mutual information), and see how accuracy changes when you keep only the top-k features.",
+    techs: ["ML", "Python", "CIFAR10", "MNIST", "PyTorch", "Matplotlib"],
+    link: "https://github.com/MartinJanev/FeatExtract",
+  }, {
+    title: "Markov Chains in Hearts",
+    subtitle: "Random processes",
+    description:
+      "Simulate a game of Hearts and analyze the strategies involved using Markov Chains.",
+    techs: ["Markov Chains"],
     link: "#",
   },
   {
