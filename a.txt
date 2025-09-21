@@ -1,0 +1,574 @@
+==== .gitignore ===
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+.env
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+
+trik.txt
+file.sh
+src/pr.sh
+o3.txt
+src/o2.txt
+
+
+==== eslint.config.js ===
+import js from '@eslint/js'
+import globals from 'globals'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
+
+export default [
+  { ignores: ['dist'] },
+  {
+    files: ['**/*.{js,jsx}'],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.browser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        ecmaFeatures: { jsx: true },
+        sourceType: 'module',
+      },
+    },
+    plugins: {
+      'react-hooks': reactHooks,
+      'react-refresh': reactRefresh,
+    },
+    rules: {
+      ...js.configs.recommended.rules,
+      ...reactHooks.configs.recommended.rules,
+      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+      'react-refresh/only-export-components': [
+        'warn',
+        { allowConstantExport: true },
+      ],
+    },
+  },
+]
+
+
+==== file.sh ===
+#!/usr/bin/env bash
+# dump_here.sh — dump contents of all files under the current directory to one .txt
+# Usage: ./dump_here.sh [OUTPUT_FILE]
+# Example: ./dump_here.sh all_files.txt
+
+set -Eeuo pipefail
+
+OUT="${1:-all_files.txt}"
+
+# Create/empty the output file
+: > "$OUT"
+
+# Walk recursively; skip the output file itself if it's inside this directory
+find . -maxdepth 1 -type f \
+    -not -name "$OUT" \
+    -not -name "package.json" \
+    -not -name "package-lock.json" \
+    -print0 2>/dev/null | while IFS= read -r -d '' file; do
+    printf '==== %s ===\n' "$(basename "$file")" >> "$OUT"
+    if ! cat -- "$file" >> "$OUT" 2>/dev/null; then
+        printf '[!] Could not read %s\n' "$file" >> "$OUT"
+    fi
+    printf '\n\n' >> "$OUT"
+done
+
+echo "Done. Wrote: $OUT"
+
+
+==== index.html ===
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta property="og:title" content="Martin Janev's personal website" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:description"
+      content="Martin Janev's personal website, used for showcasing his work and projects"
+    />
+    <link rel="icon" type="image/svg+xml" href="/flag.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee+Tint&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Martin Janev</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+
+
+==== o3.txt ===
+==== .gitignore ===
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+.env
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+trik.txt
+file.sh
+o1.txt
+src/o.txt
+src/pr.sh
+
+
+==== eslint.config.js ===
+import js from '@eslint/js'
+import globals from 'globals'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
+
+export default [
+  { ignores: ['dist'] },
+  {
+    files: ['**/*.{js,jsx}'],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.browser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        ecmaFeatures: { jsx: true },
+        sourceType: 'module',
+      },
+    },
+    plugins: {
+      'react-hooks': reactHooks,
+      'react-refresh': reactRefresh,
+    },
+    rules: {
+      ...js.configs.recommended.rules,
+      ...reactHooks.configs.recommended.rules,
+      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+      'react-refresh/only-export-components': [
+        'warn',
+        { allowConstantExport: true },
+      ],
+    },
+  },
+]
+
+
+==== file.sh ===
+#!/usr/bin/env bash
+# dump_here.sh — dump contents of all files under the current directory to one .txt
+# Usage: ./dump_here.sh [OUTPUT_FILE]
+# Example: ./dump_here.sh all_files.txt
+
+set -Eeuo pipefail
+
+OUT="${1:-all_files.txt}"
+
+# Create/empty the output file
+: > "$OUT"
+
+# Walk recursively; skip the output file itself if it's inside this directory
+find . -maxdepth 1 -type f \
+    -not -name "$OUT" \
+    -not -name "package.json" \
+    -not -name "package-lock.json" \
+    -print0 2>/dev/null | while IFS= read -r -d '' file; do
+    printf '==== %s ===\n' "$(basename "$file")" >> "$OUT"
+    if ! cat -- "$file" >> "$OUT" 2>/dev/null; then
+        printf '[!] Could not read %s\n' "$file" >> "$OUT"
+    fi
+    printf '\n\n' >> "$OUT"
+done
+
+echo "Done. Wrote: $OUT"
+
+
+==== index.html ===
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta property="og:title" content="Martin Janev's personal website" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:description"
+      content="Martin Janev's personal website, used for showcasing his work and projects"
+    />
+    <link rel="icon" type="image/svg+xml" href="/flag.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee+Tint&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Martin Janev</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+
+
+==== o1.txt ===
+==== .gitignore ===
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+.env
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+trik.txt
+
+
+==== eslint.config.js ===
+import js from '@eslint/js'
+import globals from 'globals'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
+
+export default [
+  { ignores: ['dist'] },
+  {
+    files: ['**/*.{js,jsx}'],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.browser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        ecmaFeatures: { jsx: true },
+        sourceType: 'module',
+      },
+    },
+    plugins: {
+      'react-hooks': reactHooks,
+      'react-refresh': reactRefresh,
+    },
+    rules: {
+      ...js.configs.recommended.rules,
+      ...reactHooks.configs.recommended.rules,
+      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+      'react-refresh/only-export-components': [
+        'warn',
+        { allowConstantExport: true },
+      ],
+    },
+  },
+]
+
+
+==== file.sh ===
+#!/usr/bin/env bash
+# dump_here.sh — dump contents of all files under the current directory to one .txt
+# Usage: ./dump_here.sh [OUTPUT_FILE]
+# Example: ./dump_here.sh all_files.txt
+
+set -Eeuo pipefail
+
+OUT="${1:-all_files.txt}"
+
+# Create/empty the output file
+: > "$OUT"
+
+# Walk recursively; skip the output file itself if it's inside this directory
+find . -maxdepth 1 -type f \
+    -not -name "$OUT" \
+    -not -name "package.json" \
+    -not -name "package-lock.json" \
+    -print0 2>/dev/null | while IFS= read -r -d '' file; do
+    printf '==== %s ===\n' "$(basename "$file")" >> "$OUT"
+    if ! cat -- "$file" >> "$OUT" 2>/dev/null; then
+        printf '[!] Could not read %s\n' "$file" >> "$OUT"
+    fi
+    printf '\n\n' >> "$OUT"
+done
+
+echo "Done. Wrote: $OUT"
+
+
+==== index.html ===
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta property="og:title" content="Martin Janev's personal website" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:description"
+      content="Martin Janev's personal website, used for showcasing his work and projects"
+    />
+    <link rel="icon" type="image/svg+xml" href="/flag.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bungee+Tint&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Martin Janev</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+
+
+==== README.md ===
+# React + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+
+==== tailwind.config.js ===
+export default {
+    content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
+    theme: {
+        extend: {
+            colors: {
+                brand: {
+                    green: "#22c55e",
+                    purple: "#8b5cf6",
+                },
+            },
+            boxShadow: {
+                card: "0 4px 16px rgba(59,130,246,0.20)",
+            },
+            keyframes: {
+                gradient: {
+                    "0%, 100%": { backgroundPosition: "0% 50%" },
+                    "50%": { backgroundPosition: "100% 50%" },
+                },
+            },
+            animation: {
+                gradient: "gradient 6s ease infinite",
+            },
+        },
+    },
+    plugins: [],
+};
+
+
+==== trik.txt ===
+npm run deploy
+
+
+==== vite.config.js ===
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react(), tailwindcss()],
+  base: "/portfolio-page",
+});
+
+
+
+
+==== README.md ===
+# React + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+
+==== tailwind.config.js ===
+export default {
+    darkMode: "class",
+    content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
+    theme: {
+        extend: {
+            colors: {
+                brand: { green: "#22c55e", purple: "#8b5cf6" },
+            },
+            boxShadow: { card: "0 4px 16px rgba(59,130,246,0.20)" },
+            keyframes: { gradient: { "0%,100%": { backgroundPosition: "0% 50%" }, "50%": { backgroundPosition: "100% 50%" } } },
+            animation: { gradient: "gradient 6s ease infinite" },
+        },
+    },
+    plugins: [],
+};
+
+
+==== trik.txt ===
+npm run deploy
+
+
+==== vite.config.js ===
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react(), tailwindcss()],
+  base: "/portfolio-page",
+});
+
+
+
+
+==== README.md ===
+# React + Vite
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+
+Currently, two official plugins are available:
+
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+## Expanding the ESLint configuration
+
+If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+
+==== tailwind.config.js ===
+export default {
+    content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
+    theme: {
+        extend: {
+            colors: {
+                brand: {
+                    green: "#22c55e",
+                    purple: "#8b5cf6",
+                },
+            },
+            boxShadow: {
+                card: "0 4px 16px rgba(59,130,246,0.20)",
+            },
+            keyframes: {
+                gradient: {
+                    "0%, 100%": { backgroundPosition: "0% 50%" },
+                    "50%": { backgroundPosition: "100% 50%" },
+                },
+            },
+            animation: {
+                gradient: "gradient 6s ease infinite",
+            },
+        },
+    },
+    plugins: [],
+};
+
+
+==== trik.txt ===
+npm run deploy
+
+
+==== tsconfig.json ===
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "noEmit": true,
+    "allowJs": false,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "baseUrl": "."
+  },
+  "include": ["src"]
+}
+
+
+==== vite.config.js ===
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react(), tailwindcss()],
+  base: "/portfolio-page",
+});
+
+

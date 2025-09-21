@@ -4,15 +4,15 @@ import "./App.css";
 
 import BackgroundDecor from "./components/BackgroundDecor";
 import { LoadingScreen } from "./components/LoadingScreen";
-import { NavBar } from "./components/NavBar"; // uses scroll‑spy + built-in mobile drawer
+import { NavBar } from "./components/NavBar";
 import { Home } from "./components/sections/Home";
 import { About } from "./components/sections/About";
 import { Projects } from "./components/sections/Projects";
-import { Footer } from "./components/Footer";
+import { Footer } from "./components/sections/Footer";
 import { Experience } from "./components/sections/Experience";
 import { Contact } from "./components/sections/Contact";
 
-function App() {
+export default function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -21,15 +21,12 @@ function App() {
       {!isLoaded && <LoadingScreen onComplete={() => setIsLoaded(true)} />}
 
       <div
-        className={`relative min-h-screen bg-black text-gray-100 transition-opacity duration-700 ${isLoaded ? "opacity-100" : "opacity-0"
-          }`}
+        className={`relative min-h-screen bg-black text-gray-100 transition-opacity duration-700 ${
+          isLoaded ? "opacity-100" : "opacity-0"
+        }`}
       >
         <BackgroundDecor />
-
-        {/* Nav: pass menu state for mobile menu/drawer */}
         <NavBar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-
-        {/* Sections */}
         <Home />
         <About />
         <Experience />
@@ -40,5 +37,3 @@ function App() {
     </>
   );
 }
-
-export default App;

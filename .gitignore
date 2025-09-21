@@ -24,8 +24,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
 trik.txt
 file.sh
-o1.txt
-src/o.txt
 src/pr.sh
+o3.txt
+src/o2.txt

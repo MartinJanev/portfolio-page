@@ -8,21 +8,22 @@ export const projects = [
     link: "https://github.com/MartinJanev/PyCheckers",
   },
   {
-    title: "Emotion Recognition in Pictures & Video",
+    title: "MoodLens",
     subtitle: "Computer Vision",
     description:
-      "Digital Image Processing project training a model to recognize happiness, sadness, anger, fear, or surprise in images and videos.",
+      "An Emotion Recognition in Pictures & Video project for the subject Digital Image Processing. The job is to train a model to recognize happiness, sadness, anger, fear, or surprise in images and videos.",
     techs: ["OpenCV", "Python", "PyTorch", "Pandas", "FER2013"],
     link: "https://github.com/MartinJanev/MoodLens",
   },
   {
-    title: "Mutual Information – Driven Feature Selection on CNN",
+    title: "Mutual Information Driven Feature Selection",
     subtitle: "Information Theory with CNNs",
     description:
-      "Train a small Convolutional Neural Network (CNN), grab its last hidden-layer vectors (embeddings), score how informative each feature is about the label (mutual information), and see how accuracy changes when you keep only the top-k features.",
-    techs: ["ML", "Python", "CIFAR10", "MNIST", "PyTorch", "Matplotlib"],
-    link: "https://github.com/MartinJanev/FeatExtract",
-  }, {
+      "Compare 2 types of feature selection on a dataset - filter methods using mutual information and standard feature selectors. We use WDBC dataset for training and testing, for selectors, we use sklearn MI implementation, mRMR for mutual information based selection, for standard selectors we use ANOVA-F1, Chi2, RFE, PCA, Lasso, and tree-based selection. We ought to seek k@95% - the number of features needed to reach 95% accuracy.",
+    techs: ["ML", "Python", "PyTorch", "Matplotlib"],
+    link: "https://github.com/MartinJanev/WDBC_Feature_Selection",
+  },
+  {
     title: "Markov Chains in Hearts",
     subtitle: "Random processes",
     description:
@@ -61,5 +62,5 @@ export const projects = [
       "Placeholder project description—replace with your real project details when ready.",
     techs: ["TBD"],
     link: "#",
-  }
+  },
 ];

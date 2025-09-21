@@ -1,30 +1,68 @@
-// components/sections/About.jsx (categories portion)
 import React, { useState } from "react";
 import Section from "../Section";
 import { RevealOnScroll } from "../RevealOnScroll";
-import { FaLaptopCode, FaHandsHelping, FaRunning, FaGraduationCap, FaCode, FaBriefcase } from "react-icons/fa";
+import {
+  FaLaptopCode,
+  FaHandsHelping,
+  FaRunning,
+  FaGraduationCap,
+  FaCode,
+  FaBriefcase,
+} from "react-icons/fa";
+import type { IconType } from "react-icons";
 
-const rawCategories = [
+type Category = {
+  title: string;
+  icon: IconType;
+  columns: 1 | 2;
+  limit: number;
+  items: string[];
+};
+
+const rawCategories: Category[] = [
   {
     title: "Technologies",
     icon: FaLaptopCode,
-    columns: 2,            // two-column chip grid
-    limit: 10,             // show first 10, then “Show more”
-    items: ["Python", "Java", "C++", "OpenCV", "TensorFlow", "HTML", "CSS", "JavaScript", "Angular", "TypeScript"],
+    columns: 2,
+    limit: 10,
+    items: [
+      "Python",
+      "Java",
+      "C++",
+      "OpenCV",
+      "TensorFlow",
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Angular",
+      "TypeScript",
+    ],
   },
   {
     title: "Volunteering",
     icon: FaHandsHelping,
-    columns: 1,            // single column looks nicer here
+    columns: 1,
     limit: 6,
-    items: ["Equinox Scout Shtip", "Scout Assoc. Macedonia", "EESTEC LC Skopje"],
+    items: [
+      "Equinox Scout Shtip",
+      "Scout Assoc. Macedonia",
+      "EESTEC LC Skopje",
+    ],
   },
   {
     title: "Hobbies",
     icon: FaRunning,
     columns: 2,
     limit: 8,
-    items: ["Running", "Reading", "Tennis", "Basketball", "Football", "Table Tennis", "Coding"],
+    items: [
+      "Running",
+      "Reading",
+      "Tennis",
+      "Basketball",
+      "Football",
+      "Table Tennis",
+      "Coding",
+    ],
   },
 ];
 
@@ -32,25 +70,23 @@ const highlights = [
   { icon: FaGraduationCap, label: "Status", value: "3rd year @ FCSE" },
   { icon: FaCode, label: "Focus", value: "AI • ML • CV" },
   { icon: FaBriefcase, label: "Availability", value: "Open to internships" },
-];
+] as const;
 
-
-function CategoryCard({ title, icon: Icon, items, columns = 2, limit = 8 }) {
+function CategoryCard({
+  title,
+  icon: Icon,
+  items,
+  columns = 2,
+  limit = 8,
+}: Category) {
   const [open, setOpen] = useState(false);
   const shown = open ? items : items.slice(0, limit);
-
   const gridCols =
-    columns === 1
-      ? "grid grid-cols-1"
-      : "grid grid-cols-2 xs:grid-cols-2"; // keep it predictable and tidy
-
+    columns === 1 ? "grid grid-cols-1" : "grid grid-cols-2 xs:grid-cols-2";
   return (
     <div className="relative group h-full p-6 rounded-2xl bg-white/5 backdrop-blur-lg ring-1 ring-white/10 hover:ring-green-400/40 transition">
-      {/* soft glow */}
       <div className="pointer-events-none absolute -inset-1 rounded-2xl bg-gradient-to-br from-green-500/20 to-purple-500/20 blur opacity-0 group-hover:opacity-60 transition" />
-
       <div className="relative flex flex-col h-full">
-        {/* Header */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
             <div className="h-9 w-9 rounded-lg bg-white/5 ring-1 ring-white/10 flex items-center justify-center">
@@ -63,7 +99,6 @@ function CategoryCard({ title, icon: Icon, items, columns = 2, limit = 8 }) {
           </span>
         </div>
 
-        {/* Chips */}
         <div className={`${gridCols} gap-2`}>
           {shown.map((item) => (
             <span
@@ -76,7 +111,6 @@ function CategoryCard({ title, icon: Icon, items, columns = 2, limit = 8 }) {
           ))}
         </div>
 
-        {/* Toggle */}
         {items.length > limit && (
           <button
             type="button"
@@ -91,34 +125,34 @@ function CategoryCard({ title, icon: Icon, items, columns = 2, limit = 8 }) {
   );
 }
 
-export const About = () => (
+export const About: React.FC = () => (
   <Section id="about" title="About Me">
     <RevealOnScroll>
       <div className="space-y-12 md:space-y-16">
-
         <div className="relative group">
           <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-green-500/25 via-transparent to-purple-500/25 blur opacity-40 group-hover:opacity-70 transition" />
-          <div className="relative grid grid-cols-1 lg:grid-cols-3 gap-3 md:gap-4 p-4 md:p-5
-                  rounded-2xl bg-white/5 backdrop-blur-lg ring-1 ring-white/10">
+          <div className="relative grid grid-cols-1 lg:grid-cols-3 gap-3 md:gap-4 p-4 md:p-5 rounded-2xl bg-white/5 backdrop-blur-lg ring-1 ring-white/10">
             {highlights.map(({ icon: Icon, label, value }) => (
-              <div key={label}
-                className="flex items-center gap-3 p-3 rounded-xl bg-black/20 ring-1 ring-white/5">
-                <span className="shrink-0 grid place-items-center w-9 h-9 rounded-lg
-                         bg-gradient-to-br from-green-500/20 to-purple-500/20
-                         ring-1 ring-white/10">
+              <div
+                key={label}
+                className="flex items-center gap-3 p-3 rounded-xl bg-black/20 ring-1 ring-white/5"
+              >
+                <span className="shrink-0 grid place-items-center w-9 h-9 rounded-lg bg-gradient-to-br from-green-500/20 to-purple-500/20 ring-1 ring-white/10">
                   <Icon className="text-green-300" />
                 </span>
                 <div>
-                  <div className="text-[11px] uppercase tracking-wide text-gray-400">{label}</div>
-                  <div className="text-sm md:text-base font-medium text-gray-100">{value}</div>
+                  <div className="text-[11px] uppercase tracking-wide text-gray-400">
+                    {label}
+                  </div>
+                  <div className="text-sm md:text-base font-medium text-gray-100">
+                    {value}
+                  </div>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-
-        {/* Categories – tidier & balanced */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 items-stretch">
           {rawCategories.map((c) => (
             <CategoryCard key={c.title} {...c} />

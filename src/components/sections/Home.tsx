@@ -1,38 +1,40 @@
 import React, { useState, useRef } from "react";
 import { RevealOnScroll } from "../RevealOnScroll";
 import avatar from "../../assets/MartinJanev.jpg";
-
 import { contactData } from "../data/ContactData";
 
-export const Home = () => {
+export const Home: React.FC = () => {
   const birthDate = new Date("2004-04-27T00:00:00");
   const getExactYears = () => {
     const now = new Date();
-    const diffInMs = now - birthDate;
+    const diffInMs = now.getTime() - birthDate.getTime();
     const years = diffInMs / (1000 * 60 * 60 * 24 * 365.2425);
     return years.toFixed(9);
   };
 
-  const [ageText, setAgeText] = useState(`I am ${Math.floor(getExactYears())} years old`);
-  const intervalRef = useRef(null);
+  const [ageText, setAgeText] = useState(
+    `I am ${Math.floor(Number(getExactYears()))} years old`
+  );
+  const intervalRef = useRef<number | null>(null);
 
   const startUpdatingAge = () => {
     setAgeText(`I am ${getExactYears()} years old`);
-    intervalRef.current = setInterval(() => setAgeText(`I am ${getExactYears()} years old`), 1000);
+    intervalRef.current = window.setInterval(
+      () => setAgeText(`I am ${getExactYears()} years old`),
+      1000
+    );
   };
   const stopUpdatingAge = () => {
-    if (intervalRef.current) clearInterval(intervalRef.current);
+    if (intervalRef.current !== null) window.clearInterval(intervalRef.current);
     intervalRef.current = null;
-    setAgeText(`I am ${Math.floor(getExactYears())} years old`);
+    setAgeText(`I am ${Math.floor(Number(getExactYears()))} years old`);
   };
 
-  // Only use socials from contactData: Linkedin, GitHub, FB, Insta
-  const socials = contactData.filter((c) =>
-    ["Linkedin", "GitHub", "Facebook", "Instagram"].includes(c.name)
-  );
-
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center py-20 px-4">
+    <section
+      id="home"
+      className="min-h-screen flex items-center justify-center py-20 px-4"
+    >
       <RevealOnScroll>
         <div className="w-full max-w-5xl mx-auto grid md:grid-cols-5 gap-10 items-center">
           <div className="md:col-span-3 flex justify-center md:justify-start order-2 md:order-none">
@@ -84,9 +86,13 @@ export const Home = () => {
                 <div className="mt-6 pt-6 border-t border-white/10">
                   <div className="flex gap-5 text-gray-300 justify-center md:justify-start">
                     {contactData
-                      .filter(
-                        ({ label }) =>
-                          ["Instagram", "Facebook", "LinkedIn", "GitHub"].includes(label)
+                      .filter(({ label }) =>
+                        [
+                          "instagram",
+                          "facebook",
+                          "linkedin",
+                          "github",
+                        ].includes(label.toLowerCase())
                       )
                       .map(({ label, href, icon: Icon }) => (
                         <a
@@ -98,7 +104,7 @@ export const Home = () => {
                           aria-label={label}
                           title={label}
                         >
-                          {Icon ? <Icon size={22} /> : <span className="text-sm">{label}</span>}
+                          <Icon size={22} />
                         </a>
                       ))}
                   </div>
