@@ -17,6 +17,15 @@ export interface ExperienceItem {
   bullets?: string[];
   tags?: string[];
   achievements?: string[];
+  subOrgs?: {
+    org: string;
+    start: string; // "YYYY-MM"
+    end: string; // "YYYY-MM" or "present"
+    location?: string;
+    description?: string;
+    bullets?: string[];
+    tags?: string[];
+  }[];
 }
 
 export interface ProjectItem {
@@ -26,3 +35,11 @@ export interface ProjectItem {
   techs?: string[];
   link?: string;
 }
+
+export type Category = {
+  title: string;
+  icon: IconType;
+  columns: 1 | 2;
+  limit: number;
+  items: string[];
+};

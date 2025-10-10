@@ -1,7 +1,7 @@
 export const projects = [
   {
     title: "PyCheckers",
-    subtitle: "AI",
+    subtitle: "Artificial Intelligence",
     description:
       "Python / PyGame English Checkers game, that uses AI (minimax and expectimax + alpha-beta pruning) for opponent modeling. It features an opening book from PDN files, FEN support, and standard rules including forced captures and multi-jumps.",
     techs: ["Python", "Pandas", "OCA", "PyGame", "AI"],
@@ -17,19 +17,20 @@ export const projects = [
   },
   {
     title: "Mutual Information Driven Feature Selection",
-    subtitle: "Information Theory with CNNs",
+    subtitle: "Information Theory in Machine Learning",
     description:
-      "Compare 2 types of feature selection on a dataset - filter methods using mutual information and standard feature selectors. We use WDBC dataset for training and testing, for selectors, we use sklearn MI implementation, mRMR for mutual information based selection, for standard selectors we use ANOVA-F1, Chi2, RFE, PCA, Lasso, and tree-based selection. We ought to seek k@95% - the number of features needed to reach 95% accuracy.",
+      "Compare 2 types of feature selection on a dataset - filter methods using mutual information and standard feature selectors. We use WDBC dataset for training and testing and we ought to seek k@95% - the number of features needed to reach 95% accuracy. This project will be further used for a studenet paper for the same topic.",
     techs: ["ML", "Python", "PyTorch", "Matplotlib"],
     link: "https://github.com/MartinJanev/WDBC_Feature_Selection",
   },
   {
-    title: "Markov Chains in Hearts",
-    subtitle: "Random processes",
+    title:
+      "Bayesian Linear Regression with MCMC method in Parkinson's Telemonitoring",
+    subtitle: "Probabilistic Modeling with Markov Chain",
     description:
-      "Simulate a game of Hearts and analyze the strategies involved using Markov Chains.",
-    techs: ["Markov Chains"],
-    link: "#",
+      "Applied Bayesian linear regression using Markov Chain Monte Carlo (MCMC) to analyze and predict telemonitoring data in Parkinson's disease. The project demonstrates uncertainty quantification and parameter inference for clinical time-series data.",
+    techs: ["Python", "MCMC", "Bayesian Statistics", "NumPyro"],
+    link: "https://github.com/MartinJanev/MC_Regression",
   },
   {
     title: "EventifyNow",

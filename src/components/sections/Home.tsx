@@ -17,17 +17,44 @@ export const Home: React.FC = () => {
   );
   const intervalRef = useRef<number | null>(null);
 
-  const startUpdatingAge = () => {
-    setAgeText(`I am ${getExactYears()} years old`);
-    intervalRef.current = window.setInterval(
-      () => setAgeText(`I am ${getExactYears()} years old`),
-      1000
-    );
+  const getAge = () => {
+    const now = new Date();
+    let years = now.getFullYear() - birthDate.getFullYear();
+    let months = now.getMonth() - birthDate.getMonth();
+    let days = now.getDate() - birthDate.getDate();
+
+    if (days < 0) {
+      months -= 1;
+      days += new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+    }
+    if (months < 0) {
+      years -= 1;
+      months += 12;
+    }
+    return { years, months, days };
   };
+
+  React.useEffect(() => {
+    setAgeText(`I am ${getAge().years} years old`);
+  }, []);
+
+  const startUpdatingAge = () => {
+    const update = () => {
+      const { years, months, days } = getAge();
+      let text = `I am ${years} years`;
+      if (months > 0) text += `, ${months} months`;
+      if (days > 0) text += `, ${days} days`;
+      text += " old";
+      setAgeText(text);
+    };
+    update();
+    intervalRef.current = window.setInterval(update, 1000);
+  };
+
   const stopUpdatingAge = () => {
-    if (intervalRef.current !== null) window.clearInterval(intervalRef.current);
+    if (intervalRef.current) clearInterval(intervalRef.current);
     intervalRef.current = null;
-    setAgeText(`I am ${Math.floor(Number(getExactYears()))} years old`);
+    setAgeText(`I am ${getAge().years} years old`);
   };
 
   return (
@@ -52,23 +79,12 @@ export const Home: React.FC = () => {
                   Computer Science Student
                 </h1>
                 <h2
-                  className="mt-3 mb-3 text-xl md:text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-purple-600 animate-gradient cursor-default transition-transform duration-200 ease-in-out hover:scale-105"
+                  className="mt-2 mb-1 text-xl md:text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-purple-600 animate-gradient cursor-default transition-transform duration-200 ease-in-out hover:scale-105"
                   onMouseEnter={startUpdatingAge}
                   onMouseLeave={stopUpdatingAge}
                 >
                   {ageText}
                 </h2>
-                <div className="mt-4 flex flex-wrap gap-2 justify-center md:justify-start">
-                  {["AI", "Machine Learning", "Game Development"].map((t) => (
-                    <span
-                      key={t}
-                      className="inline-flex items-center gap-1 rounded-full bg-green-500/10 text-green-300 text-xs font-medium px-3 py-1"
-                    >
-                      <span className="h-1.5 w-1.5 rounded-full bg-green-400" />
-                      {t}
-                    </span>
-                  ))}
-                </div>
                 <div className="mt-6 flex flex-wrap gap-3 justify-center md:justify-start">
                   <a
                     href="#projects"
@@ -79,6 +95,7 @@ export const Home: React.FC = () => {
                   <a
                     href="/MartinJanev-CV.pdf"
                     className="pointer-events-none cursor-default inline-flex items-center justify-center border border-white/20 hover:border-green-400/50 text-white py-3 px-6 rounded-lg transition"
+                    hidden
                   >
                     Download CV
                   </a>

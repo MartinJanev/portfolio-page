@@ -71,11 +71,23 @@ export const Experience: React.FC = () => {
                         <h3 className="text-base sm:text-lg md:text-xl text-white font-semibold">
                           {it.title}
                         </h3>
-                        {it.org && (
-                          <span className="text-green-400 text-sm sm:text-base">
-                            · {it.org}
-                          </span>
-                        )}
+
+                        {(() => {
+                          // Build a de-duplicated list of org names for the collapsed header
+                          const headerOrgs = [
+                            ...(it.org ? [it.org] : []),
+                            ...(Array.isArray(it.subOrgs)
+                              ? it.subOrgs.map((o: { org: string }) => o.org)
+                              : []),
+                          ];
+                          const unique = [...new Set(headerOrgs)];
+                          return unique.length > 0 ? (
+                            <span className="text-green-400 text-sm sm:text-base">
+                              · {unique.join(" • ")}
+                            </span>
+                          ) : null;
+                        })()}
+
                         {it.location && (
                           <span className="text-[11px] sm:text-xs text-gray-400 ml-2">
                             {it.location}
@@ -86,6 +98,7 @@ export const Experience: React.FC = () => {
                         {fmtRange(it.start, it.end)}
                       </p>
 
+                      {/* Compact tags when collapsed (unchanged) */}
                       {!open &&
                         Array.isArray(it.tags) &&
                         it.tags.length > 0 && (
@@ -118,47 +131,132 @@ export const Experience: React.FC = () => {
                     >
                       <div className="overflow-hidden">
                         <div className="pt-1">
-                          {it.description && (
-                            <p className="text-sm sm:text-[15px] text-gray-300">
-                              {it.description}
-                            </p>
-                          )}
-                          {Array.isArray(it.bullets) &&
-                            it.bullets.length > 0 && (
-                              <ul className="mt-2 list-disc list-inside text-gray-300 space-y-1 text-sm sm:text-[15px]">
-                                {it.bullets.map((b) => (
-                                  <li key={b}>{b}</li>
-                                ))}
-                              </ul>
-                            )}
-                          {Array.isArray(it.achievements) &&
-                            it.achievements.length > 0 && (
-                              <div className="mt-3">
-                                <div className="text-green-400 text-base sm:text-lg font-semibold mb-1">
-                                  Achievements:
-                                </div>
-                                <ul className="list-disc list-inside text-gray-200 space-y-1 text-sm sm:text-[15px]">
-                                  {it.achievements.map((a) => (
-                                    <li key={a}>{a}</li>
+                          {open && !Array.isArray(it.subOrgs) && (
+                            <>
+                              {it.description && (
+                                <p className="text-sm sm:text-[15px] text-gray-300">
+                                  {it.description}
+                                </p>
+                              )}
+                              {Array.isArray(it.bullets) &&
+                                it.bullets.length > 0 && (
+                                  <ul className="mt-2 list-disc list-inside text-gray-300 space-y-1 text-sm sm:text-[15px]">
+                                    {it.bullets.map((b) => (
+                                      <li key={b}>{b}</li>
+                                    ))}
+                                  </ul>
+                                )}
+                              {Array.isArray(it.achievements) &&
+                                it.achievements.length > 0 && (
+                                  <div className="mt-3">
+                                    <div className="text-green-400 text-base sm:text-lg font-semibold mb-1">
+                                      Achievements:
+                                    </div>
+                                    <ul className="list-disc list-inside text-gray-200 space-y-1 text-sm sm:text-[15px]">
+                                      {it.achievements.map((a) => (
+                                        <li key={a}>{a}</li>
+                                      ))}
+                                    </ul>
+                                  </div>
+                                )}
+                              {Array.isArray(it.tags) && it.tags.length > 0 && (
+                                <div className="mt-3 flex flex-wrap gap-2">
+                                  {it.tags.map((t) => (
+                                    <span
+                                      key={t}
+                                      className="inline-flex items-center gap-1 rounded-full bg-green-500/10 text-green-300 text-[11px] sm:text-xs font-medium px-2.5 py-1"
+                                    >
+                                      <span className="h-1.5 w-1.5 rounded-full bg-green-400" />
+                                      {t}
+                                    </span>
                                   ))}
-                                </ul>
-                              </div>
-                            )}
-                          {Array.isArray(it.tags) && it.tags.length > 0 && (
-                            <div className="mt-3 flex flex-wrap gap-2">
-                              {it.tags.map((t) => (
-                                <span
-                                  key={t}
-                                  className="inline-flex items-center gap-1 rounded-full bg-green-500/10 text-green-300 text-[11px] sm:text-xs font-medium px-2.5 py-1"
-                                >
-                                  <span className="h-1.5 w-1.5 rounded-full bg-green-400" />
-                                  {t}
-                                </span>
-                              ))}
-                            </div>
+                                </div>
+                              )}
+                            </>
                           )}
                         </div>
                       </div>
+
+                      {open &&
+                        Array.isArray(it.subOrgs) &&
+                        it.subOrgs.length > 0 && (
+                          <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            {it.subOrgs.map(
+                              (o: {
+                                org: string;
+                                start: string;
+                                end: string;
+                                location?: string;
+                                description?: string;
+                                bullets?: string[];
+                                tags?: string[];
+                                achievements?: string[];
+                              }) => (
+                                <div
+                                  key={`${o.org}-${o.start}-${o.end}`}
+                                  className="rounded-xl bg-white/5 ring-1 ring-white/10 p-3"
+                                >
+                                  <div className="flex flex-wrap items-baseline gap-x-2">
+                                    <div className="text-green-300 font-semibold">
+                                      {o.org}
+                                    </div>
+                                    {o.location && (
+                                      <span className="text-[11px] text-gray-400">
+                                        {o.location}
+                                      </span>
+                                    )}
+                                  </div>
+                                  <div className="text-[11px] text-gray-400 mb-1">
+                                    {fmtRange(o.start, o.end)}
+                                  </div>
+
+                                  {o.description && (
+                                    <p className="text-sm text-gray-300">
+                                      {o.description}
+                                    </p>
+                                  )}
+
+                                  {Array.isArray(o.bullets) &&
+                                    o.bullets.length > 0 && (
+                                      <ul className="mt-2 list-disc list-inside text-gray-300 space-y-1 text-sm">
+                                        {o.bullets.map((b: string) => (
+                                          <li key={b}>{b}</li>
+                                        ))}
+                                      </ul>
+                                    )}
+
+                                  {Array.isArray(o.achievements) &&
+                                    o.achievements.length > 0 && (
+                                      <div className="mt-3">
+                                        <div className="text-green-400 text-base sm:text-lg font-semibold mb-1">
+                                          Achievements:
+                                        </div>
+                                        <ul className="list-disc list-inside text-gray-200 space-y-1 text-sm">
+                                          {o.achievements.map((a: string) => (
+                                            <li key={a}>{a}</li>
+                                          ))}
+                                        </ul>
+                                      </div>
+                                    )}
+                                  {Array.isArray(o.tags) &&
+                                    o.tags.length > 0 && (
+                                      <div className="mt-3 flex flex-wrap gap-2">
+                                        {o.tags.map((t: string) => (
+                                          <span
+                                            key={t}
+                                            className="inline-flex items-center gap-1 rounded-full bg-green-500/10 text-green-300 text-[11px] font-medium px-2.5 py-1"
+                                          >
+                                            <span className="h-1.5 w-1.5 rounded-full bg-green-400" />
+                                            {t}
+                                          </span>
+                                        ))}
+                                      </div>
+                                    )}
+                                </div>
+                              )
+                            )}
+                          </div>
+                        )}
                     </div>
                   </div>
                 </li>

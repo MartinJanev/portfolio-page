@@ -8,16 +8,9 @@ import {
   FaGraduationCap,
   FaCode,
   FaBriefcase,
+  FaResearchgate,
 } from "react-icons/fa";
-import type { IconType } from "react-icons";
-
-type Category = {
-  title: string;
-  icon: IconType;
-  columns: 1 | 2;
-  limit: number;
-  items: string[];
-};
+import { Category } from "src/types/content";
 
 const rawCategories: Category[] = [
   {
@@ -31,11 +24,10 @@ const rawCategories: Category[] = [
       "C++",
       "OpenCV",
       "TensorFlow",
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "Angular",
-      "TypeScript",
+      "PyTorch",
+      "Web Development",
+      "Git",
+      "Spring Boot",
     ],
   },
   {
@@ -43,11 +35,7 @@ const rawCategories: Category[] = [
     icon: FaHandsHelping,
     columns: 1,
     limit: 6,
-    items: [
-      "Equinox Scout Shtip",
-      "Scout Assoc. Macedonia",
-      "EESTEC LC Skopje",
-    ],
+    items: ["Equinox Scout Shtip", "Scout Association of Macedonia"],
   },
   {
     title: "Hobbies",
@@ -67,9 +55,26 @@ const rawCategories: Category[] = [
 ];
 
 const highlights = [
-  { icon: FaGraduationCap, label: "Status", value: "3rd year @ FCSE" },
-  { icon: FaCode, label: "Focus", value: "AI • ML • CV" },
-  { icon: FaBriefcase, label: "Availability", value: "Open to internships" },
+  {
+    icon: FaGraduationCap,
+    label: "Status",
+    value: "Student at FCSE Skopje",
+  },
+  {
+    icon: FaCode,
+    label: "Project scope",
+    value: "AI • ML • CV ",
+  },
+  {
+    icon: FaBriefcase,
+    label: "Looking for",
+    value: "Internship opportunities",
+  },
+  {
+    icon: FaResearchgate,
+    label: "Research scope",
+    value: "Information Theory in ML",
+  },
 ] as const;
 
 function CategoryCard({
@@ -103,7 +108,7 @@ function CategoryCard({
           {shown.map((item) => (
             <span
               key={item}
-              className="inline-flex items-center gap-1 rounded-full bg-white/5 ring-1 ring-white/10 text-gray-200/90 text-sm font-medium px-3 py-1 hover:bg-white/10 transition"
+              className="inline-flex items-center gap-2 rounded-full bg-white/5 ring-1 ring-white/10 text-gray-200/90 text-sm font-medium px-3 py-1 hover:bg-white/10 transition"
             >
               <span className="h-1.5 w-1.5 rounded-full bg-green-400" />
               {item}
@@ -131,7 +136,7 @@ export const About: React.FC = () => (
       <div className="space-y-12 md:space-y-16">
         <div className="relative group">
           <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-green-500/25 via-transparent to-purple-500/25 blur opacity-40 group-hover:opacity-70 transition" />
-          <div className="relative grid grid-cols-1 lg:grid-cols-3 gap-3 md:gap-4 p-4 md:p-5 rounded-2xl bg-white/5 backdrop-blur-lg ring-1 ring-white/10">
+          <div className="relative grid grid-cols-1 lg:grid-cols-4 gap-2 md:gap-4 p-4 md:p-5 rounded-2xl bg-white/5 backdrop-blur-lg ring-1 ring-white/10">
             {highlights.map(({ icon: Icon, label, value }) => (
               <div
                 key={label}
