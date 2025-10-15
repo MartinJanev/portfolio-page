@@ -19,9 +19,9 @@ export const Experience: React.FC = () => {
   const items: ExperienceItem[] = useMemo(
     () =>
       [...experience].sort(
-        (a, b) => new Date(b.start).getTime() - new Date(a.start).getTime()
+        (a, b) => new Date(b.start).getTime() - new Date(a.start).getTime(),
       ),
-    []
+    [],
   );
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const toggle = (id: string) =>
@@ -58,17 +58,30 @@ export const Experience: React.FC = () => {
                       }
                     }}
                     className={[
-                      "relative rounded-2xl ring-1 ring-white/10 bg-white/5 backdrop-blur-lg",
+                      "relative rounded-2xl backdrop-blur-lg",
                       "transition md:hover:-translate-y-0.5 md:hover:ring-green-400/40",
                       open ? "p-4 md:p-5" : "p-3 md:p-4",
                       "cursor-pointer select-none",
                     ].join(" ")}
+                    style={{
+                      backgroundColor: "var(--card-bg-solid)",
+                      border: "1px solid var(--card-border)",
+                    }}
                     aria-expanded={open}
                   >
-                    <div className="pointer-events-none absolute -inset-1 rounded-2xl bg-gradient-to-br from-green-500/20 to-purple-500/20 blur opacity-0 md:group-hover:opacity-60 transition" />
+                    <div
+                      className="pointer-events-none absolute -inset-1 rounded-2xl blur opacity-0 md:group-hover:opacity-70 transition duration-500"
+                      style={{
+                        background:
+                          "linear-gradient(135deg, var(--glow-green), var(--glow-purple))",
+                      }}
+                    />
                     <div className="relative">
                       <div className="flex flex-wrap items-baseline gap-x-2">
-                        <h3 className="text-base sm:text-lg md:text-xl text-white font-semibold">
+                        <h3
+                          className="text-base sm:text-lg md:text-xl font-semibold"
+                          style={{ color: "var(--text-primary)" }}
+                        >
                           {it.title}
                         </h3>
 
@@ -82,23 +95,32 @@ export const Experience: React.FC = () => {
                           ];
                           const unique = [...new Set(headerOrgs)];
                           return unique.length > 0 ? (
-                            <span className="text-green-400 text-sm sm:text-base">
+                            <span
+                              className="text-sm sm:text-base"
+                              style={{ color: "var(--accent-green)" }}
+                            >
                               · {unique.join(" • ")}
                             </span>
                           ) : null;
                         })()}
 
                         {it.location && (
-                          <span className="text-[11px] sm:text-xs text-gray-400 ml-2">
+                          <span
+                            className="text-[11px] sm:text-xs ml-2"
+                            style={{ color: "var(--text-muted)" }}
+                          >
                             {it.location}
                           </span>
                         )}
                       </div>
-                      <p className="text-xs sm:text-sm text-gray-400 mt-0.5">
+                      <p
+                        className="text-xs sm:text-sm mt-0.5"
+                        style={{ color: "var(--text-secondary)" }}
+                      >
                         {fmtRange(it.start, it.end)}
                       </p>
 
-                      {/* Compact tags when collapsed (unchanged) */}
+                      {/* Compact tags when collapsed */}
                       {!open &&
                         Array.isArray(it.tags) &&
                         it.tags.length > 0 && (
@@ -106,9 +128,20 @@ export const Experience: React.FC = () => {
                             {compactTags.map((t) => (
                               <span
                                 key={t}
-                                className="inline-flex items-center gap-1 rounded-full bg-green-500/10 text-green-300 text-[11px] sm:text-xs font-medium px-2.5 py-1"
+                                className="inline-flex items-center gap-1 rounded-full text-[11px] sm:text-xs font-medium px-2.5 py-1 transition hover:bg-green-500/20"
+                                style={{
+                                  backgroundColor: "var(--card-bg)",
+                                  color: "var(--accent-green)",
+                                  borderColor: "var(--border-color)",
+                                  borderWidth: "1px",
+                                }}
                               >
-                                <span className="h-1.5 w-1.5 rounded-full bg-green-400" />
+                                <span
+                                  className="h-1.5 w-1.5 rounded-full"
+                                  style={{
+                                    backgroundColor: "var(--accent-green)",
+                                  }}
+                                />
                                 {t}
                               </span>
                             ))}
@@ -134,13 +167,19 @@ export const Experience: React.FC = () => {
                           {open && !Array.isArray(it.subOrgs) && (
                             <>
                               {it.description && (
-                                <p className="text-sm sm:text-[15px] text-gray-300">
+                                <p
+                                  className="text-sm sm:text-[15px]"
+                                  style={{ color: "var(--experience-text)" }}
+                                >
                                   {it.description}
                                 </p>
                               )}
                               {Array.isArray(it.bullets) &&
                                 it.bullets.length > 0 && (
-                                  <ul className="mt-2 list-disc list-inside text-gray-300 space-y-1 text-sm sm:text-[15px]">
+                                  <ul
+                                    className="mt-2 list-disc list-inside space-y-1 text-sm sm:text-[15px]"
+                                    style={{ color: "var(--experience-text)" }}
+                                  >
                                     {it.bullets.map((b) => (
                                       <li key={b}>{b}</li>
                                     ))}
@@ -149,10 +188,18 @@ export const Experience: React.FC = () => {
                               {Array.isArray(it.achievements) &&
                                 it.achievements.length > 0 && (
                                   <div className="mt-3">
-                                    <div className="text-green-400 text-base sm:text-lg font-semibold mb-1">
+                                    <div
+                                      className="text-base sm:text-lg font-semibold mb-1"
+                                      style={{ color: "var(--accent-green)" }}
+                                    >
                                       Achievements:
                                     </div>
-                                    <ul className="list-disc list-inside text-gray-200 space-y-1 text-sm sm:text-[15px]">
+                                    <ul
+                                      className="list-disc list-inside space-y-1 text-sm sm:text-[15px]"
+                                      style={{
+                                        color: "var(--experience-text)",
+                                      }}
+                                    >
                                       {it.achievements.map((a) => (
                                         <li key={a}>{a}</li>
                                       ))}
@@ -164,9 +211,21 @@ export const Experience: React.FC = () => {
                                   {it.tags.map((t) => (
                                     <span
                                       key={t}
-                                      className="inline-flex items-center gap-1 rounded-full bg-green-500/10 text-green-300 text-[11px] sm:text-xs font-medium px-2.5 py-1"
+                                      className="inline-flex items-center gap-1 rounded-full text-[11px] sm:text-xs font-medium px-2.5 py-1 transition hover:bg-green-500/20"
+                                      style={{
+                                        backgroundColor: "var(--card-bg)",
+                                        color: "var(--accent-green)",
+                                        borderColor: "var(--border-color)",
+                                        borderWidth: "1px",
+                                      }}
                                     >
-                                      <span className="h-1.5 w-1.5 rounded-full bg-green-400" />
+                                      <span
+                                        className="h-1.5 w-1.5 rounded-full"
+                                        style={{
+                                          backgroundColor:
+                                            "var(--accent-green)",
+                                        }}
+                                      />
                                       {t}
                                     </span>
                                   ))}
@@ -194,31 +253,54 @@ export const Experience: React.FC = () => {
                               }) => (
                                 <div
                                   key={`${o.org}-${o.start}-${o.end}`}
-                                  className="rounded-xl bg-white/5 ring-1 ring-white/10 p-3"
+                                  className="rounded-xl p-3"
+                                  style={{
+                                    backgroundColor: "var(--card-bg)",
+                                    border: "1px solid var(--card-border)",
+                                  }}
                                 >
                                   <div className="flex flex-wrap items-baseline gap-x-2">
-                                    <div className="text-green-300 font-semibold">
+                                    <div
+                                      className="font-semibold"
+                                      style={{ color: "var(--accent-green)" }}
+                                    >
                                       {o.org}
                                     </div>
                                     {o.location && (
-                                      <span className="text-[11px] text-gray-400">
+                                      <span
+                                        className="text-[11px]"
+                                        style={{ color: "var(--text-muted)" }}
+                                      >
                                         {o.location}
                                       </span>
                                     )}
                                   </div>
-                                  <div className="text-[11px] text-gray-400 mb-1">
+                                  <div
+                                    className="text-[11px] mb-1"
+                                    style={{ color: "var(--text-muted)" }}
+                                  >
                                     {fmtRange(o.start, o.end)}
                                   </div>
 
                                   {o.description && (
-                                    <p className="text-sm text-gray-300">
+                                    <p
+                                      className="text-sm"
+                                      style={{
+                                        color: "var(--experience-text)",
+                                      }}
+                                    >
                                       {o.description}
                                     </p>
                                   )}
 
                                   {Array.isArray(o.bullets) &&
                                     o.bullets.length > 0 && (
-                                      <ul className="mt-2 list-disc list-inside text-gray-300 space-y-1 text-sm">
+                                      <ul
+                                        className="mt-2 list-disc list-inside space-y-1 text-sm"
+                                        style={{
+                                          color: "var(--experience-text)",
+                                        }}
+                                      >
                                         {o.bullets.map((b: string) => (
                                           <li key={b}>{b}</li>
                                         ))}
@@ -228,10 +310,20 @@ export const Experience: React.FC = () => {
                                   {Array.isArray(o.achievements) &&
                                     o.achievements.length > 0 && (
                                       <div className="mt-3">
-                                        <div className="text-green-400 text-base sm:text-lg font-semibold mb-1">
+                                        <div
+                                          className="text-base sm:text-lg font-semibold mb-1"
+                                          style={{
+                                            color: "var(--accent-green)",
+                                          }}
+                                        >
                                           Achievements:
                                         </div>
-                                        <ul className="list-disc list-inside text-gray-200 space-y-1 text-sm">
+                                        <ul
+                                          className="list-disc list-inside space-y-1 text-sm"
+                                          style={{
+                                            color: "var(--experience-text)",
+                                          }}
+                                        >
                                           {o.achievements.map((a: string) => (
                                             <li key={a}>{a}</li>
                                           ))}
@@ -244,16 +336,29 @@ export const Experience: React.FC = () => {
                                         {o.tags.map((t: string) => (
                                           <span
                                             key={t}
-                                            className="inline-flex items-center gap-1 rounded-full bg-green-500/10 text-green-300 text-[11px] font-medium px-2.5 py-1"
+                                            className="inline-flex items-center gap-1 rounded-full text-[11px] font-medium px-2.5 py-1 transition hover:bg-green-500/20"
+                                            style={{
+                                              backgroundColor: "var(--card-bg)",
+                                              color: "var(--accent-green)",
+                                              borderColor:
+                                                "var(--border-color)",
+                                              borderWidth: "1px",
+                                            }}
                                           >
-                                            <span className="h-1.5 w-1.5 rounded-full bg-green-400" />
+                                            <span
+                                              className="h-1.5 w-1.5 rounded-full"
+                                              style={{
+                                                backgroundColor:
+                                                  "var(--accent-green)",
+                                              }}
+                                            />
                                             {t}
                                           </span>
                                         ))}
                                       </div>
                                     )}
                                 </div>
-                              )
+                              ),
                             )}
                           </div>
                         )}

@@ -11,6 +11,7 @@ import { Projects } from "./components/sections/Projects";
 import { Footer } from "./components/sections/Footer";
 import { Experience } from "./components/sections/Experience";
 import { Contact } from "./components/sections/Contact";
+import { ScrollToTop } from "./components/ScrollToTop";
 
 export default function App() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -21,9 +22,13 @@ export default function App() {
       {!isLoaded && <LoadingScreen onComplete={() => setIsLoaded(true)} />}
 
       <div
-        className={`relative min-h-screen bg-black text-gray-100 transition-opacity duration-700 ${
+        className={`relative min-h-screen transition-opacity duration-700 ${
           isLoaded ? "opacity-100" : "opacity-0"
         }`}
+        style={{
+          background: "var(--bg-primary)",
+          color: "var(--text-primary)",
+        }}
       >
         <BackgroundDecor />
         <NavBar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
@@ -33,6 +38,7 @@ export default function App() {
         <Projects />
         <Contact />
         <Footer />
+        <ScrollToTop />
       </div>
     </>
   );

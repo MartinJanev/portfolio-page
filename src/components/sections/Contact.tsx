@@ -30,13 +30,28 @@ export const Contact: React.FC = () => {
     <Section id="contact" title="Contact Me">
       <RevealOnScroll>
         <div className="relative max-w-3xl mx-auto px-4">
-          <div className="group relative p-6 md:p-8 rounded-2xl bg-white/5 backdrop-blur-lg ring-1 ring-white/10 transition md:hover:-translate-y-1 md:hover:ring-green-400/40">
-            <div className="pointer-events-none absolute -inset-1 rounded-2xl bg-gradient-to-br from-green-500/20 to-purple-500/20 blur opacity-0 md:group-hover:opacity-60 transition" />
+          <div
+            className="group relative p-6 md:p-8 rounded-2xl backdrop-blur-lg transition md:hover:-translate-y-1 md:hover:ring-green-400/40"
+            style={{
+              backgroundColor: "var(--card-bg-solid)",
+              border: "1px solid var(--card-border)",
+            }}
+          >
+            <div
+              className="pointer-events-none absolute -inset-1 rounded-2xl blur opacity-0 md:group-hover:opacity-75 transition duration-500"
+              style={{
+                background:
+                  "linear-gradient(135deg, var(--glow-green), var(--glow-purple))",
+              }}
+            />
             <div className="relative">
-              <p className="text-gray-300 leading-relaxed text-base sm:text-lg text-center sm:text-left">
+              <p
+                className="leading-relaxed text-base sm:text-lg text-center sm:text-left"
+                style={{ color: "var(--text-secondary)" }}
+              >
                 Open to internships, part-time roles, and collaborations with
                 anything you want to know. If you have an idea or a role in
-                mind, I’d love to hear from you.
+                mind, I'd love to hear from you.
                 <br />
                 Or just say hi! It's always great to connect with fellow
                 students, programmers, and tech enthusiasts.
@@ -47,20 +62,35 @@ export const Contact: React.FC = () => {
                   (t) => (
                     <span
                       key={t}
-                      className="inline-flex items-center gap-1 rounded-full bg-green-500/10 text-green-300 text-xs font-medium px-3 py-1"
+                      className="inline-flex items-center gap-1 rounded-full text-xs font-medium px-3 py-1"
+                      style={{
+                        backgroundColor: "var(--card-bg)",
+                        color: "var(--accent-green)",
+                        borderColor: "var(--border-color)",
+                        borderWidth: "1px",
+                      }}
                     >
-                      <span className="h-1.5 w-1.5 rounded-full bg-green-400" />
+                      <span
+                        className="h-1.5 w-1.5 rounded-full"
+                        style={{ backgroundColor: "var(--accent-green)" }}
+                      />
                       {t}
                     </span>
-                  )
+                  ),
                 )}
               </div>
 
               <div className="mt-6 space-y-3">
                 <div className="flex flex-col sm:flex-row sm:items-center gap-3">
                   <div className="flex items-center justify-center sm:justify-start gap-2 min-w-0">
-                    <FaEnvelope className="text-green-400 shrink-0" />
-                    <code className="text-sm text-gray-200 truncate">
+                    <FaEnvelope
+                      style={{ color: "var(--accent-green)" }}
+                      className="shrink-0"
+                    />
+                    <code
+                      className="text-sm truncate"
+                      style={{ color: "var(--text-primary)" }}
+                    >
                       {email}
                     </code>
                   </div>
@@ -69,13 +99,17 @@ export const Contact: React.FC = () => {
                       href={`https://mail.google.com/mail/?view=cm&fs=1&to=${email}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-black font-medium py-2 px-4 rounded-lg transition-colors w-full sm:w-auto justify-center"
+                      className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-lg transition-colors w-full sm:w-auto justify-center"
                     >
                       <FaEnvelope /> Email me
                     </a>
                     <button
                       onClick={() => handleCopy(email)}
-                      className="inline-flex items-center gap-2 border border-white/15 hover:border-green-400/50 text-white py-2 px-4 rounded-lg transition w-full sm:w-auto justify-center"
+                      className="inline-flex items-center gap-2 border hover:border-green-400/50 py-2 px-4 rounded-lg transition w-full sm:w-auto justify-center"
+                      style={{
+                        borderColor: "var(--border-color)",
+                        color: "var(--text-primary)",
+                      }}
                       aria-live="polite"
                     >
                       {copied ? (
@@ -107,7 +141,10 @@ export const Contact: React.FC = () => {
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
                   placeholder="Hi Martin, we'd love to chat about…"
-                  className="w-full rounded-lg bg-white/5 ring-1 ring-white/10 focus:ring-2 focus:ring-green-400 outline-none text-gray-100 placeholder:text-gray-500 p-3 transition"
+                  className="w-full rounded-lg bg-white/5 focus:ring-2 focus:ring-green-400 outline-none text-gray-100 placeholder:text-gray-500 p-3 transition"
+                  style={{
+                    border: "1px solid var(--card-border)",
+                  }}
                 />
                 <div className="mt-3 flex flex-wrap gap-3 justify-center sm:justify-start">
                   <a
@@ -124,8 +161,8 @@ export const Contact: React.FC = () => {
                   .filter(
                     ({ label }) =>
                       !["Instagram", "Facebook", "Linkedin", "GitHub"].includes(
-                        label
-                      )
+                        label,
+                      ),
                   )
                   .map(({ label, href, icon: Icon }) => (
                     <a
