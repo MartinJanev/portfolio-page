@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 export default function useScrollSpy(
   ids: string[],
-  rootMargin: string = "0px 0px -50% 0px"
+  rootMargin: string = "0px 0px -50% 0px",
 ): string | null {
   const [active, setActive] = useState<string | null>(ids[0] ?? null);
 
@@ -17,7 +17,7 @@ export default function useScrollSpy(
           if (e.isIntersecting) setActive(e.target.id);
         });
       },
-      { root: null, rootMargin, threshold: 0 }
+      { root: null, rootMargin, threshold: 0 },
     );
 
     sections.forEach((s) => obs.observe(s));

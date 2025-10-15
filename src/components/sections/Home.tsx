@@ -13,7 +13,7 @@ export const Home: React.FC = () => {
   };
 
   const [ageText, setAgeText] = useState(
-    `I am ${Math.floor(Number(getExactYears()))} years old`
+    `I am ${Math.floor(Number(getExactYears()))} years old`,
   );
   const intervalRef = useRef<number | null>(null);
 
@@ -66,14 +66,40 @@ export const Home: React.FC = () => {
         <div className="w-full max-w-5xl mx-auto grid md:grid-cols-5 gap-10 items-center">
           <div className="md:col-span-3 flex justify-center md:justify-start order-2 md:order-none">
             <div className="relative w-full max-w-2xl group flex flex-col items-center justify-center">
-              <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-green-500/30 via-transparent to-purple-500/30 blur opacity-40 group-hover:opacity-70 transition" />
-              <div className="relative p-8 md:p-10 rounded-2xl bg-white/5 backdrop-blur-lg ring-1 ring-white/10 flex flex-col items-center justify-center">
-                <div className="mb-3 flex flex-wrap items-center gap-3 text-xs text-gray-300">
-                  <span className="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">
+              <div
+                className="pointer-events-none absolute -inset-1 rounded-2xl blur opacity-0 group-hover:opacity-80 transition duration-500"
+                style={{
+                  background:
+                    "linear-gradient(135deg, var(--glow-green), var(--glow-purple))",
+                }}
+              />
+              <div
+                className="relative p-8 md:p-10 rounded-2xl backdrop-blur-lg flex flex-col items-center justify-center transition-all duration-300 hover:translate-y-[-4px]"
+                style={{
+                  backgroundColor: "var(--card-bg-solid)",
+                  border: "1px solid var(--card-border)",
+                }}
+              >
+                <div
+                  className="mb-3 flex flex-wrap items-center gap-3 text-xs"
+                  style={{ color: "var(--text-secondary)" }}
+                >
+                  <span
+                    className="inline-flex items-center gap-2 rounded-full px-3 py-1"
+                    style={{
+                      backgroundColor: "var(--card-bg)",
+                      border: "1px solid var(--card-border)",
+                    }}
+                  >
                     💻 FCSE Skopje • 🏠 Shtip
                   </span>
-                  <span className="h-3 w-px bg-white/10" />
-                  <span className="text-green-300/90">Open to internships</span>
+                  <span
+                    className="h-3 w-px"
+                    style={{ backgroundColor: "var(--border-color)" }}
+                  />
+                  <span style={{ color: "var(--accent-green)" }}>
+                    Open to internships
+                  </span>
                 </div>
                 <h1 className="text-4xl md:text-5xl font-extrabold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-green-400 animate-gradient text-center">
                   Computer Science Student
@@ -88,20 +114,30 @@ export const Home: React.FC = () => {
                 <div className="mt-6 flex flex-wrap gap-3 justify-center md:justify-start">
                   <a
                     href="#projects"
-                    className="inline-flex items-center justify-center bg-green-600 hover:bg-green-500 text-black font-medium py-3 px-6 rounded-lg shadow-sm transition"
+                    className="inline-flex items-center justify-center bg-green-600 hover:bg-green-500 text-white font-medium py-3 px-6 rounded-lg shadow-sm transition"
                   >
                     View My Work →
                   </a>
                   <a
                     href="/MartinJanev-CV.pdf"
-                    className="pointer-events-none cursor-default inline-flex items-center justify-center border border-white/20 hover:border-green-400/50 text-white py-3 px-6 rounded-lg transition"
+                    className="pointer-events-none cursor-default inline-flex items-center justify-center border py-3 px-6 rounded-lg transition"
+                    style={{
+                      borderColor: "var(--border-color)",
+                      color: "var(--text-primary)",
+                    }}
                     hidden
                   >
                     Download CV
                   </a>
                 </div>
-                <div className="mt-6 pt-6 border-t border-white/10">
-                  <div className="flex gap-5 text-gray-300 justify-center md:justify-start">
+                <div
+                  className="mt-6 pt-6 border-t"
+                  style={{ borderColor: "var(--border-color)" }}
+                >
+                  <div
+                    className="flex gap-5 justify-center md:justify-start"
+                    style={{ color: "var(--text-secondary)" }}
+                  >
                     {contactData
                       .filter(({ label }) =>
                         [
@@ -109,7 +145,7 @@ export const Home: React.FC = () => {
                           "facebook",
                           "linkedin",
                           "github",
-                        ].includes(label.toLowerCase())
+                        ].includes(label.toLowerCase()),
                       )
                       .map(({ label, href, icon: Icon }) => (
                         <a
@@ -117,7 +153,8 @@ export const Home: React.FC = () => {
                           href={href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-gray-300 hover:text-green-300 transition"
+                          className="hover:text-green-300 transition"
+                          style={{ color: "var(--text-secondary)" }}
                           aria-label={label}
                           title={label}
                         >

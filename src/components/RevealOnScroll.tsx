@@ -11,7 +11,7 @@ export const RevealOnScroll = ({ children }: PropsWithChildren) => {
       ([entry]) => {
         if (entry.isIntersecting) node.classList.add("visible");
       },
-      { threshold: 0.2, rootMargin: "0px 0px -60px 0px" }
+      { threshold: 0.2, rootMargin: "0px 0px -60px 0px" },
     );
 
     observer.observe(node);

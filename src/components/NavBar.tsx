@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useScrollSpy from "../hooks/useScrollSpy";
+import { ThemeToggle } from "./ThemeToggle";
 
 interface Props {
   menuOpen: boolean;
@@ -44,10 +45,11 @@ export const NavBar: React.FC<Props> = ({ menuOpen, setMenuOpen }) => {
   return (
     <nav
       className={`fixed inset-x-0 top-0 z-50 transition-all ${
-        scrolled
-          ? "bg-gray-900/90 shadow-xl backdrop-blur-md"
-          : "bg-transparent"
+        scrolled ? "shadow-xl backdrop-blur-md" : "bg-transparent"
       }`}
+      style={{
+        backgroundColor: scrolled ? "var(--nav-bg-scrolled)" : "transparent",
+      }}
     >
       <div
         className={`h-1 bg-gradient-to-r from-green-400 to-purple-500 ${
@@ -61,16 +63,22 @@ export const NavBar: React.FC<Props> = ({ menuOpen, setMenuOpen }) => {
             href="#home"
             className="font-mono text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-300 to-purple-400"
           >
-            Martin <span className="text-white">Janev</span>
+            Martin <span style={{ color: "var(--text-primary)" }}>Janev</span>
           </a>
           <div className="hidden md:flex items-center space-x-8">
             {links.map(({ href, id, label }) => (
               <a
                 key={href}
                 href={href}
-                className={`relative text-white font-medium py-1 transition-colors ${
+                className={`relative font-medium py-1 transition-colors ${
                   active === id ? "text-green-400" : "hover:text-green-300"
                 }`}
+                style={{
+                  color:
+                    active === id
+                      ? "var(--accent-green)"
+                      : "var(--text-primary)",
+                }}
               >
                 {label}
                 <span
@@ -80,6 +88,7 @@ export const NavBar: React.FC<Props> = ({ menuOpen, setMenuOpen }) => {
                 />
               </a>
             ))}
+            <ThemeToggle />
           </div>
           <button
             className="md:hidden p-2 z-50 flex flex-col justify-between h-7"
@@ -87,19 +96,22 @@ export const NavBar: React.FC<Props> = ({ menuOpen, setMenuOpen }) => {
             aria-label="Toggle Menu"
           >
             <span
-              className={`block h-0.5 w-6 bg-white transition-transform ${
+              className={`block h-0.5 w-6 transition-transform ${
                 menuOpen ? "rotate-45 translate-y-2" : ""
               }`}
+              style={{ backgroundColor: "var(--text-primary)" }}
             />
             <span
-              className={`block h-0.5 w-6 bg-white transition-opacity ${
+              className={`block h-0.5 w-6 transition-opacity ${
                 menuOpen ? "opacity-0" : "opacity-100"
               }`}
+              style={{ backgroundColor: "var(--text-primary)" }}
             />
             <span
-              className={`block h-0.5 w-6 bg-white transition-transform ${
+              className={`block h-0.5 w-6 transition-transform ${
                 menuOpen ? "-rotate-45 -translate-y-2" : ""
               }`}
+              style={{ backgroundColor: "var(--text-primary)" }}
             />
           </button>
         </div>
@@ -109,35 +121,64 @@ export const NavBar: React.FC<Props> = ({ menuOpen, setMenuOpen }) => {
       <div
         role="dialog"
         aria-modal="true"
-        className={`fixed inset-0 z-[70] md:hidden bg-gray-900/80 transform transition-transform duration-300 ease-in-out ${
-          menuOpen ? "translate-x-0" : "-translate-x-full"
+        className={`fixed inset-0 z-[70] md:hidden transition-opacity duration-300 ${
+          menuOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setMenuOpen(false)}
+        style={{
+          backdropFilter: menuOpen ? "blur(8px)" : "none",
+          backgroundColor: "rgba(0, 0, 0, 0.3)",
+        }}
       >
         <div
-          className="relative h-svh w-full flex flex-col items-center bg-gray-600/80"
+          className={`relative w-full flex flex-col items-center transform transition-all duration-500 ease-out ${
+            menuOpen
+              ? "translate-y-0 opacity-100"
+              : "-translate-y-full opacity-0"
+          }`}
           onClick={(e) => e.stopPropagation()}
+          style={{
+            backgroundColor: "var(--bg-secondary)",
+            backdropFilter: "blur(20px)",
+            boxShadow: "0 10px 40px rgba(0, 0, 0, 0.3)",
+            paddingTop: "80px",
+            paddingBottom: "40px",
+            borderBottomLeftRadius: "24px",
+            borderBottomRightRadius: "24px",
+          }}
         >
           <button
             aria-label="Close menu"
             onClick={() => setMenuOpen(false)}
-            className="absolute top-5 right-5 text-white/90 hover:text-white text-3xl"
+            className="absolute top-5 right-5 hover:text-white text-2xl transition-colors"
+            style={{ color: "var(--text-primary)" }}
           >
             ×
           </button>
-          <nav className="mt-24 flex flex-col items-center space-y-8">
+          <nav className="flex flex-col items-center space-y-6 px-8">
             {links.map(({ href, id, label }) => (
               <a
                 key={href}
                 href={href}
                 onClick={() => setMenuOpen(false)}
-                className={`text-white text-2xl font-semibold transition-colors ${
+                className={`text-xl font-semibold transition-colors ${
                   active === id ? "text-green-400" : "hover:text-green-300"
                 }`}
+                style={{
+                  color:
+                    active === id
+                      ? "var(--accent-green)"
+                      : "var(--text-primary)",
+                }}
               >
                 {label}
               </a>
             ))}
+            <div className="mt-4">
+              <ThemeToggle />
+            </div>
           </nav>
         </div>
       </div>

@@ -1,5 +1,52 @@
 @import "tailwindcss";
 
+/* ---------- Color Profiles ---------- */
+:root[data-theme="dark"] {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #1a1a1a;
+  --bg-tertiary: #2d2d2d;
+  --text-primary: #f3f4f6;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+  --accent-green: #22c55e;
+  --accent-purple: #a855f7;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --card-hover: rgba(255, 255, 255, 0.1);
+  --gradient-from: rgba(34, 197, 94, 0.5);
+  --gradient-to: rgba(168, 85, 247, 0.5);
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  --nav-bg-scrolled: rgba(26, 26, 26, 0.9);
+  --card-bg-solid: rgba(255, 255, 255, 0.05);
+  --card-border: transparent;
+  --experience-text: #d1d5db;
+  --glow-green: rgba(34, 197, 94, 0.4);
+  --glow-purple: rgba(168, 85, 247, 0.4);
+}
+
+:root[data-theme="light"] {
+  --bg-primary: #f5f5f5;
+  --bg-secondary: #e8e8e8;
+  --bg-tertiary: #c0c0c0;
+  --text-primary: #1a1a1a;
+  --text-secondary: #4a4a4a;
+  --text-muted: #6a6a6a;
+  --accent-green: #16a34a;
+  --accent-purple: #9333ea;
+  --border-color: rgba(0, 0, 0, 0.15);
+  --card-bg: rgba(0, 0, 0, 0.05);
+  --card-hover: rgba(0, 0, 0, 0.1);
+  --gradient-from: rgba(22, 163, 74, 0.25);
+  --gradient-to: rgba(147, 51, 234, 0.25);
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --nav-bg-scrolled: rgba(232, 232, 232, 0.95);
+  --card-bg-solid: rgba(192, 192, 192, 0.4);
+  --card-border: rgba(160, 160, 160, 0.3);
+  --experience-text: #2a2a2a;
+  --glow-green: rgba(22, 163, 74, 0.3);
+  --glow-purple: rgba(147, 51, 234, 0.3);
+}
+
 /* ---------- Base (global) ---------- */
 @layer base {
   html {
@@ -14,7 +61,6 @@
 
   /* Respect reduced-motion */
   @media (prefers-reduced-motion: reduce) {
-
     *,
     *::before,
     *::after {
@@ -29,56 +75,58 @@
     margin: 0;
     padding: 0;
     font-family: "Lato", sans-serif;
-    background: #0a0a0a;
-    color: #f3f4f6;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
   }
 }
 
 /* ---------- Utilities (tiny classes & keyframes) ---------- */
 @layer utilities {
   @keyframes blink {
-
     0%,
     100% {
-      opacity: 1
+      opacity: 1;
     }
 
     50% {
-      opacity: 0
+      opacity: 0;
     }
   }
 
   .animate-blink {
-    animation: blink .8s step-end infinite
+    animation: blink 0.8s step-end infinite;
   }
 
   @keyframes loading {
     0% {
-      transform: translateX(-100%)
+      transform: translateX(-100%);
     }
 
     100% {
-      transform: translateX(250%)
+      transform: translateX(250%);
     }
   }
 
   .animate-loading-bar {
-    animation: loading 2s ease infinite
+    animation: loading 2s ease infinite;
   }
 
   @keyframes gradient-flow {
     0% {
-      background-position: 0% 50%
+      background-position: 0% 50%;
     }
 
     100% {
-      background-position: 100% 50%
+      background-position: 100% 50%;
     }
   }
 
   .animate-gradient {
     background-size: 200% 200%;
-    animation: gradient-flow 2s linear infinite alternate
+    animation: gradient-flow 2s linear infinite alternate;
   }
 }
 
@@ -87,7 +135,9 @@
   .reveal {
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity .6s ease, transform .6s ease;
+    transition:
+      opacity 0.6s ease,
+      transform 0.6s ease;
   }
 
   .reveal.visible {
