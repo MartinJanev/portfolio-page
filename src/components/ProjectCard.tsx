@@ -16,12 +16,10 @@ export default function ProjectCard({
   return (
     <div
       className="relative group rounded-2xl p-6 backdrop-blur-lg transition hover:-translate-y-1 hover:ring-green-400/40 min-h-[360px] flex flex-col"
-      style={
-        {
+      style={{
         backgroundColor: "var(--card-bg-solid)",
         border: "1px solid var(--card-border)",
-      }
-    }
+      }}
     >
       <div
         className="pointer-events-none absolute -inset-1 rounded-2xl blur opacity-0 group-hover:opacity-75 transition duration-500"
