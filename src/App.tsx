@@ -8,6 +8,7 @@ import { NavBar } from "./components/NavBar";
 import { Home } from "./components/sections/Home";
 import { About } from "./components/sections/About";
 import { Projects } from "./components/sections/Projects";
+import { Research } from "./components/sections/Research";
 import { Footer } from "./components/sections/Footer";
 import { Experience } from "./components/sections/Experience";
 import { Contact } from "./components/sections/Contact";
@@ -35,6 +36,7 @@ export default function App() {
         <Home />
         <About />
         <Experience />
+        <Research />
         <Projects />
         <Contact />
         <Footer />

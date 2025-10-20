@@ -16,14 +16,6 @@ export const projects = [
     link: "https://github.com/MartinJanev/MoodLens",
   },
   {
-    title: "Mutual Information Driven Feature Selection",
-    subtitle: "Information Theory in Machine Learning",
-    description:
-      "Compare 2 types of feature selection on a dataset - filter methods using mutual information and standard feature selectors. We use WDBC dataset for training and testing and we ought to seek k@95% - the number of features needed to reach 95% accuracy. This project will be further used for a studenet paper for the same topic.",
-    techs: ["ML", "Python", "PyTorch", "Matplotlib"],
-    link: "https://github.com/MartinJanev/WDBC_Feature_Selection",
-  },
-  {
     title:
       "Bayesian Linear Regression with MCMC method in Parkinson's Telemonitoring",
     subtitle: "Probabilistic Modeling with Markov Chain",

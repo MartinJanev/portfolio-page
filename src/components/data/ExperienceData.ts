@@ -49,51 +49,21 @@ export const experience = [
     title: "Member of a Student Organization",
     org: "EESTEC LC Skopje",
     start: "2023-11",
-    end: "present",
+    end: "2025-05",
     location: "Skopje, Macedonia",
-    tags: [
-      "Volunteering",
-      "Teamwork",
-      "Workshops",
-      "Logistics",
-      "Internships",
-      "Professional Development",
-      "Networking",
+    description:
+      "Contributed to workshops, logistics, and student community building.",
+    bullets: [
+      "Planned and ran technical workshops",
+      "Managed logistics for student events",
+      "Facilitated community engagement",
+      "Helped students prepare for exams",
     ],
-    subOrgs: [
-      {
-        org: "EESTEC LC Skopje",
-        start: "2023-11",
-        end: "2025-05",
-        location: "Skopje, Macedonia",
-        description:
-          "Contributed to workshops, logistics, and student community building.",
-        bullets: [
-          "Planned and ran technical workshops",
-          "Managed logistics for student events",
-          "Facilitated community engagement",
-          "Helped students prepare for exams",
-        ],
-        tags: ["Volunteering", "Teamwork", "Workshops", "Logistics"],
-        achievements: [
-          "Supported 3 workshops",
-          "Improved event logistics",
-          "Helped 40+ students pass exams",
-        ],
-      },
-      {
-        org: "IAESTE Skopje",
-        start: "2025-10",
-        end: "present",
-        location: "Skopje, Macedonia",
-        description:
-          "Recently joined to contribute to organizing events, social gatherings and professional development programs for students.",
-        bullets: ["TBD"],
-        tags: ["Internships", "Professional Development", "Networking"],
-        achievements: [
-          "So far I haven`t contributed, but I am excited to get involved",
-        ],
-      },
+    tags: ["Volunteering", "Teamwork", "Workshops", "Logistics"],
+    achievements: [
+      "Supported 3 workshops",
+      "Improved event logistics",
+      "Helped 40+ students pass exams",
     ],
   },
   {
