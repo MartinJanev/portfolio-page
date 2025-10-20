@@ -36,6 +36,16 @@ export interface ProjectItem {
   link?: string;
 }
 
+export interface ResearchItem {
+  title: string;
+  subtitle?: string;
+  description: string;
+  techs?: string[];
+  link?: string;
+  publishedDate?: string;
+  status?: string;
+}
+
 export type Category = {
   title: string;
   icon: IconType;
