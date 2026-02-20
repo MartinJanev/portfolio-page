@@ -12,20 +12,26 @@ import {
 } from "react-icons/fa";
 import { Category } from "src/types/content";
 
+const limitOnItems = 6;
+
 const rawCategories: Category[] = [
   {
     title: "Technologies",
     icon: FaLaptopCode,
     columns: 2,
-    limit: 10,
+    limit: limitOnItems,
     items: [
       "Python",
-      "Java",
-      "C++",
-      "OpenCV",
-      "TensorFlow",
       "PyTorch",
-      "Web",
+      "TensorFlow",
+      "Scikit-learn",
+      "NumPy",
+      "Java",
+      "OpenCV",
+      "Spring Boot",
+      "Jupyter Notebook",
+      "Dask",
+      "CUDA",
       "Git",
     ],
   },
@@ -33,19 +39,19 @@ const rawCategories: Category[] = [
     title: "Volunteering",
     icon: FaHandsHelping,
     columns: 1,
-    limit: 6,
+    limit: 4,
     items: ["Equinox Scout Shtip", "Scout Association of Macedonia"],
   },
   {
     title: "Hobbies",
     icon: FaRunning,
     columns: 2,
-    limit: 8,
+    limit: limitOnItems,
     items: [
+      "Reading",
       "Volunteering",
       "Running",
       "Programming",
-      "Reading",
       "Tennis",
       "Football",
     ],
@@ -61,7 +67,7 @@ const highlights = [
   {
     icon: FaCode,
     label: "Project scope",
-    value: "AI • Web Development",
+    value: "ML • NLP • Relationship Graphs",
   },
   {
     icon: FaBriefcase,
@@ -71,7 +77,7 @@ const highlights = [
   {
     icon: FaResearchgate,
     label: "Research scope",
-    value: "AI • Data Science • Parallel Computing",
+    value: "AI • ML • Data Science",
   },
 ] as const;
 

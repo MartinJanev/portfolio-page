@@ -1,31 +1,69 @@
-import React, { useState } from "react";
+import React, { Suspense, lazy, useState } from "react";
 import "./index.css";
 import "./App.css";
 
 import BackgroundDecor from "./components/BackgroundDecor";
-import { LoadingScreen } from "./components/LoadingScreen";
 import { NavBar } from "./components/NavBar";
-import { Home } from "./components/sections/Home";
-import { About } from "./components/sections/About";
-import { Projects } from "./components/sections/Projects";
-import { Research } from "./components/sections/Research";
-import { Footer } from "./components/sections/Footer";
-import { Experience } from "./components/sections/Experience";
-import { Contact } from "./components/sections/Contact";
+import { SectionSkeleton } from "./components/SectionSkeleton";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 import { ScrollToTop } from "./components/ScrollToTop";
 
+const Home = lazy(() =>
+  import("./components/sections/Home").then((module) => ({
+    default: module.Home,
+  })),
+);
+
+const About = lazy(() =>
+  import("./components/sections/About").then((module) => ({
+    default: module.About,
+  })),
+);
+
+const Experience = lazy(() =>
+  import("./components/sections/Experience").then((module) => ({
+    default: module.Experience,
+  })),
+);
+
+const Research = lazy(() =>
+  import("./components/sections/Research").then((module) => ({
+    default: module.Research,
+  })),
+);
+
+const Projects = lazy(() =>
+  import("./components/sections/Projects").then((module) => ({
+    default: module.Projects,
+  })),
+);
+
+const Contact = lazy(() =>
+  import("./components/sections/Contact").then((module) => ({
+    default: module.Contact,
+  })),
+);
+
+const Footer = lazy(() =>
+  import("./components/sections/Footer").then((module) => ({
+    default: module.Footer,
+  })),
+);
+
 export default function App() {
-  const [isLoaded, setIsLoaded] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <>
-      {!isLoaded && <LoadingScreen onComplete={() => setIsLoaded(true)} />}
+    <ErrorBoundary>
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:rounded-md focus:shadow-lg"
+      >
+        Skip to main content
+      </a>
 
       <div
-        className={`relative min-h-screen transition-opacity duration-700 ${
-          isLoaded ? "opacity-100" : "opacity-0"
-        }`}
+        className="relative min-h-screen"
         style={{
           background: "var(--bg-primary)",
           color: "var(--text-primary)",
@@ -33,15 +71,31 @@ export default function App() {
       >
         <BackgroundDecor />
         <NavBar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-        <Home />
-        <About />
-        <Experience />
-        <Research />
-        <Projects />
-        <Contact />
-        <Footer />
+        <main id="main-content">
+          <Suspense fallback={<SectionSkeleton title="Home" />}>
+            <Home />
+          </Suspense>
+          <Suspense fallback={<SectionSkeleton title="About" />}>
+            <About />
+          </Suspense>
+          <Suspense fallback={<SectionSkeleton title="Experience" />}>
+            <Experience />
+          </Suspense>
+          <Suspense fallback={<SectionSkeleton title="Research" />}>
+            <Research />
+          </Suspense>
+          <Suspense fallback={<SectionSkeleton title="Projects" />}>
+            <Projects />
+          </Suspense>
+          <Suspense fallback={<SectionSkeleton title="Contact" />}>
+            <Contact />
+          </Suspense>
+        </main>
+        <Suspense fallback={<SectionSkeleton title="Footer" />}>
+          <Footer />
+        </Suspense>
         <ScrollToTop />
       </div>
-    </>
+    </ErrorBoundary>
   );
 }
