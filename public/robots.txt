@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://martinjanev.github.io/portfolio-page/sitemap.xml

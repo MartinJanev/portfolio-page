@@ -16,6 +16,16 @@ export const Home: React.FC = () => {
     `I am ${Math.floor(Number(getExactYears()))} years old`,
   );
   const intervalRef = useRef<number | null>(null);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  React.useEffect(() => {
+    if (typeof window === "undefined") return;
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setPrefersReducedMotion(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
 
   const getAge = () => {
     const now = new Date();
@@ -36,9 +46,25 @@ export const Home: React.FC = () => {
 
   React.useEffect(() => {
     setAgeText(`I am ${getAge().years} years old`);
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    };
   }, []);
 
   const startUpdatingAge = () => {
+    if (prefersReducedMotion) {
+      setAgeText(`I am ${getAge().years} years old`);
+      return;
+    }
+
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+
     const update = () => {
       const { years, months, days } = getAge();
       let text = `I am ${years} years`;
@@ -141,6 +167,7 @@ export const Home: React.FC = () => {
                     {contactData
                       .filter(({ label }) =>
                         [
+                          "discord",
                           "instagram",
                           "facebook",
                           "linkedin",

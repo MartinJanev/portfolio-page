@@ -8,7 +8,14 @@ interface Props {
 }
 
 export const NavBar: React.FC<Props> = ({ menuOpen, setMenuOpen }) => {
-  const ids = ["home", "about", "experience", "projects", "contact"];
+  const ids = [
+    "home",
+    "about",
+    "experience",
+    "research",
+    "projects",
+    "contact",
+  ];
   const active = useScrollSpy(ids, "0px 0px -55% 0px");
   const [scrolled, setScrolled] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -38,6 +45,7 @@ export const NavBar: React.FC<Props> = ({ menuOpen, setMenuOpen }) => {
     { href: "#home", id: "home", label: "Home" },
     { href: "#about", id: "about", label: "About" },
     { href: "#experience", id: "experience", label: "Experience" },
+    { href: "#research", id: "research", label: "Research" },
     { href: "#projects", id: "projects", label: "Projects" },
     { href: "#contact", id: "contact", label: "Contact" },
   ] as const;

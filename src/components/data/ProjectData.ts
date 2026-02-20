@@ -1,5 +1,13 @@
 export const projects = [
   {
+    title: "Vezilka Translation Model",
+    subtitle: "Natural Language Processing",
+    description:
+      "Contributing to the development of a translation model of the Macedonian LLM called Vezilka, in collaboration with 200 students and professors from the Faculty of Computer Science and Engineering Skopje. We focus on creating a high-quality translation model that can effectively translate between Macedonian and other languages, leveraging the expertise of our team and the resources available at the faculty.",
+    techs: ["NLP", "ML", "Translation Models", "R&D"],
+    link: null,
+  },
+  {
     title: "PyCheckers",
     subtitle: "Artificial Intelligence",
     description:
@@ -47,13 +55,5 @@ export const projects = [
       "Concise overview of the Riemann Hypothesis, exploring its impact on prime distributions via modified counting functions and harmonic analysis.",
     techs: ["Math"],
     link: "https://github.com/MartinJanev/RiemannHypothesis",
-  },
-  {
-    title: "Lorem ipsum dolor sit.",
-    subtitle: "Placeholder",
-    description:
-      "Placeholder project description—replace with your real project details when ready.",
-    techs: ["TBD"],
-    link: "#",
   },
 ];

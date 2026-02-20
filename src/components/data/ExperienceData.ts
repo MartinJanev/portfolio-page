@@ -96,25 +96,4 @@ export const experience = [
       "Explored advanced topics in computer science and mathematics through independent research",
     ],
   },
-  {
-    title: "Warehouse Stock Manager",
-    org: "Adziko DOOEL",
-    start: "2024-06",
-    end: "2024-08",
-    location: "Shtip, Macedonia",
-    description:
-      "Gained practical experience in warehouse management and logistics.",
-    bullets: [
-      "Assisted in inventory management and stock organization",
-      "Participated in the optimization of warehouse processes",
-      "Collaborated with team members to ensure efficient operations",
-    ],
-    tags: ["Warehouse Management", "Logistics", "Teamwork"],
-    achievements: [
-      "Improved inventory management skills",
-      "Enhanced team collaboration",
-      "Learned to make and fix bicycles",
-      "Gained experience in customer service",
-    ],
-  },
 ];

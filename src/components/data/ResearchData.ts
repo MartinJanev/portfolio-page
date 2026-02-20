@@ -1,20 +1,31 @@
 export const research = [
   {
-    title: "Mutual Information Driven Feature Selection",
+    title:
+      "Comparison of MI-based and Classical Feature Selection Methods in ML processes",
     subtitle: "Information Theory in Machine Learning",
-    description:
-      "Compare 2 types of feature selection on a dataset - filter methods using mutual information and standard feature selectors. We use WDBC dataset for training and testing and we ought to seek k@95% - the number of features needed to reach 95% accuracy. This research was developed as a student paper.",
+    description: [
+      "Empirical comparison of MI-based and classical feature selection methods on large-scale tabular datasets using logistic regression and gradient boosting. Evaluated performance, stability, and computational cost, showing MI-based methods are competitive but offer no systematic advantages over classical baselines.",
+    ],
     techs: ["ML", "Python", "PyTorch", "Matplotlib"],
-    link: "https://github.com/MartinJanev/WDBC_Feature_Selection",
+    link: "https://github.com/MartinJanev/MI-FS-Paper",
     status: "Student Paper",
   },
   {
-    title: "Lorem ipsum dolor sit.",
-    subtitle: "Placeholder Research",
+    title:
+      "Parallel Fraud Detection with Large-Scale Financial Relationship Graphs",
+    subtitle: "Parallel Graph Processing",
     description:
-      "Placeholder research description—replace with your real research details when ready.",
-    techs: ["TBD"],
-    link: "#",
-    status: "TBD",
+      "This research explores the application of concurrent graph processing techniques to enhance fraud detection in large-scale financial relationship graphs. It proposes a novel approach leveraging distributed computing frameworks to efficiently analyze complex financial networks, identify suspicious patterns, and improve the accuracy of fraud detection algorithms.",
+    techs: [
+      "Graph Theory",
+      "Parallel Computing",
+      "Python",
+      "Dask",
+      "NetworkX",
+      "Joblib",
+      "Numba",
+    ],
+    link: "https://github.com/MartinJanev/FraudDetection",
+    status: "Research Paper",
   },
 ];

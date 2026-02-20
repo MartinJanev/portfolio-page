@@ -23,34 +23,4 @@ export const contactData: ContactItem[] = [
     icon: FaLinkedin,
   },
   { label: "GitHub", href: "https://github.com/MartinJanev", icon: FaGithub },
-  {
-    label: "Strava",
-    href: "https://www.strava.com/athletes/12345678",
-    icon: FaStrava,
-  },
-  {
-    label: "Reddit",
-    href: "https://www.reddit.com/user/MartinJanev",
-    icon: FaReddit,
-  },
-  {
-    label: "Steam",
-    href: "https://steamcommunity.com/id/MartinJanev",
-    icon: FaSteam,
-  },
-  {
-    label: "Twitter",
-    href: "https://twitter.com/MartinJanev",
-    icon: FaTwitter,
-  },
-  {
-    label: "Instagram",
-    href: "https://www.instagram.com/MartinJanev",
-    icon: FaInstagram,
-  },
-  {
-    label: "Facebook",
-    href: "https://www.facebook.com/MartinJanev",
-    icon: FaFacebook,
-  },
 ];
