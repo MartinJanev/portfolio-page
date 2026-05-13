@@ -8,6 +8,14 @@ export const projects = [
     link: null,
   },
   {
+    title: "Spiking Neural Networks for Formal Language Processing",
+    subtitle: "Neural Networks and Formal Languages",
+    description:
+      "Exploring the application of spiking neural networks in formal language recognition tasks. We compare the performance of spiking neural networks with traditional recurrent neural networks on various formal language benchmarks, analyzing their capabilities in terms of learning efficiency, generalization, and computational requirements.",
+    techs: ["Neural Networks", "Formal Languages", "Python"],
+    link: "https://github.com/MartinJanev/SNN",
+  },
+  {
     title: "PyCheckers",
     subtitle: "Artificial Intelligence",
     description:
