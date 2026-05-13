@@ -11,8 +11,10 @@ export default function ProjectCard({
   subtitle,
   description,
   techs = [],
-  link = "#",
+  link,
 }: Props) {
+  const isClickable = !!link;
+
   return (
     <div
       className="relative group rounded-2xl p-6 backdrop-blur-lg transition hover:-translate-y-1 hover:ring-green-400/40 min-h-[360px] flex flex-col"
@@ -72,14 +74,23 @@ export default function ProjectCard({
               </span>
             ))}
           </div>
-          <a
-            href={link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-lg transition-colors group-hover:shadow-[0_8px_24px_rgba(34,197,94,0.35)]"
-          >
-            View Project →
-          </a>
+          {isClickable ? (
+            <a
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-lg transition-colors group-hover:shadow-[0_8px_24px_rgba(34,197,94,0.35)] cursor-pointer"
+            >
+              View Project →
+            </a>
+          ) : (
+            <div
+              className="inline-flex items-center gap-2 bg-gray-600 text-gray-300 font-medium py-2 px-4 rounded-lg opacity-60 cursor-not-allowed"
+              title="Project link not available yet"
+            >
+              View Project →
+            </div>
+          )}
         </div>
       </div>
     </div>

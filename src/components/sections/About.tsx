@@ -30,8 +30,6 @@ const rawCategories: Category[] = [
       "OpenCV",
       "Spring Boot",
       "Jupyter Notebook",
-      "Dask",
-      "CUDA",
       "Git",
     ],
   },
@@ -67,7 +65,7 @@ const highlights = [
   {
     icon: FaCode,
     label: "Project scope",
-    value: "ML • NLP • Relationship Graphs",
+    value: "ML • RL • AI",
   },
   {
     icon: FaBriefcase,
@@ -77,7 +75,7 @@ const highlights = [
   {
     icon: FaResearchgate,
     label: "Research scope",
-    value: "AI • ML • Data Science",
+    value: "AI • Data Science • Formal Language",
   },
 ] as const;
 

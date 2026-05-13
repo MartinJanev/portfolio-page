@@ -6,7 +6,7 @@ export const research = [
     description: [
       "Empirical comparison of MI-based and classical feature selection methods on large-scale tabular datasets using logistic regression and gradient boosting. Evaluated performance, stability, and computational cost, showing MI-based methods are competitive but offer no systematic advantages over classical baselines.",
     ],
-    techs: ["ML", "Python", "PyTorch", "Matplotlib"],
+    techs: ["Python", "PyTorch", "CUDA", "Scikit-learn", "Pandas", "NumPy"],
     link: "https://github.com/MartinJanev/MI-FS-Paper",
     status: "Student Paper",
   },
@@ -18,9 +18,8 @@ export const research = [
       "This research explores the application of concurrent graph processing techniques to enhance fraud detection in large-scale financial relationship graphs. It proposes a novel approach leveraging distributed computing frameworks to efficiently analyze complex financial networks, identify suspicious patterns, and improve the accuracy of fraud detection algorithms.",
     techs: [
       "Graph Theory",
-      "Parallel Computing",
+      "Concurrent Computing",
       "Python",
-      "Dask",
       "NetworkX",
       "Joblib",
       "Numba",
