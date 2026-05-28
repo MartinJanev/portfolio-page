@@ -1,12 +1,12 @@
 import React, { Suspense, lazy, useState } from "react";
 import "./index.css";
-import "./App.css";
 
 import BackgroundDecor from "./components/BackgroundDecor";
 import { NavBar } from "./components/NavBar";
 import { SectionSkeleton } from "./components/SectionSkeleton";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { ScrollToTop } from "./components/ScrollToTop";
+import { ScrollMetricsProvider } from "./contexts/ScrollMetricsContext";
 
 const Home = lazy(() =>
   import("./components/sections/Home").then((module) => ({
@@ -62,40 +62,42 @@ export default function App() {
         Skip to main content
       </a>
 
-      <div
-        className="relative min-h-screen"
-        style={{
-          background: "var(--bg-primary)",
-          color: "var(--text-primary)",
-        }}
-      >
-        <BackgroundDecor />
-        <NavBar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-        <main id="main-content">
-          <Suspense fallback={<SectionSkeleton title="Home" />}>
-            <Home />
+      <ScrollMetricsProvider>
+        <div
+          className="relative min-h-screen"
+          style={{
+            background: "var(--bg-primary)",
+            color: "var(--text-primary)",
+          }}
+        >
+          <BackgroundDecor />
+          <NavBar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+          <main id="main-content">
+            <Suspense fallback={<SectionSkeleton title="Home" />}>
+              <Home />
+            </Suspense>
+            <Suspense fallback={<SectionSkeleton title="About" />}>
+              <About />
+            </Suspense>
+            <Suspense fallback={<SectionSkeleton title="Experience" />}>
+              <Experience />
+            </Suspense>
+            <Suspense fallback={<SectionSkeleton title="Research" />}>
+              <Research />
+            </Suspense>
+            <Suspense fallback={<SectionSkeleton title="Projects" />}>
+              <Projects />
+            </Suspense>
+            <Suspense fallback={<SectionSkeleton title="Contact" />}>
+              <Contact />
+            </Suspense>
+          </main>
+          <Suspense fallback={<SectionSkeleton title="Footer" />}>
+            <Footer />
           </Suspense>
-          <Suspense fallback={<SectionSkeleton title="About" />}>
-            <About />
-          </Suspense>
-          <Suspense fallback={<SectionSkeleton title="Experience" />}>
-            <Experience />
-          </Suspense>
-          <Suspense fallback={<SectionSkeleton title="Research" />}>
-            <Research />
-          </Suspense>
-          <Suspense fallback={<SectionSkeleton title="Projects" />}>
-            <Projects />
-          </Suspense>
-          <Suspense fallback={<SectionSkeleton title="Contact" />}>
-            <Contact />
-          </Suspense>
-        </main>
-        <Suspense fallback={<SectionSkeleton title="Footer" />}>
-          <Footer />
-        </Suspense>
-        <ScrollToTop />
-      </div>
+          <ScrollToTop />
+        </div>
+      </ScrollMetricsProvider>
     </ErrorBoundary>
   );
 }

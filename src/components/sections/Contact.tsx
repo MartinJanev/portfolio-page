@@ -3,10 +3,10 @@ import Section from "../Section";
 import { RevealOnScroll } from "../RevealOnScroll";
 import { FaEnvelope, FaCheck } from "react-icons/fa";
 import { FaNoteSticky } from "react-icons/fa6";
-import { contactData } from "../data/ContactData";
+import { portfolioEmail } from "../data/ContactData";
 
 export const Contact: React.FC = () => {
-  const email = "janev.martin123@gmail.com";
+  const email = portfolioEmail;
   const [copied, setCopied] = useState(false);
   const [note, setNote] = useState("");
 
@@ -131,7 +131,8 @@ export const Contact: React.FC = () => {
               <div className="mt-6">
                 <label
                   htmlFor="note"
-                  className="block text-sm text-gray-400 mb-2 text-center sm:text-left"
+                  className="block text-sm mb-2 text-center sm:text-left"
+                  style={{ color: "var(--text-muted)" }}
                 >
                   Drop a quick note (no backend—opens your email client)
                 </label>
@@ -141,9 +142,11 @@ export const Contact: React.FC = () => {
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
                   placeholder="Hi Martin, we'd love to chat about…"
-                  className="w-full rounded-lg bg-white/5 focus:ring-2 focus:ring-green-400 outline-none text-gray-100 placeholder:text-gray-500 p-3 transition"
+                  className="w-full rounded-lg focus:ring-2 focus:ring-green-400 outline-none p-3 transition placeholder:text-[var(--text-muted)]"
                   style={{
                     border: "1px solid var(--card-border)",
+                    backgroundColor: "var(--card-bg)",
+                    color: "var(--text-primary)",
                   }}
                 />
                 <div className="mt-3 flex flex-wrap gap-3 justify-center sm:justify-start">
@@ -154,29 +157,6 @@ export const Contact: React.FC = () => {
                     <FaNoteSticky /> Send Note
                   </a>
                 </div>
-              </div>
-
-              <div className="mt-6 flex items-center gap-6 justify-center">
-                {contactData
-                  .filter(
-                    ({ label }) =>
-                      !["Instagram", "Facebook", "Linkedin", "GitHub"].includes(
-                        label,
-                      ),
-                  )
-                  .map(({ label, href, icon: Icon }) => (
-                    <a
-                      key={label}
-                      href={href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-300 hover:text-green-300 transition"
-                      aria-label={label}
-                      title={label}
-                    >
-                      <Icon size={22} />
-                    </a>
-                  ))}
               </div>
             </div>
           </div>

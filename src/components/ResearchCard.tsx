@@ -1,18 +1,14 @@
-interface Props {
-  title: string;
-  subtitle?: string;
-  description: string;
-  techs?: string[];
-  link?: string;
-}
+import type { ResearchItem } from "../types/content";
 
-export default function ProjectCard({
+export default function ResearchCard({
   title,
   subtitle,
   description,
   techs = [],
   link,
-}: Props) {
+  status,
+  publishedDate,
+}: ResearchItem) {
   const isClickable = !!link;
 
   return (
@@ -32,6 +28,34 @@ export default function ProjectCard({
       />
       <div className="relative flex flex-col justify-between h-full">
         <div>
+          {(status || publishedDate) && (
+            <div className="mb-3 flex flex-wrap gap-2">
+              {status && (
+                <span
+                  className="inline-flex rounded-full text-xs font-medium px-3 py-1"
+                  style={{
+                    backgroundColor: "var(--card-bg)",
+                    color: "var(--accent-purple)",
+                    border: "1px solid var(--card-border)",
+                  }}
+                >
+                  {status}
+                </span>
+              )}
+              {publishedDate && (
+                <span
+                  className="inline-flex rounded-full text-xs font-medium px-3 py-1"
+                  style={{
+                    backgroundColor: "var(--card-bg)",
+                    color: "var(--text-muted)",
+                    border: "1px solid var(--card-border)",
+                  }}
+                >
+                  {publishedDate}
+                </span>
+              )}
+            </div>
+          )}
           <h3
             className="text-xl font-semibold mb-2"
             style={{ color: "var(--text-primary)" }}
@@ -39,7 +63,7 @@ export default function ProjectCard({
             {title}
             {subtitle && (
               <span
-                className="ml-2 text-sm font-normal"
+                className="ml-2 text-sm font-normal block sm:inline mt-1 sm:mt-0"
                 style={{ color: "var(--accent-green)" }}
               >
                 {subtitle}
@@ -81,7 +105,7 @@ export default function ProjectCard({
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-lg transition-colors group-hover:shadow-[0_8px_24px_rgba(34,197,94,0.35)] cursor-pointer"
             >
-              View Project →
+              View Research →
             </a>
           ) : (
             <div
@@ -90,9 +114,9 @@ export default function ProjectCard({
                 backgroundColor: "var(--bg-tertiary)",
                 color: "var(--text-muted)",
               }}
-              title="Project link not available yet"
+              title="Research link not available yet"
             >
-              View Project →
+              View Research →
             </div>
           )}
         </div>
