@@ -1,12 +1,47 @@
-# React + Vite
+# Portfolio Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio for [Martin Janev](https://martinjanev.github.io/portfolio-page/) — computer science student showcasing projects, research, and experience.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React 19 + TypeScript
+- Vite 6
+- Tailwind CSS 4
 
-## Expanding the ESLint configuration
+## Development
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+npm run dev
+```
+
+## Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Local dev server |
+| `npm run build` | Production build to `dist/` |
+| `npm run preview` | Preview production build |
+| `npm run lint` | ESLint |
+| `npm run format` | Prettier write |
+| `npm run deploy` | Build and publish to GitHub Pages |
+
+## Updating content
+
+Edit the data files under `src/components/data/`:
+
+- `AboutData.ts` — highlights and skill categories
+- `ExperienceData.ts` — work, education, volunteering
+- `ResearchData.ts` — research entries
+- `ProjectData.ts` — featured projects
+- `ContactData.ts` — email and social links
+
+Section layout and UI live under `src/components/sections/`.
+
+## Deployment
+
+The site is configured for GitHub Pages at `/portfolio-page` (see `vite.config.ts` `base`). Deploy with:
+
+```bash
+npm run deploy
+```

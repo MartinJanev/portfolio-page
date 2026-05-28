@@ -9,7 +9,6 @@ import prettierConfig from "eslint-config-prettier";
 export default [
   { ignores: ["dist"] },
 
-  // TypeScript: parser + plugin presets
   ...tseslint.configs.recommended,
 
   {
@@ -18,7 +17,9 @@ export default [
       parser: tseslint.parser,
       ecmaVersion: "latest",
       sourceType: "module",
-      ecmaFeatures: { jsx: true },
+      parserOptions: {
+        ecmaFeatures: { jsx: true },
+      },
       globals: globals.browser,
     },
     plugins: {
@@ -27,27 +28,19 @@ export default [
       prettier: prettier,
     },
     rules: {
-      // React Hooks best practices
       ...reactHooks.configs.recommended.rules,
-
-      // Prefer TS rule over base
       "no-unused-vars": "off",
       "@typescript-eslint/no-unused-vars": [
         "error",
         { varsIgnorePattern: "^[A-Z_]" },
       ],
-
-      // Vite Fast Refresh safety
       "react-refresh/only-export-components": [
         "warn",
         { allowConstantExport: true },
       ],
-
-      // Prettier integration
       "prettier/prettier": "warn",
     },
   },
 
-  // Prettier config to disable conflicting ESLint rules (must be last)
   prettierConfig,
 ];

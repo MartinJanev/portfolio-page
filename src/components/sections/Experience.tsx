@@ -3,17 +3,7 @@ import Section from "../Section";
 import { RevealOnScroll } from "../RevealOnScroll";
 import { experience } from "../data/ExperienceData";
 import type { ExperienceItem } from "../../types/content";
-
-function fmtRange(start: string, end: string) {
-  const fmt = (ym: string) => {
-    const [y, m] = ym.split("-").map(Number);
-    return new Date(y, (m || 1) - 1).toLocaleString(undefined, {
-      month: "short",
-      year: "numeric",
-    });
-  };
-  return `${fmt(start)} — ${end === "present" ? "Present" : fmt(end)}`;
-}
+import { fmtRange } from "../../utils/fmtRange";
 
 export const Experience: React.FC = () => {
   const items: ExperienceItem[] = useMemo(
@@ -36,13 +26,9 @@ export const Experience: React.FC = () => {
             {items.map((it) => {
               const id = `${it.title}-${it.start}`;
               const open = expandedId === id;
-              const compactTags = Array.isArray(it.tags)
-                ? it.tags.slice(0, 2)
-                : [];
+              const compactTags = it.tags?.slice(0, 2) ?? [];
               const extraCount =
-                Array.isArray(it.tags) && it.tags.length > 2
-                  ? it.tags.length - 2
-                  : 0;
+                it.tags && it.tags.length > 2 ? it.tags.length - 2 : 0;
 
               return (
                 <li key={id} className="relative group">
@@ -84,26 +70,14 @@ export const Experience: React.FC = () => {
                         >
                           {it.title}
                         </h3>
-
-                        {(() => {
-                          // Build a de-duplicated list of org names for the collapsed header
-                          const headerOrgs = [
-                            ...(it.org ? [it.org] : []),
-                            ...(Array.isArray(it.subOrgs)
-                              ? it.subOrgs.map((o: { org: string }) => o.org)
-                              : []),
-                          ];
-                          const unique = [...new Set(headerOrgs)];
-                          return unique.length > 0 ? (
-                            <span
-                              className="text-sm sm:text-base"
-                              style={{ color: "var(--accent-green)" }}
-                            >
-                              · {unique.join(" • ")}
-                            </span>
-                          ) : null;
-                        })()}
-
+                        {it.org && (
+                          <span
+                            className="text-sm sm:text-base"
+                            style={{ color: "var(--accent-green)" }}
+                          >
+                            · {it.org}
+                          </span>
+                        )}
                         {it.location && (
                           <span
                             className="text-[11px] sm:text-xs ml-2"
@@ -120,38 +94,38 @@ export const Experience: React.FC = () => {
                         {fmtRange(it.start, it.end)}
                       </p>
 
-                      {/* Compact tags when collapsed */}
-                      {!open &&
-                        Array.isArray(it.tags) &&
-                        it.tags.length > 0 && (
-                          <div className="mt-2 flex flex-wrap gap-2">
-                            {compactTags.map((t) => (
+                      {!open && compactTags.length > 0 && (
+                        <div className="mt-2 flex flex-wrap gap-2">
+                          {compactTags.map((t) => (
+                            <span
+                              key={t}
+                              className="inline-flex items-center gap-1 rounded-full text-[11px] sm:text-xs font-medium px-2.5 py-1 transition hover:bg-green-500/20"
+                              style={{
+                                backgroundColor: "var(--card-bg)",
+                                color: "var(--accent-green)",
+                                borderColor: "var(--border-color)",
+                                borderWidth: "1px",
+                              }}
+                            >
                               <span
-                                key={t}
-                                className="inline-flex items-center gap-1 rounded-full text-[11px] sm:text-xs font-medium px-2.5 py-1 transition hover:bg-green-500/20"
+                                className="h-1.5 w-1.5 rounded-full"
                                 style={{
-                                  backgroundColor: "var(--card-bg)",
-                                  color: "var(--accent-green)",
-                                  borderColor: "var(--border-color)",
-                                  borderWidth: "1px",
+                                  backgroundColor: "var(--accent-green)",
                                 }}
-                              >
-                                <span
-                                  className="h-1.5 w-1.5 rounded-full"
-                                  style={{
-                                    backgroundColor: "var(--accent-green)",
-                                  }}
-                                />
-                                {t}
-                              </span>
-                            ))}
-                            {extraCount > 0 && (
-                              <span className="text-[11px] sm:text-xs text-gray-400">
-                                +{extraCount}
-                              </span>
-                            )}
-                          </div>
-                        )}
+                              />
+                              {t}
+                            </span>
+                          ))}
+                          {extraCount > 0 && (
+                            <span
+                              className="text-[11px] sm:text-xs"
+                              style={{ color: "var(--text-muted)" }}
+                            >
+                              +{extraCount}
+                            </span>
+                          )}
+                        </div>
+                      )}
                     </div>
 
                     <div
@@ -164,7 +138,7 @@ export const Experience: React.FC = () => {
                     >
                       <div className="overflow-hidden">
                         <div className="pt-1">
-                          {open && !Array.isArray(it.subOrgs) && (
+                          {open && (
                             <>
                               {it.description && (
                                 <p
@@ -174,18 +148,17 @@ export const Experience: React.FC = () => {
                                   {it.description}
                                 </p>
                               )}
-                              {Array.isArray(it.bullets) &&
-                                it.bullets.length > 0 && (
-                                  <ul
-                                    className="mt-2 list-disc list-inside space-y-1 text-sm sm:text-[15px]"
-                                    style={{ color: "var(--experience-text)" }}
-                                  >
-                                    {it.bullets.map((b) => (
-                                      <li key={b}>{b}</li>
-                                    ))}
-                                  </ul>
-                                )}
-                              {Array.isArray(it.achievements) &&
+                              {it.bullets && it.bullets.length > 0 && (
+                                <ul
+                                  className="mt-2 list-disc list-inside space-y-1 text-sm sm:text-[15px]"
+                                  style={{ color: "var(--experience-text)" }}
+                                >
+                                  {it.bullets.map((b) => (
+                                    <li key={b}>{b}</li>
+                                  ))}
+                                </ul>
+                              )}
+                              {it.achievements &&
                                 it.achievements.length > 0 && (
                                   <div className="mt-3">
                                     <div
@@ -206,7 +179,7 @@ export const Experience: React.FC = () => {
                                     </ul>
                                   </div>
                                 )}
-                              {Array.isArray(it.tags) && it.tags.length > 0 && (
+                              {it.tags && it.tags.length > 0 && (
                                 <div className="mt-3 flex flex-wrap gap-2">
                                   {it.tags.map((t) => (
                                     <span
@@ -235,133 +208,6 @@ export const Experience: React.FC = () => {
                           )}
                         </div>
                       </div>
-
-                      {open &&
-                        Array.isArray(it.subOrgs) &&
-                        it.subOrgs.length > 0 && (
-                          <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            {it.subOrgs.map(
-                              (o: {
-                                org: string;
-                                start: string;
-                                end: string;
-                                location?: string;
-                                description?: string;
-                                bullets?: string[];
-                                tags?: string[];
-                                achievements?: string[];
-                              }) => (
-                                <div
-                                  key={`${o.org}-${o.start}-${o.end}`}
-                                  className="rounded-xl p-3"
-                                  style={{
-                                    backgroundColor: "var(--card-bg)",
-                                    border: "1px solid var(--card-border)",
-                                  }}
-                                >
-                                  <div className="flex flex-wrap items-baseline gap-x-2">
-                                    <div
-                                      className="font-semibold"
-                                      style={{ color: "var(--accent-green)" }}
-                                    >
-                                      {o.org}
-                                    </div>
-                                    {o.location && (
-                                      <span
-                                        className="text-[11px]"
-                                        style={{ color: "var(--text-muted)" }}
-                                      >
-                                        {o.location}
-                                      </span>
-                                    )}
-                                  </div>
-                                  <div
-                                    className="text-[11px] mb-1"
-                                    style={{ color: "var(--text-muted)" }}
-                                  >
-                                    {fmtRange(o.start, o.end)}
-                                  </div>
-
-                                  {o.description && (
-                                    <p
-                                      className="text-sm"
-                                      style={{
-                                        color: "var(--experience-text)",
-                                      }}
-                                    >
-                                      {o.description}
-                                    </p>
-                                  )}
-
-                                  {Array.isArray(o.bullets) &&
-                                    o.bullets.length > 0 && (
-                                      <ul
-                                        className="mt-2 list-disc list-inside space-y-1 text-sm"
-                                        style={{
-                                          color: "var(--experience-text)",
-                                        }}
-                                      >
-                                        {o.bullets.map((b: string) => (
-                                          <li key={b}>{b}</li>
-                                        ))}
-                                      </ul>
-                                    )}
-
-                                  {Array.isArray(o.achievements) &&
-                                    o.achievements.length > 0 && (
-                                      <div className="mt-3">
-                                        <div
-                                          className="text-base sm:text-lg font-semibold mb-1"
-                                          style={{
-                                            color: "var(--accent-green)",
-                                          }}
-                                        >
-                                          Achievements:
-                                        </div>
-                                        <ul
-                                          className="list-disc list-inside space-y-1 text-sm"
-                                          style={{
-                                            color: "var(--experience-text)",
-                                          }}
-                                        >
-                                          {o.achievements.map((a: string) => (
-                                            <li key={a}>{a}</li>
-                                          ))}
-                                        </ul>
-                                      </div>
-                                    )}
-                                  {Array.isArray(o.tags) &&
-                                    o.tags.length > 0 && (
-                                      <div className="mt-3 flex flex-wrap gap-2">
-                                        {o.tags.map((t: string) => (
-                                          <span
-                                            key={t}
-                                            className="inline-flex items-center gap-1 rounded-full text-[11px] font-medium px-2.5 py-1 transition hover:bg-green-500/20"
-                                            style={{
-                                              backgroundColor: "var(--card-bg)",
-                                              color: "var(--accent-green)",
-                                              borderColor:
-                                                "var(--border-color)",
-                                              borderWidth: "1px",
-                                            }}
-                                          >
-                                            <span
-                                              className="h-1.5 w-1.5 rounded-full"
-                                              style={{
-                                                backgroundColor:
-                                                  "var(--accent-green)",
-                                              }}
-                                            />
-                                            {t}
-                                          </span>
-                                        ))}
-                                      </div>
-                                    )}
-                                </div>
-                              ),
-                            )}
-                          </div>
-                        )}
                     </div>
                   </div>
                 </li>

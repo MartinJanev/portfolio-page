@@ -1,8 +1,7 @@
-export default function BackgroundDecor() {
-  const prefersReducedMotion =
-    typeof window !== "undefined" &&
-    window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+import { usePrefersReducedMotion } from "../hooks/usePrefersReducedMotion";
 
+export default function BackgroundDecor() {
+  const prefersReducedMotion = usePrefersReducedMotion();
   const glowOpacity = prefersReducedMotion ? 0.08 : 0.2;
   const gridOpacity = prefersReducedMotion ? 0.08 : 0.15;
 
