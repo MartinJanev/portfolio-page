@@ -1,1 +1,0 @@
-import{i,k as a,l as n}from"./index-CAGKGPZ8.js";const e=[{label:"Discord",href:"https://discord.com/users/MartinJanev",icon:i},{label:"LinkedIn",href:"https://www.linkedin.com/in/martin-janev1/",icon:a},{label:"GitHub",href:"https://github.com/MartinJanev",icon:n}];export{e as c};

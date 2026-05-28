@@ -1,0 +1,1 @@
+import{i as a,k as i,l as n}from"./index-CStONnKe.js";const o="janev.martin123@gmail.com",c=[{label:"Discord",href:"https://discord.com/users/MartinJanev",icon:a},{label:"LinkedIn",href:"https://www.linkedin.com/in/martin-janev1/",icon:i},{label:"GitHub",href:"https://github.com/MartinJanev",icon:n}];export{c,o as p};
