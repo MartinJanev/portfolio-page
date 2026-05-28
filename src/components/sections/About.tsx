@@ -1,83 +1,8 @@
 import React, { useState } from "react";
 import Section from "../Section";
 import { RevealOnScroll } from "../RevealOnScroll";
-import {
-  FaLaptopCode,
-  FaHandsHelping,
-  FaRunning,
-  FaGraduationCap,
-  FaCode,
-  FaBriefcase,
-  FaResearchgate,
-} from "react-icons/fa";
-import { Category } from "src/types/content";
-
-const limitOnItems = 6;
-
-const rawCategories: Category[] = [
-  {
-    title: "Technologies",
-    icon: FaLaptopCode,
-    columns: 2,
-    limit: limitOnItems,
-    items: [
-      "Python",
-      "PyTorch",
-      "TensorFlow",
-      "Scikit-learn",
-      "NumPy",
-      "Java",
-      "OpenCV",
-      "Spring Boot",
-      "Jupyter Notebook",
-      "Git",
-    ],
-  },
-  {
-    title: "Volunteering",
-    icon: FaHandsHelping,
-    columns: 1,
-    limit: 4,
-    items: ["Equinox Scout Shtip", "Scout Association of Macedonia"],
-  },
-  {
-    title: "Hobbies",
-    icon: FaRunning,
-    columns: 2,
-    limit: limitOnItems,
-    items: [
-      "Reading",
-      "Volunteering",
-      "Running",
-      "Programming",
-      "Tennis",
-      "Football",
-    ],
-  },
-];
-
-const highlights = [
-  {
-    icon: FaGraduationCap,
-    label: "Status",
-    value: "Student at FCSE Skopje",
-  },
-  {
-    icon: FaCode,
-    label: "Project scope",
-    value: "ML • RL • AI",
-  },
-  {
-    icon: FaBriefcase,
-    label: "Looking for",
-    value: "Internship and job opportunities",
-  },
-  {
-    icon: FaResearchgate,
-    label: "Research scope",
-    value: "AI • Data Science • Formal Language",
-  },
-] as const;
+import { aboutCategories, aboutHighlights } from "../data/AboutData";
+import type { Category } from "../../types/content";
 
 function CategoryCard({
   title,
@@ -140,7 +65,7 @@ function CategoryCard({
           {shown.map((item) => (
             <span
               key={item}
-              className="inline-flex items-center gap-2 rounded-full text-sm font-medium px-3 py-1 hover:bg-white/10 transition"
+              className="inline-flex items-center gap-2 rounded-full text-sm font-medium px-3 py-1 transition hover:bg-[var(--card-hover)]"
               style={{
                 backgroundColor: "var(--card-bg)",
                 border: "1px solid var(--card-border)",
@@ -160,7 +85,7 @@ function CategoryCard({
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="mt-4 self-start text-xs font-medium hover:text-green-200 transition"
+            className="mt-4 self-start text-xs font-medium transition"
             style={{ color: "var(--accent-green)" }}
           >
             {open ? "Show less" : `Show all ${items.length}`}
@@ -176,7 +101,7 @@ export const About: React.FC = () => (
     <RevealOnScroll>
       <div className="space-y-12 md:space-y-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-          {highlights.map(({ icon: Icon, label, value }) => (
+          {aboutHighlights.map(({ icon: Icon, label, value }) => (
             <div
               key={label}
               className="relative group h-full rounded-2xl backdrop-blur-lg transition-all duration-300 hover:-translate-y-1"
@@ -219,7 +144,7 @@ export const About: React.FC = () => (
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 items-stretch">
-          {rawCategories.map((c) => (
+          {aboutCategories.map((c) => (
             <CategoryCard key={c.title} {...c} />
           ))}
         </div>

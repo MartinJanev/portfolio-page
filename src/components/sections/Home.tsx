@@ -1,87 +1,12 @@
-import React, { useState, useRef } from "react";
+import React from "react";
 import { RevealOnScroll } from "../RevealOnScroll";
-import avatar from "../../assets/MartinJanev.jpg";
+import avatarJpg from "../../assets/MartinJanev.jpg";
+import avatarWebp from "../../assets/MartinJanev.webp";
 import { contactData } from "../data/ContactData";
+import { useAgeDisplay } from "../../hooks/useAgeDisplay";
 
 export const Home: React.FC = () => {
-  const birthDate = new Date("2004-04-27T00:00:00");
-  const getExactYears = () => {
-    const now = new Date();
-    const diffInMs = now.getTime() - birthDate.getTime();
-    const years = diffInMs / (1000 * 60 * 60 * 24 * 365.2425);
-    return years.toFixed(9);
-  };
-
-  const [ageText, setAgeText] = useState(
-    `I am ${Math.floor(Number(getExactYears()))} years old`,
-  );
-  const intervalRef = useRef<number | null>(null);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-
-  React.useEffect(() => {
-    if (typeof window === "undefined") return;
-    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const update = () => setPrefersReducedMotion(media.matches);
-    update();
-    media.addEventListener("change", update);
-    return () => media.removeEventListener("change", update);
-  }, []);
-
-  const getAge = () => {
-    const now = new Date();
-    let years = now.getFullYear() - birthDate.getFullYear();
-    let months = now.getMonth() - birthDate.getMonth();
-    let days = now.getDate() - birthDate.getDate();
-
-    if (days < 0) {
-      months -= 1;
-      days += new Date(now.getFullYear(), now.getMonth(), 0).getDate();
-    }
-    if (months < 0) {
-      years -= 1;
-      months += 12;
-    }
-    return { years, months, days };
-  };
-
-  React.useEffect(() => {
-    setAgeText(`I am ${getAge().years} years old`);
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-        intervalRef.current = null;
-      }
-    };
-  }, []);
-
-  const startUpdatingAge = () => {
-    if (prefersReducedMotion) {
-      setAgeText(`I am ${getAge().years} years old`);
-      return;
-    }
-
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
-    }
-
-    const update = () => {
-      const { years, months, days } = getAge();
-      let text = `I am ${years} years`;
-      if (months > 0) text += `, ${months} months`;
-      if (days > 0) text += `, ${days} days`;
-      text += " old";
-      setAgeText(text);
-    };
-    update();
-    intervalRef.current = window.setInterval(update, 1000);
-  };
-
-  const stopUpdatingAge = () => {
-    if (intervalRef.current) clearInterval(intervalRef.current);
-    intervalRef.current = null;
-    setAgeText(`I am ${getAge().years} years old`);
-  };
+  const { ageText, startUpdatingAge, stopUpdatingAge } = useAgeDisplay();
 
   return (
     <section
@@ -164,30 +89,20 @@ export const Home: React.FC = () => {
                     className="flex gap-5 justify-center md:justify-start"
                     style={{ color: "var(--text-secondary)" }}
                   >
-                    {contactData
-                      .filter(({ label }) =>
-                        [
-                          "discord",
-                          "instagram",
-                          "facebook",
-                          "linkedin",
-                          "github",
-                        ].includes(label.toLowerCase()),
-                      )
-                      .map(({ label, href, icon: Icon }) => (
-                        <a
-                          key={label}
-                          href={href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="hover:text-green-300 transition"
-                          style={{ color: "var(--text-secondary)" }}
-                          aria-label={label}
-                          title={label}
-                        >
-                          <Icon size={22} />
-                        </a>
-                      ))}
+                    {contactData.map(({ label, href, icon: Icon }) => (
+                      <a
+                        key={label}
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-green-300 transition"
+                        style={{ color: "var(--text-secondary)" }}
+                        aria-label={label}
+                        title={label}
+                      >
+                        <Icon size={22} />
+                      </a>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -197,12 +112,19 @@ export const Home: React.FC = () => {
             <div className="relative mt-8">
               <div className="absolute -inset-8 blur-2xl opacity-30 bg-gradient-to-tr from-green-800 to-purple-800 rounded-full" />
               <div className="p-[3px] rounded-full bg-gradient-to-tr from-green-500 to-purple-500">
-                <img
-                  src={avatar}
-                  alt="Martin Janev"
-                  loading="lazy"
-                  className="w-56 h-56 md:w-72 md:h-72 lg:w-96 lg:h-96 rounded-full object-cover"
-                />
+                <picture>
+                  <source srcSet={avatarWebp} type="image/webp" />
+                  <img
+                    src={avatarJpg}
+                    alt="Martin Janev"
+                    width={384}
+                    height={384}
+                    loading="eager"
+                    fetchPriority="high"
+                    decoding="async"
+                    className="w-56 h-56 md:w-72 md:h-72 lg:w-96 lg:h-96 rounded-full object-cover"
+                  />
+                </picture>
               </div>
             </div>
           </div>

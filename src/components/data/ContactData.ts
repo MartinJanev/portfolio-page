@@ -1,15 +1,7 @@
-import {
-  FaLinkedin,
-  FaGithub,
-  FaTwitter,
-  FaReddit,
-  FaSteam,
-  FaStrava,
-  FaDiscord,
-  FaFacebook,
-  FaInstagram,
-} from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaDiscord } from "react-icons/fa";
 import type { ContactItem } from "../../types/content";
+
+export const portfolioEmail = "janev.martin123@gmail.com";
 
 export const contactData: ContactItem[] = [
   {
