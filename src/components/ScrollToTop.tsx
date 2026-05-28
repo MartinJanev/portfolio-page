@@ -1,28 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { FaArrowUp } from "react-icons/fa";
+import { useScrollMetrics } from "../contexts/ScrollMetricsContext";
 
 export const ScrollToTop: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const aboutSection = document.getElementById("about");
-      if (!aboutSection) return;
-
-      const aboutTop = aboutSection.offsetTop;
-      const aboutHeight = aboutSection.offsetHeight;
-      const halfwayPoint = aboutTop + aboutHeight / 2;
-      const scrollPosition = window.scrollY;
-
-      // Show button if scrolled past halfway point of About section
-      setIsVisible(scrollPosition > halfwayPoint);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Check initial position
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const { pastAboutHalf } = useScrollMetrics();
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -32,7 +13,7 @@ export const ScrollToTop: React.FC = () => {
     <button
       onClick={scrollToTop}
       className={`fixed bottom-8 right-8 z-40 p-3 rounded-full shadow-lg transition-all duration-300 ${
-        isVisible
+        pastAboutHalf
           ? "opacity-100 translate-y-0"
           : "opacity-0 translate-y-16 pointer-events-none"
       }`}

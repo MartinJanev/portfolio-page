@@ -85,7 +85,11 @@ export default function ProjectCard({
             </a>
           ) : (
             <div
-              className="inline-flex items-center gap-2 bg-gray-600 text-gray-300 font-medium py-2 px-4 rounded-lg opacity-60 cursor-not-allowed"
+              className="inline-flex items-center gap-2 font-medium py-2 px-4 rounded-lg opacity-60 cursor-not-allowed"
+              style={{
+                backgroundColor: "var(--bg-tertiary)",
+                color: "var(--text-muted)",
+              }}
               title="Project link not available yet"
             >
               View Project →
