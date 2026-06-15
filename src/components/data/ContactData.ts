@@ -3,6 +3,10 @@ import type { ContactItem } from "../../types/content";
 
 export const portfolioEmail = "janev.martin123@gmail.com";
 
+export const cvFileName = "martin-janev.pdf";
+export const cvDownloadName = "Martin-Janev-CV.pdf";
+export const cvUrl = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/${cvFileName}`;
+
 export const contactData: ContactItem[] = [
   {
     label: "Discord",

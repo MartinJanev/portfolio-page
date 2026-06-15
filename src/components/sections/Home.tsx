@@ -2,7 +2,7 @@ import React from "react";
 import { RevealOnScroll } from "../RevealOnScroll";
 import avatarJpg from "../../assets/MartinJanev.jpg";
 import avatarWebp from "../../assets/MartinJanev.webp";
-import { contactData } from "../data/ContactData";
+import { contactData, cvDownloadName, cvUrl } from "../data/ContactData";
 import { useAgeDisplay } from "../../hooks/useAgeDisplay";
 
 export const Home: React.FC = () => {
@@ -70,13 +70,13 @@ export const Home: React.FC = () => {
                     View My Work →
                   </a>
                   <a
-                    href="/MartinJanev-CV.pdf"
-                    className="pointer-events-none cursor-default inline-flex items-center justify-center border py-3 px-6 rounded-lg transition"
+                    href={cvUrl}
+                    download={cvDownloadName}
+                    className="inline-flex items-center justify-center border py-3 px-6 rounded-lg transition hover:bg-white/5"
                     style={{
                       borderColor: "var(--border-color)",
                       color: "var(--text-primary)",
                     }}
-                    hidden
                   >
                     Download CV
                   </a>
