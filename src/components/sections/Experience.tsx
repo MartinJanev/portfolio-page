@@ -63,36 +63,50 @@ export const Experience: React.FC = () => {
                       }}
                     />
                     <div className="relative">
-                      <div className="flex flex-wrap items-baseline gap-x-2">
-                        <h3
-                          className="text-base sm:text-lg md:text-xl font-semibold"
-                          style={{ color: "var(--text-primary)" }}
+                      <div className="flex items-start justify-between gap-3">
+                        <div className="min-w-0 flex-1">
+                          <div className="flex flex-wrap items-baseline gap-x-2">
+                            <h3
+                              className="text-base sm:text-lg md:text-xl font-semibold"
+                              style={{ color: "var(--text-primary)" }}
+                            >
+                              {it.title}
+                            </h3>
+                            {it.org && (
+                              <span
+                                className="text-sm sm:text-base"
+                                style={{ color: "var(--accent-green)" }}
+                              >
+                                · {it.org}
+                              </span>
+                            )}
+                            {it.location && (
+                              <span
+                                className="text-[11px] sm:text-xs ml-2"
+                                style={{ color: "var(--text-muted)" }}
+                              >
+                                {it.location}
+                              </span>
+                            )}
+                          </div>
+                          <p
+                            className="text-xs sm:text-sm mt-0.5"
+                            style={{ color: "var(--text-secondary)" }}
+                          >
+                            {fmtRange(it.start, it.end)}
+                          </p>
+                        </div>
+                        <span
+                          aria-hidden="true"
+                          className={[
+                            "mt-1 shrink-0 text-sm transition-transform duration-200",
+                            open ? "rotate-180" : "",
+                          ].join(" ")}
+                          style={{ color: "var(--text-muted)" }}
                         >
-                          {it.title}
-                        </h3>
-                        {it.org && (
-                          <span
-                            className="text-sm sm:text-base"
-                            style={{ color: "var(--accent-green)" }}
-                          >
-                            · {it.org}
-                          </span>
-                        )}
-                        {it.location && (
-                          <span
-                            className="text-[11px] sm:text-xs ml-2"
-                            style={{ color: "var(--text-muted)" }}
-                          >
-                            {it.location}
-                          </span>
-                        )}
+                          ▾
+                        </span>
                       </div>
-                      <p
-                        className="text-xs sm:text-sm mt-0.5"
-                        style={{ color: "var(--text-secondary)" }}
-                      >
-                        {fmtRange(it.start, it.end)}
-                      </p>
 
                       {!open && compactTags.length > 0 && (
                         <div className="mt-2 flex flex-wrap gap-2">
@@ -101,16 +115,16 @@ export const Experience: React.FC = () => {
                               key={t}
                               className="inline-flex items-center gap-1 rounded-full text-[11px] sm:text-xs font-medium px-2.5 py-1 transition hover:bg-green-500/20"
                               style={{
-                                backgroundColor: "var(--card-bg)",
-                                color: "var(--accent-green)",
-                                borderColor: "var(--border-color)",
+                                backgroundColor: "var(--tag-bg)",
+                                color: "var(--tag-text)",
+                                borderColor: "var(--tag-border)",
                                 borderWidth: "1px",
                               }}
                             >
                               <span
                                 className="h-1.5 w-1.5 rounded-full"
                                 style={{
-                                  backgroundColor: "var(--accent-green)",
+                                  backgroundColor: "var(--tag-text)",
                                 }}
                               />
                               {t}
@@ -186,17 +200,16 @@ export const Experience: React.FC = () => {
                                       key={t}
                                       className="inline-flex items-center gap-1 rounded-full text-[11px] sm:text-xs font-medium px-2.5 py-1 transition hover:bg-green-500/20"
                                       style={{
-                                        backgroundColor: "var(--card-bg)",
-                                        color: "var(--accent-green)",
-                                        borderColor: "var(--border-color)",
+                                        backgroundColor: "var(--tag-bg)",
+                                        color: "var(--tag-text)",
+                                        borderColor: "var(--tag-border)",
                                         borderWidth: "1px",
                                       }}
                                     >
                                       <span
                                         className="h-1.5 w-1.5 rounded-full"
                                         style={{
-                                          backgroundColor:
-                                            "var(--accent-green)",
+                                          backgroundColor: "var(--tag-text)",
                                         }}
                                       />
                                       {t}

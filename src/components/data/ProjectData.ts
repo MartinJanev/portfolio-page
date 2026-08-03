@@ -1,19 +1,11 @@
 export const projects = [
   {
-    title: "Vezilka Translation Model",
-    subtitle: "Natural Language Processing",
+    title: "Doc - Cleaner",
+    subtitle: "Document Processing",
     description:
-      "Contributing to the development of a translation model of the Macedonian LLM called Vezilka, in collaboration with 200 students and professors from the Faculty of Computer Science and Engineering Skopje. We focus on creating a high-quality translation model that can effectively translate between Macedonian and other languages, leveraging the expertise of our team and the resources available at the faculty.",
-    techs: ["NLP", "ML", "Translation Models", "R&D"],
-    link: null,
-  },
-  {
-    title: "Spiking Neural Networks for Formal Language Processing",
-    subtitle: "Neural Networks and Formal Languages",
-    description:
-      "Exploring the application of spiking neural networks in formal language recognition tasks. We compare the performance of spiking neural networks with traditional recurrent neural networks on various formal language benchmarks, analyzing their capabilities in terms of learning efficiency, generalization, and computational requirements.",
-    techs: ["Neural Networks", "Formal Languages", "Python"],
-    link: "https://github.com/MartinJanev/SNN",
+      "A tool for converting PDF documents to Markdown format, with support for preserving formatting and structure.",
+    techs: ["Python", "Ollama", "IBM Docling", "Markdown", "FastAPI"],
+    link: "https://github.com/MartinJanev/doc-cleaner",
   },
   {
     title: "PyCheckers",
@@ -41,6 +33,22 @@ export const projects = [
     link: "https://github.com/MartinJanev/MC_Regression",
   },
   {
+    title:
+      "Parallel Fraud Detection with Large-Scale Financial Relationship Graphs",
+    subtitle: "Parallel Graph Processing",
+    description:
+      "This research explores the application of concurrent graph processing techniques to enhance fraud detection in large-scale financial relationship graphs. It proposes a novel approach leveraging distributed computing frameworks to efficiently analyze complex financial networks, identify suspicious patterns, and improve the accuracy of fraud detection algorithms.",
+    techs: [
+      "Graph Theory",
+      "Concurrent Computing",
+      "Python",
+      "NetworkX",
+      "Joblib",
+      "Numba",
+    ],
+    link: "https://github.com/MartinJanev/FraudDetection",
+  },
+  {
     title: "EventifyNow",
     subtitle: "Web App",
     description:
@@ -55,13 +63,5 @@ export const projects = [
       "My high‑school matura project: a personal take on classic Tetris, built in Unity with C#.",
     techs: ["C#", ".NET", "Unity"],
     link: "https://github.com/MartinJanev/tetris-project",
-  },
-  {
-    title: "Riemann Hypothesis Project",
-    subtitle: "Math",
-    description:
-      "Concise overview of the Riemann Hypothesis, exploring its impact on prime distributions via modified counting functions and harmonic analysis.",
-    techs: ["Math"],
-    link: "https://github.com/MartinJanev/RiemannHypothesis",
   },
 ];

@@ -29,6 +29,13 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) {
+      meta.setAttribute(
+        "content",
+        theme === "light" ? "#e6e2db" : "#0c0f16",
+      );
+    }
     try {
       window.localStorage.setItem("theme", theme);
     } catch (error) {

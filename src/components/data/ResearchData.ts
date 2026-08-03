@@ -10,20 +10,18 @@ export const research = [
     status: "Student Paper",
   },
   {
-    title:
-      "Parallel Fraud Detection with Large-Scale Financial Relationship Graphs",
-    subtitle: "Parallel Graph Processing",
+    title: "Spiking Neural Networks for Formal Language Processing",
+    subtitle: "Neural Networks and Formal Languages",
     description:
-      "This research explores the application of concurrent graph processing techniques to enhance fraud detection in large-scale financial relationship graphs. It proposes a novel approach leveraging distributed computing frameworks to efficiently analyze complex financial networks, identify suspicious patterns, and improve the accuracy of fraud detection algorithms.",
+      "Exploring the application of spiking neural networks in formal language recognition tasks. We compare the performance of spiking neural networks with traditional recurrent neural networks on various formal language benchmarks, analyzing their capabilities in terms of learning efficiency, generalization, and computational requirements.",
     techs: [
-      "Graph Theory",
-      "Concurrent Computing",
+      "Neural Networks",
+      "Formal Languages",
       "Python",
-      "NetworkX",
-      "Joblib",
-      "Numba",
+      "PyTorch",
+      "NumPy",
     ],
-    link: "https://github.com/MartinJanev/FraudDetection",
-    status: "Research Paper",
+    link: "https://github.com/MartinJanev/SNN",
+    status: "Student Paper",
   },
 ];

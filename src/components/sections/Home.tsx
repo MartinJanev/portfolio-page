@@ -38,8 +38,9 @@ export const Home: React.FC = () => {
                   <span
                     className="inline-flex items-center gap-2 rounded-full px-3 py-1"
                     style={{
-                      backgroundColor: "var(--card-bg)",
-                      border: "1px solid var(--card-border)",
+                      backgroundColor: "var(--tag-bg)",
+                      border: "1px solid var(--tag-border)",
+                      color: "var(--tag-text)",
                     }}
                   >
                     💻 FCSE Skopje • 🏠 Shtip

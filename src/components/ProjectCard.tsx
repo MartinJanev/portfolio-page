@@ -3,7 +3,7 @@ interface Props {
   subtitle?: string;
   description: string;
   techs?: string[];
-  link?: string;
+  link?: string | null;
 }
 
 export default function ProjectCard({
@@ -13,7 +13,7 @@ export default function ProjectCard({
   techs = [],
   link,
 }: Props) {
-  const isClickable = !!link;
+  const isClickable = typeof link === "string" && link.length > 0;
 
   return (
     <div
@@ -60,15 +60,15 @@ export default function ProjectCard({
                 key={t}
                 className="inline-flex items-center gap-1 rounded-full text-xs font-medium px-3 py-1 transition hover:bg-green-500/20"
                 style={{
-                  backgroundColor: "var(--card-bg)",
-                  color: "var(--accent-green)",
-                  borderColor: "var(--border-color)",
+                  backgroundColor: "var(--tag-bg)",
+                  color: "var(--tag-text)",
+                  borderColor: "var(--tag-border)",
                   borderWidth: "1px",
                 }}
               >
                 <span
                   className="inline-block w-1.5 h-1.5 rounded-full"
-                  style={{ backgroundColor: "var(--accent-green)" }}
+                  style={{ backgroundColor: "var(--tag-text)" }}
                 />
                 {t}
               </span>
@@ -84,16 +84,15 @@ export default function ProjectCard({
               View Project →
             </a>
           ) : (
-            <div
-              className="inline-flex items-center gap-2 font-medium py-2 px-4 rounded-lg opacity-60 cursor-not-allowed"
+            <span
+              className="inline-flex items-center gap-2 font-medium py-2 px-4 rounded-lg"
               style={{
                 backgroundColor: "var(--bg-tertiary)",
                 color: "var(--text-muted)",
               }}
-              title="Project link not available yet"
             >
-              View Project →
-            </div>
+              Coming soon
+            </span>
           )}
         </div>
       </div>

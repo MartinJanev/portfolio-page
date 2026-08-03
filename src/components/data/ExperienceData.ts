@@ -2,7 +2,7 @@ export const experience = [
   {
     title: "Scout Member",
     org: "Equinox Scout Shtip",
-    start: "2019-09",
+    start: "2018-09",
     end: "present",
     location: "Shtip, Macedonia",
     description:
@@ -95,5 +95,17 @@ export const experience = [
       "Contributed to open-source projects",
       "Explored advanced topics in computer science and mathematics through independent research",
     ],
+  },
+  {
+    title: "Machine Learning Researcher Internship",
+    org: "Macedonian Academy of Sciences and Arts",
+    start: "2026-09",
+    end: "present",
+    location: "Skopje, Macedonia",
+    description:
+      "As a Machine Learning Researcher Intern, I will be actively involved in cutting-edge research projects, contributing to the development of innovative solutions and advancing the field of machine learning.",
+    bullets: [],
+    tags: ["Machine Learning", "Research", "Innovation", "Data Analysis"],
+    achievements: [],
   },
 ];
