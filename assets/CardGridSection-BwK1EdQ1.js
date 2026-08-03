@@ -1,0 +1,1 @@
+import{j as r}from"./index-EW-PNNJu.js";import{S as e}from"./Section-BJT_z22t.js";import{R as t}from"./RevealOnScroll-C2mr3IN6.js";function m({id:i,title:o,children:s}){return r.jsx(e,{id:i,title:o,children:r.jsx(t,{children:r.jsx("div",{className:"grid grid-cols-1 md:grid-cols-2 gap-6",children:s})})})}export{m as C};

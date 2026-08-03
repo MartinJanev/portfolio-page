@@ -1,0 +1,1 @@
+import{i as a,k as n}from"./index-EW-PNNJu.js";const o="janev.martin123@gmail.com",t="martin-janev.pdf",e="Martin-Janev-CV.pdf",c=`${"/portfolio-page".replace(/\/$/,"")}/${t}`,r=[{label:"LinkedIn",href:"https://www.linkedin.com/in/martin-janev1/",icon:a},{label:"GitHub",href:"https://github.com/MartinJanev",icon:n}];export{c as a,r as b,e as c,o as p};
