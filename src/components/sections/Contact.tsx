@@ -7,7 +7,9 @@ import { portfolioEmail } from "../data/ContactData";
 
 export const Contact: React.FC = () => {
   const email = portfolioEmail;
-  const [copied, setCopied] = useState(false);
+  const [copyStatus, setCopyStatus] = useState<"idle" | "copied" | "failed">(
+    "idle",
+  );
   const [note, setNote] = useState("");
 
   const mailtoHref = useMemo(() => {
@@ -19,10 +21,11 @@ export const Contact: React.FC = () => {
   async function handleCopy(text: string) {
     try {
       await navigator.clipboard.writeText(text);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1200);
+      setCopyStatus("copied");
+      setTimeout(() => setCopyStatus("idle"), 1200);
     } catch {
-      /* no-op */
+      setCopyStatus("failed");
+      setTimeout(() => setCopyStatus("idle"), 2000);
     }
   }
 
@@ -64,15 +67,15 @@ export const Contact: React.FC = () => {
                       key={t}
                       className="inline-flex items-center gap-1 rounded-full text-xs font-medium px-3 py-1"
                       style={{
-                        backgroundColor: "var(--card-bg)",
-                        color: "var(--accent-green)",
-                        borderColor: "var(--border-color)",
+                        backgroundColor: "var(--tag-bg)",
+                        color: "var(--tag-text)",
+                        borderColor: "var(--tag-border)",
                         borderWidth: "1px",
                       }}
                     >
                       <span
                         className="h-1.5 w-1.5 rounded-full"
-                        style={{ backgroundColor: "var(--accent-green)" }}
+                        style={{ backgroundColor: "var(--tag-text)" }}
                       />
                       {t}
                     </span>
@@ -112,11 +115,13 @@ export const Contact: React.FC = () => {
                       }}
                       aria-live="polite"
                     >
-                      {copied ? (
+                      {copyStatus === "copied" ? (
                         <>
                           <FaCheck className="text-green-400" />
                           Copied!
                         </>
+                      ) : copyStatus === "failed" ? (
+                        <>Copy failed</>
                       ) : (
                         <>
                           <FaEnvelope />
@@ -152,7 +157,7 @@ export const Contact: React.FC = () => {
                 <div className="mt-3 flex flex-wrap gap-3 justify-center sm:justify-start">
                   <a
                     href={mailtoHref}
-                    className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-black font-medium py-2.5 px-5 rounded-lg transition-colors w-full sm:w-auto justify-center"
+                    className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-medium py-2.5 px-5 rounded-lg transition-colors w-full sm:w-auto justify-center"
                   >
                     <FaNoteSticky /> Send Note
                   </a>

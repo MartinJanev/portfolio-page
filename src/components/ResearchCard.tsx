@@ -9,7 +9,7 @@ export default function ResearchCard({
   status,
   publishedDate,
 }: ResearchItem) {
-  const isClickable = !!link;
+  const isClickable = typeof link === "string" && link.length > 0;
 
   return (
     <div
@@ -34,9 +34,9 @@ export default function ResearchCard({
                 <span
                   className="inline-flex rounded-full text-xs font-medium px-3 py-1"
                   style={{
-                    backgroundColor: "var(--card-bg)",
+                    backgroundColor: "var(--tag-bg)",
                     color: "var(--accent-purple)",
-                    border: "1px solid var(--card-border)",
+                    border: "1px solid var(--tag-border)",
                   }}
                 >
                   {status}
@@ -46,9 +46,9 @@ export default function ResearchCard({
                 <span
                   className="inline-flex rounded-full text-xs font-medium px-3 py-1"
                   style={{
-                    backgroundColor: "var(--card-bg)",
+                    backgroundColor: "var(--tag-bg)",
                     color: "var(--text-muted)",
-                    border: "1px solid var(--card-border)",
+                    border: "1px solid var(--tag-border)",
                   }}
                 >
                   {publishedDate}
@@ -84,15 +84,15 @@ export default function ResearchCard({
                 key={t}
                 className="inline-flex items-center gap-1 rounded-full text-xs font-medium px-3 py-1 transition hover:bg-green-500/20"
                 style={{
-                  backgroundColor: "var(--card-bg)",
-                  color: "var(--accent-green)",
-                  borderColor: "var(--border-color)",
+                  backgroundColor: "var(--tag-bg)",
+                  color: "var(--tag-text)",
+                  borderColor: "var(--tag-border)",
                   borderWidth: "1px",
                 }}
               >
                 <span
                   className="inline-block w-1.5 h-1.5 rounded-full"
-                  style={{ backgroundColor: "var(--accent-green)" }}
+                  style={{ backgroundColor: "var(--tag-text)" }}
                 />
                 {t}
               </span>
@@ -108,16 +108,15 @@ export default function ResearchCard({
               View Research →
             </a>
           ) : (
-            <div
-              className="inline-flex items-center gap-2 font-medium py-2 px-4 rounded-lg opacity-60 cursor-not-allowed"
+            <span
+              className="inline-flex items-center gap-2 font-medium py-2 px-4 rounded-lg"
               style={{
                 backgroundColor: "var(--bg-tertiary)",
                 color: "var(--text-muted)",
               }}
-              title="Research link not available yet"
             >
-              View Research →
-            </div>
+              Coming soon
+            </span>
           )}
         </div>
       </div>

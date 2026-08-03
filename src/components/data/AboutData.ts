@@ -20,14 +20,16 @@ export const aboutCategories: Category[] = [
     items: [
       "Python",
       "PyTorch",
-      "TensorFlow",
       "Scikit-learn",
       "NumPy",
+      "Ollama",
       "Java",
       "OpenCV",
+      "SQL",
       "Spring Boot",
       "Jupyter Notebook",
-      "Git",
+      "Pandas",
+      "Matplotlib",
     ],
   },
   {
@@ -47,8 +49,8 @@ export const aboutCategories: Category[] = [
       "Volunteering",
       "Running",
       "Programming",
-      "Tennis",
-      "Football",
+      "Traveling",
+      "Gaming",
     ],
   },
 ];
@@ -57,7 +59,7 @@ export const aboutHighlights: AboutHighlight[] = [
   {
     icon: FaGraduationCap,
     label: "Status",
-    value: "Student at FCSE Skopje",
+    value: "4th Year Student at FCSE Skopje",
   },
   {
     icon: FaCode,
@@ -72,6 +74,6 @@ export const aboutHighlights: AboutHighlight[] = [
   {
     icon: FaResearchgate,
     label: "Research scope",
-    value: "AI • Data Science • Formal Language",
+    value: "AI • Computer Science",
   },
 ];

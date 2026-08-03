@@ -24,7 +24,7 @@ export interface ProjectItem {
   subtitle?: string;
   description: string;
   techs?: string[];
-  link?: string;
+  link?: string | null;
 }
 
 export interface ResearchItem {
@@ -32,7 +32,7 @@ export interface ResearchItem {
   subtitle?: string;
   description: string;
   techs?: string[];
-  link?: string;
+  link?: string | null;
   publishedDate?: string;
   status?: string;
 }

@@ -52,8 +52,8 @@ function CategoryCard({
           <span
             className="text-xs px-2 py-1 rounded-full"
             style={{
-              backgroundColor: "var(--card-bg)",
-              border: "1px solid var(--card-border)",
+              backgroundColor: "var(--tag-bg)",
+              border: "1px solid var(--tag-border)",
               color: "var(--text-secondary)",
             }}
           >
@@ -67,14 +67,14 @@ function CategoryCard({
               key={item}
               className="inline-flex items-center gap-2 rounded-full text-sm font-medium px-3 py-1 transition hover:bg-[var(--card-hover)]"
               style={{
-                backgroundColor: "var(--card-bg)",
-                border: "1px solid var(--card-border)",
-                color: "var(--text-primary)",
+                backgroundColor: "var(--tag-bg)",
+                border: "1px solid var(--tag-border)",
+                color: "var(--tag-text)",
               }}
             >
               <span
                 className="h-1.5 w-1.5 rounded-full"
-                style={{ backgroundColor: "var(--accent-green)" }}
+                style={{ backgroundColor: "var(--tag-text)" }}
               />
               {item}
             </span>
