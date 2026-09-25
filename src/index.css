@@ -18,13 +18,16 @@
   --shadow-color: rgba(0, 0, 0, 0.5);
   --nav-bg-scrolled: rgba(26, 26, 26, 0.9);
   --card-bg-solid: rgba(255, 255, 255, 0.05);
-  --card-border: transparent;
+  --card-border: rgba(255, 255, 255, 0.08);
   --experience-text: #d1d5db;
   --glow-green: rgba(34, 197, 94, 0.4);
   --glow-purple: rgba(168, 85, 247, 0.4);
   --tag-bg: rgba(255, 255, 255, 0.08);
   --tag-text: var(--accent-green);
   --tag-border: rgba(255, 255, 255, 0.12);
+  --kind-work: #22c55e;
+  --kind-education: #a855f7;
+  --kind-community: #f59e0b;
 }
 
 :root[data-theme="light"] {
@@ -51,6 +54,9 @@
   --tag-bg: rgba(22, 163, 74, 0.12);
   --tag-text: #15803d;
   --tag-border: rgba(22, 163, 74, 0.28);
+  --kind-work: #15803d;
+  --kind-education: #7e22ce;
+  --kind-community: #b45309;
 }
 
 /* ---------- Base (global) ---------- */
@@ -109,6 +115,32 @@
     background-size: 200% 200%;
     animation: gradient-flow 2s linear infinite alternate;
   }
+
+  @keyframes pulse-ring {
+    0% {
+      box-shadow: 0 0 0 0 currentColor;
+      opacity: 0.6;
+    }
+
+    70% {
+      box-shadow: 0 0 0 10px currentColor;
+      opacity: 0;
+    }
+
+    100% {
+      box-shadow: 0 0 0 0 currentColor;
+      opacity: 0;
+    }
+  }
+
+  /* Marks a currently-active timeline entry. Killed by the reduced-motion rule above. */
+  .animate-pulse-ring::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    animation: pulse-ring 2.4s ease-out infinite;
+  }
 }
 
 /* ---------- Components (multi-rule classes) ---------- */
@@ -124,5 +156,109 @@
   .reveal.visible {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  /*
+   * Staggered reveal driven entirely by CSS: one IntersectionObserver toggles
+   * .visible on the container, and each direct child animates in on a delay.
+   * Nothing wraps or clones the children, so grid placement utilities such as
+   * md:col-span-2 keep working on the cards themselves.
+   */
+  .reveal-stagger > * {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 0.5s ease,
+      transform 0.5s ease;
+  }
+
+  .reveal-stagger.visible > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-stagger > *:nth-child(1) {
+    transition-delay: 0ms;
+  }
+  .reveal-stagger > *:nth-child(2) {
+    transition-delay: 70ms;
+  }
+  .reveal-stagger > *:nth-child(3) {
+    transition-delay: 140ms;
+  }
+  .reveal-stagger > *:nth-child(4) {
+    transition-delay: 210ms;
+  }
+  .reveal-stagger > *:nth-child(5) {
+    transition-delay: 280ms;
+  }
+  .reveal-stagger > *:nth-child(6) {
+    transition-delay: 350ms;
+  }
+  .reveal-stagger > *:nth-child(7) {
+    transition-delay: 420ms;
+  }
+  .reveal-stagger > *:nth-child(n + 8) {
+    transition-delay: 490ms;
+  }
+
+  /*
+   * Modal transition. `allow-discrete` on display and overlay is what lets the
+   * CLOSE animate: without it the dialog leaves the top layer immediately and
+   * only the opening transition is ever visible. @starting-style supplies the
+   * pre-open state. Browsers lacking either simply show it instantly, and the
+   * reduced-motion block above disables both directions.
+   */
+  .modal-dialog {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+    transition:
+      opacity 220ms ease,
+      transform 220ms ease,
+      overlay 220ms ease allow-discrete,
+      display 220ms ease allow-discrete;
+  }
+
+  .modal-dialog[open] {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  @starting-style {
+    .modal-dialog[open] {
+      opacity: 0;
+      transform: translateY(12px) scale(0.98);
+    }
+  }
+
+  .modal-dialog::backdrop {
+    background-color: rgb(0 0 0 / 0);
+    backdrop-filter: blur(0px);
+    transition:
+      background-color 220ms ease,
+      backdrop-filter 220ms ease,
+      overlay 220ms ease allow-discrete,
+      display 220ms ease allow-discrete;
+  }
+
+  .modal-dialog[open]::backdrop {
+    background-color: rgb(0 0 0 / 0.6);
+    backdrop-filter: blur(4px);
+  }
+
+  @starting-style {
+    .modal-dialog[open]::backdrop {
+      background-color: rgb(0 0 0 / 0);
+      backdrop-filter: blur(0px);
+    }
+  }
+
+  /* Safety net: if the observer never runs, content must still be visible. */
+  @media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .reveal-stagger > * {
+      opacity: 1;
+      transform: none;
+    }
   }
 }

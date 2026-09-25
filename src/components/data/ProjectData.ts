@@ -1,4 +1,15 @@
-export const projects = [
+import type { ProjectItem } from "../../types/content";
+
+export const projects: ProjectItem[] = [
+  {
+    title: "Platform for PhD studies",
+    subtitle: "Web App",
+    description:
+      "A full-stack platform for managing doctoral admissions, with user roles, multiple language options, and rules for deadlines, mentor capacity, and valid application steps. It includes secure status tracking with role-based permissions and configurable eligibility requirements such as ECTS credits, GPA, and English proficiency.",
+    techs: ["Java", "Spring Boot", "Docker"],
+    link: "https://github.com/avonamolos/phd-admissions",
+    featured: true,
+  },
   {
     title: "Doc - Cleaner",
     subtitle: "Document Processing",
@@ -24,44 +35,11 @@ export const projects = [
     link: "https://github.com/MartinJanev/MoodLens",
   },
   {
-    title:
-      "Bayesian Linear Regression with MCMC method in Parkinson's Telemonitoring",
-    subtitle: "Probabilistic Modeling with Markov Chain",
-    description:
-      "Applied Bayesian linear regression using Markov Chain Monte Carlo (MCMC) to analyze and predict telemonitoring data in Parkinson's disease. The project demonstrates uncertainty quantification and parameter inference for clinical time-series data.",
-    techs: ["Python", "MCMC", "Bayesian Statistics", "NumPyro"],
-    link: "https://github.com/MartinJanev/MC_Regression",
-  },
-  {
-    title:
-      "Parallel Fraud Detection with Large-Scale Financial Relationship Graphs",
-    subtitle: "Parallel Graph Processing",
-    description:
-      "This research explores the application of concurrent graph processing techniques to enhance fraud detection in large-scale financial relationship graphs. It proposes a novel approach leveraging distributed computing frameworks to efficiently analyze complex financial networks, identify suspicious patterns, and improve the accuracy of fraud detection algorithms.",
-    techs: [
-      "Graph Theory",
-      "Concurrent Computing",
-      "Python",
-      "NetworkX",
-      "Joblib",
-      "Numba",
-    ],
-    link: "https://github.com/MartinJanev/FraudDetection",
-  },
-  {
     title: "EventifyNow",
     subtitle: "Web App",
     description:
       "Event management system built with Angular & Firebase—create, RSVP, and manage events through a clean, responsive UI.",
     techs: ["Angular", "TypeScript", "Firebase", "CKEditor"],
     link: "https://github.com/MartinJanev/event-management-system",
-  },
-  {
-    title: "Matura Project - Tetris",
-    subtitle: "Game Development",
-    description:
-      "My high‑school matura project: a personal take on classic Tetris, built in Unity with C#.",
-    techs: ["C#", ".NET", "Unity"],
-    link: "https://github.com/MartinJanev/tetris-project",
   },
 ];
