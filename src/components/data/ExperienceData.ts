@@ -1,73 +1,9 @@
-export const experience = [
-  {
-    title: "Scout Member",
-    org: "Equinox Scout Shtip",
-    start: "2018-09",
-    end: "present",
-    location: "Shtip, Macedonia",
-    description:
-      "Contributed to a community of scouts in organizing events, developing leadership skills, and promoting informal education among youth.",
-    bullets: [
-      "Led youth leadership initiatives and training sessions",
-      "Organized and coordinated multiple community events",
-      "Fostered teamwork through group activities and challenges",
-      "Engaged with local community for outreach and service projects",
-    ],
-    tags: ["Leadership", "Organization", "Teamwork", "Community", "Mentorship"],
-    achievements: [
-      "Organized 10+ local events",
-      "Mentored new team members",
-      "Developed training materials for youth programs",
-    ],
-  },
-  {
-    title: "Volunteer at SIM",
-    org: "Scout Association of Macedonia",
-    start: "2020-01",
-    end: "present",
-    location: "Macedonia, Worldwide",
-    description:
-      "Volunteering in various scouting activities and events, promoting youth engagement, community service and development throught many workshops, activities and events.",
-    bullets: [
-      "Strengthened community ties through outreach programs",
-      "Assisted in organizing national and international scout events",
-      "Volunteered at the 13th Macedonian Scout Jamboree, a camp with Ukranian refugees and an inclusive camp for people with special needs",
-    ],
-    tags: [
-      "Volunteering",
-      "Youth Engagement",
-      "Community Service",
-      "Inclusion",
-    ],
-    achievements: [
-      "Successfully organized a local scout camp",
-      "Increased youth participation in local events",
-      "Promoted Macedonian culture, traditions, and values through scouting activities in diverse communities through Europe",
-    ],
-  },
-  {
-    title: "Member of a Student Organization",
-    org: "EESTEC LC Skopje",
-    start: "2023-11",
-    end: "2025-05",
-    location: "Skopje, Macedonia",
-    description:
-      "Contributed to workshops, logistics, and student community building.",
-    bullets: [
-      "Planned and ran technical workshops",
-      "Managed logistics for student events",
-      "Facilitated community engagement",
-      "Helped students prepare for exams",
-    ],
-    tags: ["Volunteering", "Teamwork", "Workshops", "Logistics"],
-    achievements: [
-      "Supported 3 workshops",
-      "Improved event logistics",
-      "Helped 40+ students pass exams",
-    ],
-  },
+import type { ExperienceItem } from "../../types/content";
+
+export const experience: ExperienceItem[] = [
   {
     title: "BSc in Computer Science",
+    kind: "education",
     org: "FCSE Skopje",
     start: "2023-10",
     end: "present",
@@ -98,14 +34,34 @@ export const experience = [
   },
   {
     title: "Machine Learning Researcher Internship",
+    kind: "work",
     org: "Macedonian Academy of Sciences and Arts",
     start: "2026-09",
     end: "present",
     location: "Skopje, Macedonia",
     description:
-      "As a Machine Learning Researcher Intern, I will be actively involved in cutting-edge research projects, contributing to the development of innovative solutions and advancing the field of machine learning.",
+      "As a Machine Learning Researcher Intern, I will contribute to cutting-edge projects advancing machine learning by exploring 3D large language model (LLM) vision models for medical imaging applications and developing innovative solutions.",
     bullets: [],
-    tags: ["Machine Learning", "Research", "Innovation", "Data Analysis"],
+    tags: [
+      "Machine Learning",
+      "Research",
+      "Innovation",
+      "Vision Models",
+      "Medical Imaging",
+    ],
+    achievements: [],
+  },
+  {
+    title: "IT Team Member",
+    org: "EESTEC",
+    kind: "work",
+    start: "2025-02",
+    end: "2025-03",
+    location: "Remote",
+    description:
+      "Responsible for creating, editing, and maintaining the EESTEC.net web page, which serves over 5000 members.",
+    bullets: [],
+    tags: ["Python", "TypeScript", "Next.js"],
     achievements: [],
   },
 ];

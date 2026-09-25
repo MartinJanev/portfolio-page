@@ -38,12 +38,6 @@ const Projects = lazy(() =>
   })),
 );
 
-const Contact = lazy(() =>
-  import("./components/sections/Contact").then((module) => ({
-    default: module.Contact,
-  })),
-);
-
 const Footer = lazy(() =>
   import("./components/sections/Footer").then((module) => ({
     default: module.Footer,
@@ -87,9 +81,6 @@ export default function App() {
             </Suspense>
             <Suspense fallback={<SectionSkeleton title="Projects" />}>
               <Projects />
-            </Suspense>
-            <Suspense fallback={<SectionSkeleton title="Contact" />}>
-              <Contact />
             </Suspense>
           </main>
           <Suspense fallback={<SectionSkeleton title="Footer" />}>

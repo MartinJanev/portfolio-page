@@ -1,4 +1,11 @@
-export const research = [
+import type { ResearchItem } from "../../types/content";
+
+/**
+ * TODO(Martin): `year` and `venue` are intentionally absent — I did not want to
+ * invent publication dates or venues. Fill them in and the rows will render
+ * them beside the status automatically. Same for `paperLink` (PDF/DOI).
+ */
+export const research: ResearchItem[] = [
   {
     title:
       "Comparison of MI-based and Classical Feature Selection Methods in ML processes",
@@ -22,6 +29,31 @@ export const research = [
       "NumPy",
     ],
     link: "https://github.com/MartinJanev/SNN",
-    status: "Student Paper",
+    status: "Standard Paper",
+  },
+  {
+    title:
+      "Bayesian Linear Regression with MCMC method in Parkinson's Telemonitoring",
+    subtitle: "Probabilistic Modeling with Markov Chain",
+    description:
+      "Applied Bayesian linear regression using Markov Chain Monte Carlo (MCMC) to analyze and predict telemonitoring data in Parkinson's disease. The project demonstrates uncertainty quantification and parameter inference for clinical time-series data.",
+    techs: ["Python", "MCMC", "Bayesian Statistics", "NumPyro"],
+    link: "https://github.com/MartinJanev/MC_Regression",
+  },
+  {
+    title:
+      "Parallel Fraud Detection with Large-Scale Financial Relationship Graphs",
+    subtitle: "Parallel Graph Processing",
+    description:
+      "This research explores the application of concurrent graph processing techniques to enhance fraud detection in large-scale financial relationship graphs. It proposes a novel approach leveraging distributed computing frameworks to efficiently analyze complex financial networks, identify suspicious patterns, and improve the accuracy of fraud detection algorithms.",
+    techs: [
+      "Graph Theory",
+      "Concurrent Computing",
+      "Python",
+      "NetworkX",
+      "Joblib",
+      "Numba",
+    ],
+    link: "https://github.com/MartinJanev/FraudDetection",
   },
 ];

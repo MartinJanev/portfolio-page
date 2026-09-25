@@ -14,7 +14,6 @@ const links = [
   { href: "#experience", id: "experience", label: "Experience" },
   { href: "#research", id: "research", label: "Research" },
   { href: "#projects", id: "projects", label: "Projects" },
-  { href: "#contact", id: "contact", label: "Contact" },
 ] as const;
 
 const MOBILE_MENU_ID = "mobile-menu";

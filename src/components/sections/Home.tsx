@@ -1,12 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
+import { FaEnvelope, FaCheck } from "react-icons/fa";
 import { RevealOnScroll } from "../RevealOnScroll";
 import avatarJpg from "../../assets/MartinJanev.jpg";
 import avatarWebp from "../../assets/MartinJanev.webp";
-import { contactData, cvDownloadName, cvUrl } from "../data/ContactData";
+import {
+  contactData,
+  cvDownloadName,
+  cvUrl,
+  portfolioEmail,
+} from "../data/ContactData";
 import { useAgeDisplay } from "../../hooks/useAgeDisplay";
 
 export const Home: React.FC = () => {
   const { ageText, startUpdatingAge, stopUpdatingAge } = useAgeDisplay();
+  const [copyStatus, setCopyStatus] = useState<"idle" | "copied" | "failed">(
+    "idle",
+  );
+
+  async function handleCopyEmail() {
+    try {
+      await navigator.clipboard.writeText(portfolioEmail);
+      setCopyStatus("copied");
+      setTimeout(() => setCopyStatus("idle"), 1200);
+    } catch {
+      setCopyStatus("failed");
+      setTimeout(() => setCopyStatus("idle"), 2000);
+    }
+  }
 
   return (
     <section
@@ -81,6 +101,28 @@ export const Home: React.FC = () => {
                   >
                     Download CV
                   </a>
+                  <button
+                    type="button"
+                    onClick={handleCopyEmail}
+                    className="inline-flex items-center justify-center gap-2 border py-3 px-6 rounded-lg transition hover:bg-white/5"
+                    style={{
+                      borderColor: "var(--border-color)",
+                      color: "var(--text-primary)",
+                    }}
+                    aria-live="polite"
+                  >
+                    {copyStatus === "copied" ? (
+                      <>
+                        <FaCheck className="text-green-400" /> Copied!
+                      </>
+                    ) : copyStatus === "failed" ? (
+                      <>Copy failed</>
+                    ) : (
+                      <>
+                        <FaEnvelope /> Copy email
+                      </>
+                    )}
+                  </button>
                 </div>
                 <div
                   className="mt-6 pt-6 border-t"
