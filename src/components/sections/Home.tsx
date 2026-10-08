@@ -50,6 +50,7 @@ export const Home: React.FC = () => {
                 style={{
                   backgroundColor: "var(--card-bg-solid)",
                   border: "1px solid var(--card-border)",
+                  boxShadow: "var(--card-shadow)",
                 }}
               >
                 <div className="relative mb-6">
