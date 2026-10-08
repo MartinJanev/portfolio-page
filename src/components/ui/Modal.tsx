@@ -1,6 +1,7 @@
 import {
   useEffect,
   useRef,
+  type MouseEvent,
   type PropsWithChildren,
   type ReactNode,
 } from "react";
@@ -31,6 +32,15 @@ export default function Modal({
   children,
 }: Props) {
   const ref = useRef<HTMLDialogElement | null>(null);
+  // Closing restores focus to the trigger, and browsers draw the :focus-visible
+  // ring on it even after a mouse click. Track how the dialog was dismissed so
+  // a pointer close can drop that focus; keyboard closes keep the ring.
+  const closedByPointer = useRef(false);
+  const closeFromClick = (event: MouseEvent) => {
+    // detail is 0 for clicks synthesised by Enter/Space on a button.
+    closedByPointer.current = event.detail > 0;
+    onClose();
+  };
 
   useEffect(() => {
     const dialog = ref.current;
@@ -56,12 +66,18 @@ export default function Modal({
     <dialog
       ref={ref}
       aria-labelledby={titleId}
-      onClose={onClose}
+      onClose={() => {
+        if (closedByPointer.current) {
+          (document.activeElement as HTMLElement | null)?.blur();
+          closedByPointer.current = false;
+        }
+        onClose();
+      }}
       onCancel={onClose}
       // A click landing on the dialog element itself is a backdrop click; clicks
       // inside the panel hit its own subtree instead.
       onClick={(event) => {
-        if (event.target === ref.current) onClose();
+        if (event.target === ref.current) closeFromClick(event);
       }}
       className="modal-dialog m-auto w-[calc(100vw-2rem)] max-w-3xl rounded-2xl p-0"
       style={{
@@ -75,7 +91,7 @@ export default function Modal({
           {header}
           <button
             type="button"
-            onClick={onClose}
+            onClick={closeFromClick}
             aria-label={closeLabel}
             className="shrink-0 rounded-lg p-2 transition hover:bg-[var(--card-hover)]"
             style={{ color: "var(--text-secondary)" }}
