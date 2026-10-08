@@ -35,7 +35,15 @@ export default function TimelineEntry({
   const hiddenTags = open ? 0 : Math.max(0, tags.length - COLLAPSED_TAG_COUNT);
 
   return (
-    <li className={marker ? "relative pl-10 md:pl-12" : "relative"}>
+    <li
+      className={[
+        "relative",
+        marker ? "pl-10 md:pl-12" : "",
+        item.kind === "work" ? "" : `accent-${item.kind}`,
+      ]
+        .filter(Boolean)
+        .join(" ")}
+    >
       {/* Rail drawn per entry, from this marker's centre down to the next one,
           so it never trails off past the first/last dot. */}
       {showRail && (

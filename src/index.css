@@ -59,6 +59,30 @@
   --kind-community: #b45309;
 }
 
+/* Recolours a subtree to one experience kind: shared components read these
+   variables, so they follow without per-component colour props. Hover glows
+   and rings stay site-wide green/purple, except the softer amber on community. Work has no
+   class because the default palette is already green. */
+.accent-community {
+  --kind-accent: var(--kind-community);
+  /* Softer amber hover: roughly half the default glow, and the ring colour
+     (Tailwind's ring-green-400/40 reads this) at half strength too. */
+  --glow-green: color-mix(in srgb, var(--kind-community) 20%, transparent);
+  --glow-purple: color-mix(in srgb, var(--kind-community) 12%, transparent);
+  --color-green-400: color-mix(in srgb, var(--kind-community) 50%, transparent);
+}
+.accent-education {
+  --kind-accent: var(--kind-education);
+}
+.accent-community,
+.accent-education {
+  --accent-green: var(--kind-accent);
+  --accent-purple: var(--kind-accent);
+  --tag-text: var(--kind-accent);
+  --tag-bg: color-mix(in srgb, var(--kind-accent) 12%, transparent);
+  --tag-border: color-mix(in srgb, var(--kind-accent) 28%, transparent);
+}
+
 /* ---------- Base (global) ---------- */
 @layer base {
   html {

@@ -203,7 +203,11 @@ export const About: React.FC = () => {
           </Card>
 
           {/* Volunteering — one tile per role, each opening that role's details. */}
-          <Card tier="standard" interactive={false} className="sm:col-span-2">
+          <Card
+            tier="standard"
+            interactive={false}
+            className="accent-community sm:col-span-2"
+          >
             <CardHeading
               title={volunteeringHeading.title}
               icon={volunteeringHeading.icon}
