@@ -14,6 +14,8 @@ interface Props {
    * content in a modal, which would leave the entries invisible.
    */
   stagger?: boolean;
+  /** Timeline markers and rail; off for a single entry shown on its own. */
+  markers?: boolean;
   /** Suffix keeping panel ids unique when two lists render on one page. */
   idPrefix?: string;
 }
@@ -24,6 +26,7 @@ export default function TimelineList({
   items,
   defaultOpen = "first-work",
   stagger = true,
+  markers = true,
   idPrefix = "timeline",
 }: Props) {
   const sorted = useMemo(() => sortByRecency(items), [items]);
@@ -55,7 +58,8 @@ export default function TimelineList({
         item={item}
         open={openKeys.has(key)}
         onToggle={() => toggle(key)}
-        showRail={index < sorted.length - 1}
+        showRail={markers && index < sorted.length - 1}
+        marker={markers}
         panelId={`${idPrefix}-panel-${key.replace(/\s+/g, "-")}`}
       />
     );

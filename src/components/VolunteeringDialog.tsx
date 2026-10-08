@@ -1,23 +1,22 @@
 import { useId } from "react";
 import Modal from "./ui/Modal";
 import TimelineList from "./TimelineList";
-import {
-  volunteeringHeading,
-  volunteeringRoles,
-} from "./data/VolunteeringData";
+import { volunteeringHeading } from "./data/VolunteeringData";
+import type { ExperienceItem } from "../types/content";
 
 interface Props {
-  open: boolean;
+  /** The role to show; null keeps the dialog closed. */
+  role: ExperienceItem | null;
   onClose: () => void;
 }
 
-export default function VolunteeringDialog({ open, onClose }: Props) {
+export default function VolunteeringDialog({ role, onClose }: Props) {
   const titleId = useId();
   const Icon = volunteeringHeading.icon;
 
   return (
     <Modal
-      open={open}
+      open={role !== null}
       onClose={onClose}
       titleId={titleId}
       closeLabel="Close volunteering details"
@@ -32,27 +31,28 @@ export default function VolunteeringDialog({ open, onClose }: Props) {
           >
             <Icon style={{ color: "var(--kind-community)" }} size={18} />
           </span>
-          <div>
-            <h2
-              id={titleId}
-              className="text-xl font-bold md:text-2xl"
-              style={{ color: "var(--text-primary)" }}
-            >
-              {volunteeringHeading.title}
-            </h2>
-            <p className="text-xs" style={{ color: "var(--text-muted)" }}>
-              {volunteeringRoles.length} commitments
-            </p>
-          </div>
+          <h2
+            id={titleId}
+            className="text-xl font-bold md:text-2xl"
+            style={{ color: "var(--text-primary)" }}
+          >
+            {volunteeringHeading.title}
+          </h2>
         </div>
       }
     >
-      <TimelineList
-        items={volunteeringRoles}
-        defaultOpen="none"
-        stagger={false}
-        idPrefix="volunteering"
-      />
+      {role && (
+        // Keyed so switching roles remounts the list and re-applies defaultOpen.
+
+        <TimelineList
+          key={`${role.title}-${role.start}`}
+          items={[role]}
+          defaultOpen="first"
+          stagger={false}
+          markers={false}
+          idPrefix="volunteering"
+        />
+      )}
     </Modal>
   );
 }

@@ -37,7 +37,6 @@ export interface ProjectItem {
   description: string;
   techs?: string[];
   link?: string | null;
-  /** Renders as the wide hero card at the top of the Projects grid. */
   featured?: boolean;
 }
 
@@ -69,8 +68,8 @@ export type TechGroup = {
 export type AboutHighlight = {
   icon: IconType;
   label: string;
-  /** Short, scannable value. Keep it a few words at most. */
-  value: string;
-  /** Optional longer form shown beneath the value. */
-  detail?: string;
+  value: string | string[];
+  detail?: string | string[];
+  /** Span two grid columns. */
+  wide?: boolean;
 };

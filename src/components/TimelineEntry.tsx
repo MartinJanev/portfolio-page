@@ -14,6 +14,8 @@ interface Props {
   onToggle: () => void;
   /** False on the last entry, so the rail stops at the final marker. */
   showRail: boolean;
+  /** False drops the kind marker and its gutter, for a lone entry. */
+  marker?: boolean;
   panelId: string;
 }
 
@@ -22,6 +24,7 @@ export default function TimelineEntry({
   open,
   onToggle,
   showRail,
+  marker = true,
   panelId,
 }: Props) {
   const kind = experienceKinds[item.kind];
@@ -32,7 +35,7 @@ export default function TimelineEntry({
   const hiddenTags = open ? 0 : Math.max(0, tags.length - COLLAPSED_TAG_COUNT);
 
   return (
-    <li className="relative pl-10 md:pl-12">
+    <li className={marker ? "relative pl-10 md:pl-12" : "relative"}>
       {/* Rail drawn per entry, from this marker's centre down to the next one,
           so it never trails off past the first/last dot. */}
       {showRail && (
@@ -44,22 +47,24 @@ export default function TimelineEntry({
           }}
         />
       )}
-      <span
-        aria-hidden="true"
-        className={[
-          "absolute left-0 top-5 flex h-8 w-8 items-center justify-center rounded-full md:left-1",
-          current ? "animate-pulse-ring" : "",
-        ]
-          .filter(Boolean)
-          .join(" ")}
-        style={{
-          backgroundColor: "var(--bg-primary)",
-          border: `2px solid ${kind.color}`,
-          color: kind.color,
-        }}
-      >
-        <KindIcon size={13} style={{ color: kind.color }} />
-      </span>
+      {marker && (
+        <span
+          aria-hidden="true"
+          className={[
+            "absolute left-0 top-5 flex h-8 w-8 items-center justify-center rounded-full md:left-1",
+            current ? "animate-pulse-ring" : "",
+          ]
+            .filter(Boolean)
+            .join(" ")}
+          style={{
+            backgroundColor: "var(--bg-primary)",
+            border: `2px solid ${kind.color}`,
+            color: kind.color,
+          }}
+        >
+          <KindIcon size={13} style={{ color: kind.color }} />
+        </span>
+      )}
 
       <Card tier={open ? "featured" : "standard"} padded={false}>
         <h3 className="contents">

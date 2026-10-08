@@ -2,53 +2,39 @@ import {
   FaLaptopCode,
   FaRunning,
   FaGraduationCap,
-  FaCode,
   FaBriefcase,
-  FaResearchgate,
+  FaLightbulb,
 } from "react-icons/fa";
 import type { AboutHighlight, Category, TechGroup } from "../../types/content";
 
-/**
- * TODO(Martin): rewrite this in your own voice — it was drafted only from facts
- * already present elsewhere in this repo (Home headline, ExperienceData,
- * ResearchData, ProjectData). Nothing here is invented, but none of it is
- * phrased the way you would phrase it.
- */
 export const aboutBio: string[] = [
-  "I'm a fourth-year Computer Science student at FCSE Skopje, originally from Shtip. Most of my work sits where machine learning meets language models — feature-selection experiments, spiking neural networks, and a document pipeline built on locally-run LLMs.",
-  "I'm currently a Machine Learning Researcher Intern at the Macedonian Academy of Sciences and Arts, looking at 3D vision-language models for medical imaging. Outside coursework I've spent years in scouting and student organisations, which is where most of what I know about organising people and sharing knowledge comes from.",
+  "I'm a fourth-year Computer Science student at FCSE Skopje, originally from Shtip. I'm drawn to problems where a good model can actually make a difference for someone, which is why so much of my work has ended up in healthcare, from early sepsis warning to Parkinson's telemonitoring. I care as much about why a model works as whether it does, so I lean towards interpretable methods and honest comparisons over impressive-looking numbers.",
+  "I'm currently a <strong>Machine Learning Researcher Intern</strong> at the Macedonian Academy of Sciences and Arts, where I'm working with 3D vision-language models for medical imaging. ",
+  "Apart from research and faculty work, I've also been involved in various extracurricular activities. Years spent in scouting and student organisations have also taught me how to lead teams, organise initiatives, and share knowledge effectively.",
 ];
 
 export const technologiesIcon = FaLaptopCode;
 
-/** Curated from public/martin-janev-cv.pdf, following the CV's own grouping. */
 export const techGroups: TechGroup[] = [
   {
     label: "Languages",
     items: ["Python", "Java", "C++", "SQL", "TypeScript"],
   },
   {
-    label: "Machine Learning & NLP",
+    label: "Machine Learning & Data",
     items: [
       "PyTorch",
-      "TensorFlow",
       "Scikit-learn",
-      "JAX",
-      "Ollama",
       "Hugging Face",
+      "Ollama",
+      "Pandas",
+      "NumPy",
+      "Apache Spark",
     ],
   },
   {
-    label: "Data Science",
-    items: ["Pandas", "NumPy", "Jupyter", "Matplotlib"],
-  },
-  {
-    label: "Backend & Frontend",
-    items: ["Spring Boot", "FastAPI", "Django", "Angular", "Firebase"],
-  },
-  {
-    label: "Tooling",
-    items: ["Git", "Docker", "PostgreSQL", "Bash"],
+    label: "Web & Infrastructure",
+    items: ["Spring Boot", "FastAPI", "Angular", "Docker", "PostgreSQL"],
   },
 ];
 
@@ -76,19 +62,19 @@ export const aboutHighlights: AboutHighlight[] = [
   {
     icon: FaBriefcase,
     label: "Looking for",
-    value: "Internships",
+    value: "Paid internships",
     detail: "Internship and job opportunities",
   },
   {
-    icon: FaCode,
-    label: "Project scope",
-    value: "ML • LLMs • AI",
-    detail: "Applied ML and LLM tooling",
-  },
-  {
-    icon: FaResearchgate,
-    label: "Research scope",
-    value: "AI • Computer Science",
-    detail: "Feature selection, spiking neural networks",
+    icon: FaLightbulb,
+    label: "Focus",
+    value: "Machine learning aimed at real problems",
+    detail: [
+      "Predicting sepsis early with interpretable time-series models",
+      "Reading 3D medical scans with vision-language models",
+      "Studying how agents bluff and cooperate in the game of Mafia",
+      "Converting PDFs into structured Markdown with a local LLM",
+    ],
+    wide: true,
   },
 ];
