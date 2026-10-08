@@ -20,7 +20,7 @@ export const Experience: React.FC = () => {
         <SectionHeader
           eyebrow="Experience"
           title="Experience & Growth"
-          lede="Research, work and study, most recent first. Community and volunteering work lives in its own panel over in About."
+          lede="Research, work and study experiences that have shaped my skills and perspective."
           count={experience.length}
         />
       }

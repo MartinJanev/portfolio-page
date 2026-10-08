@@ -9,12 +9,12 @@ export const volunteeringHeading = {
 
 /**
  * Kept out of ExperienceData so the timeline stays work + study.
- * Event entries, dates and bullets come from public/martin-janev-cv.pdf.
+ * Event entries, dates and bullets come from public/martin-janev.pdf.
  */
 export const volunteeringRoles: ExperienceItem[] = [
   {
     title: "EESTEC LC Skopje",
-    org: "EESTEC",
+    org: "EESTEC LC Skopje",
     kind: "community",
     start: "2023-10",
     end: "present",
@@ -116,5 +116,20 @@ export const volunteeringRoles: ExperienceItem[] = [
     ],
     tags: ["Logistics", "GitHub Administration", "RAG", "Community"],
     link: "https://techsummit.ai/",
+  },
+  {
+    title: "Startup Revolution AI Summit",
+    kind: "community",
+    start: "2026-10",
+    end: "2026-10",
+    location: "Skopje, Macedonia",
+    description:
+      "Stage support and logistics for the Startup Revolution AI Summit, a conference focused on AI and entrepreneurship.",
+    bullets: [
+      "Provided stage support and technical assistance during presentations, ensuring smooth transitions between speakers and maintaining the event's schedule.",
+      "Engaged with attendees to gather feedback and address any concerns, contributing to a positive event experience.",
+    ],
+    tags: ["Stage Support", "Logistics", "Community"],
+    link: "https://startuprevolution.ai/",
   },
 ];

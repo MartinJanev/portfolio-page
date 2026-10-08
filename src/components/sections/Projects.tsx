@@ -7,7 +7,6 @@ import { projects } from "../data/ProjectData";
 export const Projects = () => (
   <Section
     id="projects"
-    width="wide"
     header={
       <SectionHeader
         eyebrow="Projects"
