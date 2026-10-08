@@ -55,6 +55,7 @@ export default function Card({
       style={{
         backgroundColor: "var(--card-bg-solid)",
         border: "1px solid var(--card-border)",
+        boxShadow: "var(--card-shadow)",
       }}
     >
       <span
