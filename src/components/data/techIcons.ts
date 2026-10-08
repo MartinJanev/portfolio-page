@@ -19,21 +19,11 @@ import {
   SiNvidia,
   SiNumba,
   SiCplusplus,
-  SiTensorflow,
   SiHuggingface,
-  SiJupyter,
-  SiDjango,
-  SiGit,
-  SiGnubash,
   SiPostgresql,
+  SiApachespark,
 } from "react-icons/si";
 
-/**
- * Tool/technology name to logo. Single source of truth, shared by About and
- * Projects. Abstract topics ("Graph Theory", "Bayesian Statistics") are left
- * out on purpose — they fall back to Tag's dot, which keeps concrete tooling
- * visually distinct from concepts.
- */
 export const techIcons: Record<string, IconType> = {
   Python: SiPython,
   PyTorch: SiPytorch,
@@ -56,13 +46,9 @@ export const techIcons: Record<string, IconType> = {
   CUDA: SiNvidia,
   Numba: SiNumba,
   "C++": SiCplusplus,
-  TensorFlow: SiTensorflow,
   "Hugging Face": SiHuggingface,
-  Jupyter: SiJupyter,
-  Django: SiDjango,
-  Git: SiGit,
-  Bash: SiGnubash,
   PostgreSQL: SiPostgresql,
+  "Apache Spark": SiApachespark,
 };
 
 export const techIcon = (name: string): IconType | undefined => techIcons[name];

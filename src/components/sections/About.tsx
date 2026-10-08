@@ -17,7 +17,15 @@ import {
 } from "../data/VolunteeringData";
 import VolunteeringDialog from "../VolunteeringDialog";
 import { techIcon } from "../data/techIcons";
-import type { Category } from "../../types/content";
+import { sortByRecency } from "../../utils/sortByRecency";
+import type { Category, ExperienceItem } from "../../types/content";
+
+/** "2023 – Present", or just "2026" for a one-off event. */
+const yearRange = (start: string, end: string) => {
+  const from = start.slice(0, 4);
+  const to = end === "present" ? "Present" : end.slice(0, 4);
+  return from === to ? from : `${from} – ${to}`;
+};
 
 function CardHeading({
   title,
@@ -60,8 +68,7 @@ function CardHeading({
 }
 
 export const About: React.FC = () => {
-  const [volunteeringOpen, setVolunteeringOpen] = useState(false);
-  const volunteeringCount = volunteeringRoles.length;
+  const [openRole, setOpenRole] = useState<ExperienceItem | null>(null);
 
   return (
     <>
@@ -94,22 +101,21 @@ export const About: React.FC = () => {
               {aboutBio.map((paragraph) => (
                 <p
                   key={paragraph.slice(0, 32)}
-                  className="text-sm leading-relaxed sm:text-[15px]"
+                  className="text-sm leading-relaxed sm:text-[15px] [&_strong]:bg-[linear-gradient(90deg,var(--accent-green),var(--accent-purple))] [&_strong]:bg-clip-text [&_strong]:text-transparent"
                   style={{ color: "var(--text-secondary)" }}
-                >
-                  {paragraph}
-                </p>
+                  dangerouslySetInnerHTML={{ __html: paragraph }}
+                />
               ))}
-            </div>
-            <div className="mt-auto flex flex-wrap gap-2 pt-6">
-              <Tag>Skopje &amp; Shtip, MK</Tag>
-              <Tag>Open to internships</Tag>
-              <Tag variant="accent">Research-minded</Tag>
             </div>
           </Card>
 
-          {aboutHighlights.map(({ icon: Icon, label, value, detail }) => (
-            <Card key={label} tier="standard" contentClassName="flex flex-col">
+          {aboutHighlights.map(({ icon: Icon, label, value, detail, wide }) => (
+            <Card
+              key={label}
+              tier="standard"
+              className={wide ? "sm:col-span-2" : undefined}
+              contentClassName="flex flex-col"
+            >
               <span
                 className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-green-500/20 to-purple-500/20 transition-transform duration-300 group-hover:scale-110"
                 style={{ border: "1px solid var(--card-border)" }}
@@ -122,19 +128,47 @@ export const About: React.FC = () => {
               >
                 {label}
               </div>
-              <div
-                className="mt-1 text-lg font-bold leading-tight"
-                style={{ color: "var(--text-primary)" }}
-              >
-                {value}
-              </div>
-              {detail && (
+              {Array.isArray(value) ? (
+                <div className="mt-2 mb-2 flex flex-wrap gap-1.5">
+                  {value.map((item) => (
+                    <Tag key={item} size="sm" marker={false}>
+                      {item}
+                    </Tag>
+                  ))}
+                </div>
+              ) : (
                 <div
-                  className="mt-1.5 text-xs leading-snug"
+                  className="mt-1 text-lg font-bold leading-tight"
+                  style={{ color: "var(--text-primary)" }}
+                >
+                  {value}
+                </div>
+              )}
+              {Array.isArray(detail) ? (
+                <ul
+                  className="mt-1.5 space-y-1 text-xs leading-snug"
                   style={{ color: "var(--text-secondary)" }}
                 >
-                  {detail}
-                </div>
+                  {detail.map((item) => (
+                    <li key={item} className="flex gap-2">
+                      <span
+                        aria-hidden="true"
+                        className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full"
+                        style={{ backgroundColor: "var(--tag-text)" }}
+                      />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                detail && (
+                  <div
+                    className="mt-1.5 text-xs leading-snug"
+                    style={{ color: "var(--text-secondary)" }}
+                  >
+                    {detail}
+                  </div>
+                )
               )}
             </Card>
           ))}
@@ -168,46 +202,42 @@ export const About: React.FC = () => {
             </div>
           </Card>
 
-          {/* Trigger for the volunteering panel. These roles used to sit in the
-          Experience timeline, mixed in with work and study. */}
-          <Card
-            tier="standard"
-            className="sm:col-span-2"
-            contentClassName="flex flex-col"
-          >
+          {/* Volunteering — one tile per role, each opening that role's details. */}
+          <Card tier="standard" interactive={false} className="sm:col-span-2">
             <CardHeading
               title={volunteeringHeading.title}
               icon={volunteeringHeading.icon}
-              count={volunteeringCount}
+              count={volunteeringRoles.length}
             />
-            <ul className="space-y-2.5">
-              {volunteeringRoles.map((role) => (
-                <li key={role.title} className="flex items-start gap-2.5">
-                  <span
-                    aria-hidden="true"
-                    className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full"
-                    style={{ backgroundColor: "var(--kind-community)" }}
-                  />
-                  <span
-                    className="text-sm leading-snug"
-                    style={{ color: "var(--text-secondary)" }}
+            <ul className="grid grid-cols-2 gap-2.5 sm:grid-cols-3">
+              {sortByRecency(volunteeringRoles).map((role) => (
+                <li key={`${role.title}-${role.start}`}>
+                  <button
+                    type="button"
+                    onClick={() => setOpenRole(role)}
+                    aria-haspopup="dialog"
+                    className="flex h-full w-full flex-col rounded-xl p-3 text-left transition duration-200 hover:-translate-y-0.5 hover:ring-1 hover:ring-green-400/40"
+                    style={{
+                      backgroundColor: "var(--card-bg)",
+                      border: "1px solid var(--card-border)",
+                    }}
                   >
-                    {role.org ?? role.title}
-                  </span>
+                    <span
+                      className="text-sm font-semibold leading-snug"
+                      style={{ color: "var(--text-primary)" }}
+                    >
+                      {role.org ?? role.title}
+                    </span>
+                    <span
+                      className="mt-auto pt-2 text-xs tabular-nums"
+                      style={{ color: "var(--kind-community)" }}
+                    >
+                      {yearRange(role.start, role.end)}
+                    </span>
+                  </button>
                 </li>
               ))}
             </ul>
-            {/* Stretched button: the ::after overlay resolves against Card's relative
-            content box, making the whole tile the hit target. */}
-            <button
-              type="button"
-              onClick={() => setVolunteeringOpen(true)}
-              aria-haspopup="dialog"
-              className="mt-auto pt-4 text-left text-xs font-semibold after:absolute after:inset-0 after:rounded-2xl after:content-['']"
-              style={{ color: "var(--accent-green)" }}
-            >
-              View all {volunteeringCount} &rarr;
-            </button>
           </Card>
 
           <Card tier="quiet" className="sm:col-span-2">
@@ -218,7 +248,7 @@ export const About: React.FC = () => {
             />
             <div className="flex flex-wrap gap-2">
               {hobbies.items.map((item) => (
-                <Tag key={item} size="sm">
+                <Tag key={item} size="lg">
                   {item}
                 </Tag>
               ))}
@@ -226,10 +256,7 @@ export const About: React.FC = () => {
           </Card>
         </RevealList>
       </Section>
-      <VolunteeringDialog
-        open={volunteeringOpen}
-        onClose={() => setVolunteeringOpen(false)}
-      />
+      <VolunteeringDialog role={openRole} onClose={() => setOpenRole(null)} />
     </>
   );
 };

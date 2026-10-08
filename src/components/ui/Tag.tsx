@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import type { IconType } from "react-icons";
 
 type Variant = "default" | "accent" | "muted";
-type Size = "sm" | "md";
+type Size = "sm" | "md" | "lg";
 
 interface Props {
   children: ReactNode;
@@ -18,6 +18,7 @@ interface Props {
 const sizes: Record<Size, string> = {
   sm: "text-[11px] gap-1.5 px-2.5 py-1",
   md: "text-xs gap-2 px-3 py-1",
+  lg: "text-sm gap-2 px-3.5 py-1.5",
 };
 
 const colors: Record<Variant, string> = {
