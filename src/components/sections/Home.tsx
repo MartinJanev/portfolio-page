@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaEnvelope, FaCheck } from "react-icons/fa";
 import { RevealOnScroll } from "../RevealOnScroll";
+import Tag from "../ui/Tag";
 import avatarJpg from "../../assets/MartinJanev.jpg";
 import avatarWebp from "../../assets/MartinJanev.webp";
 import {
@@ -34,9 +35,9 @@ export const Home: React.FC = () => {
       className="min-h-screen flex items-center justify-center py-20 px-4"
     >
       <RevealOnScroll>
-        <div className="w-full max-w-5xl mx-auto grid md:grid-cols-5 gap-10 items-center">
-          <div className="md:col-span-3 flex justify-center md:justify-start order-2 md:order-none">
-            <div className="relative w-full max-w-2xl group flex flex-col items-center justify-center">
+        <div className="w-full max-w-2xl mx-auto">
+          <div className="flex justify-center">
+            <div className="relative w-full group flex flex-col items-center justify-center">
               <div
                 className="pointer-events-none absolute -inset-1 rounded-2xl blur opacity-0 group-hover:opacity-80 transition duration-500"
                 style={{
@@ -51,49 +52,66 @@ export const Home: React.FC = () => {
                   border: "1px solid var(--card-border)",
                 }}
               >
-                <div
-                  className="mb-3 flex flex-wrap items-center gap-3 text-xs"
-                  style={{ color: "var(--text-secondary)" }}
-                >
+                <div className="relative mb-6">
+                  <div className="absolute -inset-4 blur-2xl opacity-30 bg-gradient-to-tr from-green-800 to-purple-800 rounded-full" />
+                  <div className="relative p-[3px] rounded-full bg-gradient-to-tr from-green-500 to-purple-500">
+                    <picture>
+                      <source srcSet={avatarWebp} type="image/webp" />
+                      <img
+                        src={avatarJpg}
+                        alt="Martin Janev"
+                        width={192}
+                        height={192}
+                        loading="eager"
+                        fetchPriority="high"
+                        decoding="async"
+                        className="w-40 h-40 md:w-48 md:h-48 rounded-full object-cover"
+                      />
+                    </picture>
+                  </div>
+                </div>
+                <div className="mb-5 flex flex-wrap items-center justify-center gap-3">
                   <span
-                    className="inline-flex items-center gap-2 rounded-full px-3 py-1"
-                    style={{
-                      backgroundColor: "var(--tag-bg)",
-                      border: "1px solid var(--tag-border)",
-                      color: "var(--tag-text)",
-                    }}
+                    className="inline-flex items-center gap-2 text-xs font-semibold"
+                    style={{ color: "var(--accent-green)" }}
                   >
-                    💻 FCSE Skopje • 🏠 Shtip
-                  </span>
-                  <span
-                    className="h-3 w-px"
-                    style={{ backgroundColor: "var(--border-color)" }}
-                  />
-                  <span style={{ color: "var(--accent-green)" }}>
+                    <span aria-hidden="true" className="relative flex h-2 w-2">
+                      <span className="absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-60 animate-ping" />
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
+                    </span>
                     Open to internships
                   </span>
+                  <Tag size="sm" marker={false}>
+                    💻 FCSE Skopje • 🏠 Shtip
+                  </Tag>
                 </div>
-                <h1 className="text-4xl md:text-5xl font-extrabold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-green-400 animate-gradient text-center">
-                  Computer Science Student
+                <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-none pb-1 bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-green-400 animate-gradient text-center">
+                  Martin Janev
                 </h1>
-                <h2
-                  className="mt-2 mb-1 text-xl md:text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-purple-600 animate-gradient cursor-default transition-transform duration-200 ease-in-out hover:scale-105"
+                <p
+                  className="mt-3 text-lg md:text-xl font-semibold text-center"
+                  style={{ color: "var(--text-primary)" }}
+                >
+                  Computer Science Student
+                </p>
+                <p
+                  className="mt-1 text-sm font-semibold tabular-nums text-center cursor-default bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-purple-600 animate-gradient"
                   onMouseEnter={startUpdatingAge}
                   onMouseLeave={stopUpdatingAge}
                 >
                   {ageText}
-                </h2>
-                <div className="mt-6 flex flex-wrap gap-3 justify-center md:justify-start">
+                </p>
+                <div className="mt-8 flex flex-wrap gap-3 justify-center">
                   <a
                     href="#projects"
-                    className="inline-flex items-center justify-center bg-green-600 hover:bg-green-500 text-white font-medium py-3 px-6 rounded-lg shadow-sm transition"
+                    className="inline-flex items-center justify-center bg-green-600 hover:bg-green-500 text-white text-sm font-medium py-2.5 px-5 rounded-lg shadow-sm transition"
                   >
                     View My Work →
                   </a>
                   <a
                     href={cvUrl}
                     download={cvDownloadName}
-                    className="inline-flex items-center justify-center border py-3 px-6 rounded-lg transition hover:bg-white/5"
+                    className="inline-flex items-center justify-center border text-sm font-medium py-2.5 px-5 rounded-lg transition hover:bg-white/5"
                     style={{
                       borderColor: "var(--border-color)",
                       color: "var(--text-primary)",
@@ -104,7 +122,7 @@ export const Home: React.FC = () => {
                   <button
                     type="button"
                     onClick={handleCopyEmail}
-                    className="inline-flex items-center justify-center gap-2 border py-3 px-6 rounded-lg transition hover:bg-white/5"
+                    className="inline-flex items-center justify-center gap-2 border text-sm font-medium py-2.5 px-5 rounded-lg transition hover:bg-white/5"
                     style={{
                       borderColor: "var(--border-color)",
                       color: "var(--text-primary)",
@@ -125,11 +143,11 @@ export const Home: React.FC = () => {
                   </button>
                 </div>
                 <div
-                  className="mt-6 pt-6 border-t"
+                  className="mt-8 pt-6 border-t"
                   style={{ borderColor: "var(--border-color)" }}
                 >
                   <div
-                    className="flex gap-5 justify-center md:justify-start"
+                    className="flex gap-5 justify-center"
                     style={{ color: "var(--text-secondary)" }}
                   >
                     {contactData.map(({ label, href, icon: Icon }) => (
@@ -143,31 +161,11 @@ export const Home: React.FC = () => {
                         aria-label={label}
                         title={label}
                       >
-                        <Icon size={22} />
+                        <Icon size={20} />
                       </a>
                     ))}
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div className="md:col-span-2 flex justify-center md:justify-end order-1 md:order-none">
-            <div className="relative mt-8">
-              <div className="absolute -inset-8 blur-2xl opacity-30 bg-gradient-to-tr from-green-800 to-purple-800 rounded-full" />
-              <div className="p-[3px] rounded-full bg-gradient-to-tr from-green-500 to-purple-500">
-                <picture>
-                  <source srcSet={avatarWebp} type="image/webp" />
-                  <img
-                    src={avatarJpg}
-                    alt="Martin Janev"
-                    width={384}
-                    height={384}
-                    loading="eager"
-                    fetchPriority="high"
-                    decoding="async"
-                    className="w-56 h-56 md:w-72 md:h-72 lg:w-96 lg:h-96 rounded-full object-cover"
-                  />
-                </picture>
               </div>
             </div>
           </div>
