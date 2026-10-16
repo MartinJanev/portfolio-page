@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Portfolio of Martin Janev — computer science student showcasing projects in AI, web, and research."
+    />
+    <meta property="og:title" content="Martin Janev's personal website" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:description"
+      content="Martin Janev's personal website, used for showcasing his work and projects"
+    />
+    <meta
+      property="og:image"
+      content="https://martinjanev.github.io/portfolio-page/flag.png"
+    />
+    <meta
+      property="og:url"
+      content="https://martinjanev.github.io/portfolio-page/"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="canonical"
+      href="https://martinjanev.github.io/portfolio-page/"
+    />
+    <meta name="theme-color" content="#0c0f16" />
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem("theme");
+          var theme =
+            saved === "light" || saved === "dark"
+              ? saved
+              : window.matchMedia("(prefers-color-scheme: light)").matches
+                ? "light"
+                : "dark";
+          document.documentElement.setAttribute("data-theme", theme);
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) {
+            meta.setAttribute(
+              "content",
+              theme === "light" ? "#e6e2db" : "#0c0f16",
+            );
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <link rel="icon" type="image/svg+xml" href="/portfolio-page/flag.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Martin Janev</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Martin Janev",
+        "url": "https://martinjanev.github.io/portfolio-page/",
+        "jobTitle": "Computer Science Student",
+        "sameAs": [
+          "https://www.linkedin.com/in/martin-janev1/",
+          "https://github.com/MartinJanev",
+          "https://twitter.com/MartinJanev"
+        ]
+      }
+    </script>
+    <script type="module" crossorigin src="/portfolio-page/assets/index-CA5aPewe.js"></script>
+    <link rel="stylesheet" crossorigin href="/portfolio-page/assets/index-DkvDM0xy.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
